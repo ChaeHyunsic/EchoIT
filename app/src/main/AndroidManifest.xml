@@ -13,10 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Term_project"
         tools:targetApi="31">
+        <activity
+            android:name=".BoardClubActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${googleMapApiKey}" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
