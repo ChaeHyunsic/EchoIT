@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClubPageAdapter extends FragmentStateAdapter {
-    private final int tabPageCount = 4;
     public ClubPageAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -36,6 +35,6 @@ public class ClubPageAdapter extends FragmentStateAdapter {
     }
     @Override
     public int getItemCount() {
-        return tabPageCount;
+        return 4;
     }
 }
