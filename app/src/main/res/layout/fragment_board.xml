@@ -48,7 +48,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="시험"
+                        android:text="공지사항"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 </LinearLayout>
@@ -98,7 +98,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="과제"
+                        android:text="시험/과제"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 </LinearLayout>
