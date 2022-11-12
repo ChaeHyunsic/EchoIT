@@ -51,16 +51,16 @@ public class BoardClubActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        imageView.setImageResource(R.drawable.kernel);
+                        imageView.setImageResource(R.drawable.kernel_logo);
                         break;
                     case 1:
-                        imageView.setImageResource(R.drawable.gaonnuri);
+                        imageView.setImageResource(R.drawable.gaonnuri_logo);
                         break;
                     case 2:
-                        imageView.setImageResource(R.drawable.unknown);
+                        imageView.setImageResource(R.drawable.unknown_logo);
                         break;
                     case 3:
-                        imageView.setImageResource(R.drawable.deepint);
+                        imageView.setImageResource(R.drawable.deepint_logo);
                         break;
                 }
             }

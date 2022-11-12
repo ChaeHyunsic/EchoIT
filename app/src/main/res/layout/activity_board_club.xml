@@ -7,11 +7,11 @@
         android:id="@+id/board_club_iv_js"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/kernel" />
+        android:src="@drawable/kernel_logo" />
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/club_content_tb_js"
         android:layout_width="match_parent"
