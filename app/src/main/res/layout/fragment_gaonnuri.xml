@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".GaonnuriFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/introduce_title_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="소개글"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/introduce_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="저희 가온누리는 다양한 IT분야(임베디드 시스템/소프트웨어 및 모바일, Wep Application, AI/BigData, 소프트웨어 역량 등)의 연구 개발을 목적으로 설립 된 동아리입니다."
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/introduce_title_tv_js" />
+
+        <TextView
+            android:id="@+id/image_title_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="동아리사진"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/introduce_tv_js" />
+        <ImageView
+            android:id="@+id/image_iv_js"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/image_title_tv_js"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/gaonnuri"/>
+        <TextView
+            android:id="@+id/regist_club_title_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="동아리 지원방식"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_iv_js" />
+        <TextView
+            android:id="@+id/regist_club_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="홈페이지에 동아리 지원 양식을 작성하여 아래의 E-mail로 보내주시면 감사하겠습니다. 연락 해주신 학생 분에 한해 면접 후 코딩테스트가 진행됩니다. 면접 시에는 기술 보다는 인성과 의지를 중점적으로 봅니다."
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/regist_club_title_tv_js" />
+        <TextView
+            android:id="@+id/tel_club_title_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="동아리 연락처"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/regist_club_tv_js" />
+        <TextView
+            android:id="@+id/tel_club_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="회장 E-mail : jskim2x@naver.com"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tel_club_title_tv_js" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
