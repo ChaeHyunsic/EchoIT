@@ -35,11 +35,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        AppDatabase db = Room
-//                .databaseBuilder(getApplicationContext(),AppDatabase.class,"Term")
-//                .fallbackToDestructiveMigration() // 2번째 배포부터 추가
-//                .allowMainThreadQueries() // 메인쓰레드에서 접근
-//                .build();
+
 
     }
 }

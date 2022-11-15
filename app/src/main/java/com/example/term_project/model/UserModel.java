@@ -4,10 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.format.DateTimeFormatter;
-
 @Entity(tableName="user")
 public class UserModel {
     @PrimaryKey(autoGenerate = true)
