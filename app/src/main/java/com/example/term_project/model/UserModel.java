@@ -115,4 +115,19 @@ public class UserModel {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", userID='" + userID + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", department='" + department + '\'' +
+                ", grade=" + grade +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

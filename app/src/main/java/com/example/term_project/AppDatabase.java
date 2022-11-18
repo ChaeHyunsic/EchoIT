@@ -7,14 +7,11 @@ import androidx.annotation.Nullable;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
-
 import com.example.term_project.dao.UserDao;
-import com.example.term_project.model.Converters;
+import com.example.term_project.model.ExamSubjectModel;
 import com.example.term_project.model.UserModel;
 
-@Database(entities = {UserModel.class}, version = 5)
-@TypeConverters({Converters.class})
+@Database(entities = {UserModel.class, ExamSubjectModel.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     @Nullable

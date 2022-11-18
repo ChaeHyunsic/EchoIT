@@ -5,13 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <Button
+        android:id="@+id/main_logout_btn_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그아웃"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"/>
+    <View
+        android:id="@+id/main_underview_js"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#BFE80C"
+        app:layout_constraintTop_toBottomOf="@+id/main_logout_btn_js"/>
     <FrameLayout
         android:id="@+id/main_frm_js"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/main_bnv_js"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/main_underview_js" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

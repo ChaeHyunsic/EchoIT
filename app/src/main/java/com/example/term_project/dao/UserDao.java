@@ -13,7 +13,7 @@ import com.example.term_project.model.UserModel;
 import java.util.List;
 
 @Dao
-public interface UserDao {
+public interface UserDao{
     @Insert(onConflict = REPLACE)
     void insert(UserModel userModel);
     @Delete
@@ -26,7 +26,9 @@ public interface UserDao {
     List<UserModel> getUsers();
 
     @Nullable
-    @Query("select * from user where id = :userID and password = :password and status = 'A'")
+    @Query("select * from user where userID = :userID and password = :password and status = 'A'")
     UserModel getUser(String userID, String password);
+
+
 
 }
