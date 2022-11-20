@@ -1,7 +1,6 @@
 package com.example.term_project;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.term_project.model.ExamSubjects;
+
 import java.util.ArrayList;
 
 public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.ViewHolder> {
-    private ArrayList<String> mData = null ;
+    private ArrayList<ExamSubjects> result;
     private Context context;
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -34,8 +35,8 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
         }
     }
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    ExamSubjectAdapter(ArrayList<String> list) {
-        mData = list ;
+    ExamSubjectAdapter(ArrayList<ExamSubjects> result) {
+        this.result = result ;
     }
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
@@ -53,12 +54,14 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
     public void onBindViewHolder(@NonNull ExamSubjectAdapter.ViewHolder holder, int position) {
-        String text = mData.get(position);
+        String text = result.get(position).getTitle();
+        String text2 = result.get(position).getEndAt();
         holder.textView.setText(text);
+        holder.textView2.setText(text2);
     }
     // getItemCount() - 전체 데이터 갯수 리턴.
     @Override
     public int getItemCount() {
-        return mData.size();
+        return result.size();
     }
 }

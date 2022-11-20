@@ -5,29 +5,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import com.example.term_project.board.exam_board.ExamSubjectService;
+import com.example.term_project.model.ExamSubjects;
+import com.example.term_project.view.ExamSubjectsView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class ExamSubjectActivity extends AppCompatActivity {
+public class ExamSubjectActivity extends AppCompatActivity implements ExamSubjectsView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_subject);
 
-        ArrayList<String> list = new ArrayList<>();
-        for(int i=0;i<15;i++){
-            list.add(String.format("TEXT %d",i));
-        }
-
-        RecyclerView recyclerView = findViewById(R.id.exam_sub_rv_js);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        ExamSubjectAdapter adapter = new ExamSubjectAdapter(list);
-        recyclerView.setAdapter(adapter);
 
         FloatingActionButton floatingActionButton = findViewById(R.id.plus_item_fab_js);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -39,5 +34,36 @@ public class ExamSubjectActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getList();
+    }
 
+    private void initRecyclerView(ArrayList<ExamSubjects> result){
+        RecyclerView recyclerView = findViewById(R.id.exam_sub_rv_js);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ExamSubjectAdapter adapter = new ExamSubjectAdapter(result);
+        recyclerView.setAdapter(adapter);
+    }
+    private void getList(){
+        ExamSubjectService examSubjectService = new ExamSubjectService();
+        examSubjectService.setExamSubjectsView(this);
+
+        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        String token = spf.getString("jwt","");
+        Log.d("JWT",token);
+        examSubjectService.getExamSubjects(token);
+    }
+
+    @Override
+    public void onGetExamSubjectSuccess(int code, ArrayList<ExamSubjects> result) {
+        initRecyclerView(result);
+    }
+
+    @Override
+    public void onGetExamSubjectFailure(int code, String message) {
+        Log.d("GET-EXAM-SUBJECT",message);
+    }
 }
