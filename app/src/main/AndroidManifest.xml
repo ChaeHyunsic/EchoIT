@@ -2,9 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.term_project">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -14,15 +17,10 @@
         android:theme="@style/Theme.Term_project"
         tools:targetApi="31">
         <activity
-            android:name=".BoardClubActivity"
+            android:name=".SignUpActivity"
             android:exported="false" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${googleMapApiKey}" />
-
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +29,23 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ExamSubjectEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExamSubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BoardClubActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAnjuC1qu9Bv7s0yhNQDto455N_OkbwV9o" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="department">
+        <item>IT융합학부</item>
+        <item>화학공학부</item>
+        <item>전기공학부</item>
+        <item>건설환경공학부</item>
+        <item>첨단소재공학부</item>
+    </string-array>
+    <string-array name="grade">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>
