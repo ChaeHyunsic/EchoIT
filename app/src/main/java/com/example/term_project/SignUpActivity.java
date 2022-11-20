@@ -12,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.term_project.auth.AuthService;
 import com.example.term_project.model.User;
+import com.example.term_project.view.SignUpView;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
@@ -59,22 +61,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
         return new User(id,password,nickNameText,departmentText,gradeText);
     }
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    private void signUp(){
-//        if(signUpId.getText().toString().isEmpty()){
-//            Toast.makeText(this,"아이디를 입력해주세요.",Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (!signUpPassword.getText().toString().equals(passwordCheck.getText().toString())){
-//            Toast.makeText(this,"비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        final AppDatabase DB = AppDatabase.getInstance(this);
-//        final List<UserModel> users = DB.userDao().getUsers(); // 로그 출력용
-//        DB.userDao().insert(getUser());
-//        Log.d("Input",getUser().getUserID()+" "+getUser().getPassword()+" "+getUser().getNickname()+" "+getUser().getDepartment()+" "+getUser().getGrade()+" "+getUser().getStatus());
-//        Log.d("User",users.toString());
-//    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void signUp(){
         if(signUpId.getText().toString().isEmpty()){
@@ -93,11 +80,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     }
 
     @Override
-    public void OnSignUpSuccess() {
+    public void onSignUpSuccess() {
         finish();
     }
     @Override
-    public void OnSignUpFailure(int code) {
+    public void onSignUpFailure(int code) {
         switch (code){
             case 2018: // 아이디 중복
                 errorIdTextView.setVisibility(View.VISIBLE);
