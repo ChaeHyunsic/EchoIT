@@ -10,7 +10,7 @@
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/activity_exam_subject_edit.xml" value="0.33" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/activity_login.xml" value="0.37135416666666665" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/activity_main.xml" value="0.3482789855072464" />
-        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/activity_sign_up.xml" value="0.3567708333333333" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/activity_sign_up.xml" value="0.5" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/array.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/exam_subject_recyclerview_item.xml" value="0.6127703398558187" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_board.xml" value="0.24757281553398058" />
@@ -24,6 +24,10 @@
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_unknown.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.112" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/xml/backup_rules.xml" value="0.2947916666666667" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/xml/data_extraction_rules.xml" value="0.29583333333333334" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/xml/network_security_config.xml" value="0.2989583333333333" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/xml/xml.xml" value="0.3" />
       </map>
     </option>
   </component>
