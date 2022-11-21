@@ -20,19 +20,22 @@ public class BoardFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_board, container, false);
 
-        materialCardView[7] = root.findViewById(R.id.board_card_club_mcv_dong_gy);
-        materialCardView[7].setOnClickListener(new View.OnClickListener() {
+        // get club cardview
+        MaterialCardView materialCardView_club = root.findViewById(R.id.board_card_club_mcv_dong_gy);
+        materialCardView_club.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),BoardClubActivity.class);
                 startActivity(intent);
             }
         });
-        materialCardView[1] = root.findViewById(R.id.board_card_club_mcv_homework_gy);
-        materialCardView[1].setOnClickListener(new View.OnClickListener() {
+
+        // get notice cardview
+        MaterialCardView materialCardView_notice = root.findViewById(R.id.board_card_club_mcv_exam_gy);
+        materialCardView_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ExamSubjectActivity.class);
+                Intent intent = new Intent(getActivity(),NoticeActivity.class);
                 startActivity(intent);
             }
         });

@@ -13,8 +13,6 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "GOOGLE_API_KEY", properties["google_api_key"]
-        buildConfigField "String", "YOUTUBE_API_KEY", properties["youtube_api_key"]
         manifestPlaceholders = [googleMapApiKey:googleMapApiKey]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,4 +53,7 @@ dependencies {
     // okHttp
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.13.1'
 }
