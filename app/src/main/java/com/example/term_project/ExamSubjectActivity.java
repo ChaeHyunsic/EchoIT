@@ -11,13 +11,13 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.term_project.board.exam_board.ExamSubjectService;
-import com.example.term_project.model.ExamSubjects;
-import com.example.term_project.view.ExamSubjectsView;
+import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
+import com.example.term_project.view.GetExamSubjectsView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class ExamSubjectActivity extends AppCompatActivity implements ExamSubjectsView {
+public class ExamSubjectActivity extends AppCompatActivity implements GetExamSubjectsView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements ExamSubjec
         getList();
     }
 
-    private void initRecyclerView(ArrayList<ExamSubjects> result){
+    private void initRecyclerView(ArrayList<GetExamSubjectsResult> result){
         RecyclerView recyclerView = findViewById(R.id.exam_sub_rv_js);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -49,7 +49,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements ExamSubjec
     }
     private void getList(){
         ExamSubjectService examSubjectService = new ExamSubjectService();
-        examSubjectService.setExamSubjectsView(this);
+        examSubjectService.setGetExamSubjectsView(this);
 
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         String token = spf.getString("jwt","");
@@ -58,7 +58,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements ExamSubjec
     }
 
     @Override
-    public void onGetExamSubjectSuccess(int code, ArrayList<ExamSubjects> result) {
+    public void onGetExamSubjectSuccess(int code, ArrayList<GetExamSubjectsResult> result) {
         initRecyclerView(result);
     }
 

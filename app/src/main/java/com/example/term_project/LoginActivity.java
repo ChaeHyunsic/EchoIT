@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.term_project.auth.AuthService;
-import com.example.term_project.auth.ResultLogin;
-import com.example.term_project.model.User;
+import com.example.term_project.auth.response.result.LoginResult;
+import com.example.term_project.auth.request.User;
 import com.example.term_project.view.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -42,10 +42,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             @Override
             public void onClick(View view) {
                 login();
-                finish();
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
     private void init(){
         loginId = findViewById(R.id.login_id_et_js);
         loginPassword = findViewById(R.id.login_password_et_js);
@@ -91,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void onLoginSuccess(int code, ResultLogin result) {
+    public void onLoginSuccess(int code, LoginResult result) {
         if(code == 1000){
             saveJwt(result.getJwt());
             startMainActivity();

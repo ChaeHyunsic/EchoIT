@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.google.android.material.card.MaterialCardView;
 
 public class BoardFragment extends Fragment {
-    MaterialCardView[] materialCardView = new MaterialCardView[8];
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +35,16 @@ public class BoardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),NoticeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // get exam-subject cardview
+        MaterialCardView materialCardView_exam_subject = root.findViewById(R.id.board_card_club_mcv_homework_gy);
+        materialCardView_exam_subject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ExamSubjectActivity.class);
                 startActivity(intent);
             }
         });

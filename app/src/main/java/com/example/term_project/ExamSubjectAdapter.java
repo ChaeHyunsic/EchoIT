@@ -11,12 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.term_project.model.ExamSubjects;
+import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
 
 import java.util.ArrayList;
 
 public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.ViewHolder> {
-    private ArrayList<ExamSubjects> result;
+    private ArrayList<GetExamSubjectsResult> result;
     private Context context;
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -35,7 +35,7 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
         }
     }
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    ExamSubjectAdapter(ArrayList<ExamSubjects> result) {
+    ExamSubjectAdapter(ArrayList<GetExamSubjectsResult> result) {
         this.result = result ;
     }
 

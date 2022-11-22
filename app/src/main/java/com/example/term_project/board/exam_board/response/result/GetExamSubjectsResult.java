@@ -1,13 +1,13 @@
-package com.example.term_project.model;
+package com.example.term_project.board.exam_board.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ExamSubjects {
+public class GetExamSubjectsResult {
     @SerializedName(value = "id") private int id;
     @SerializedName(value = "title") private String title;
     @SerializedName(value = "endAt") private String endAt;
 
-    public ExamSubjects(int id, String title, String endAt) {
+    public GetExamSubjectsResult(int id, String title, String endAt) {
         this.id = id;
         this.title = title;
         this.endAt = endAt;

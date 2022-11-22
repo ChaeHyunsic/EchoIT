@@ -9,17 +9,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/title_tv_js"
+        <EditText
+            android:id="@+id/title_et_js"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:hint="Title"
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"/>
         <Button
+            android:id="@+id/register_btn_js"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="등록"
@@ -35,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#BFE80C"
-            app:layout_constraintTop_toBottomOf="@+id/title_tv_js"
+            app:layout_constraintTop_toBottomOf="@+id/title_et_js"
             android:layout_marginTop="5dp"/>
 
         <EditText

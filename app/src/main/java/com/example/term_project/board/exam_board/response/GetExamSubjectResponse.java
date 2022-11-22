@@ -1,19 +1,22 @@
-package com.example.term_project.auth;
+package com.example.term_project.board.exam_board.response;
 
 import androidx.annotation.Nullable;
 
+import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
 import com.google.gson.annotations.SerializedName;
 
-public class AuthResponse {
+import java.util.ArrayList;
+
+public class GetExamSubjectResponse {
     @SerializedName(value = "isSuccess") private boolean isSuccess;
     @SerializedName(value = "code") private int code;
     @SerializedName(value = "message") private String message;
 
     @Nullable
     @SerializedName(value = "result")
-    private ResultLogin result;
+    private ArrayList<GetExamSubjectsResult> result;
 
-    public AuthResponse(boolean isSuccess, int code, String message, @Nullable ResultLogin result) {
+    public GetExamSubjectResponse(boolean isSuccess, int code, String message, @Nullable ArrayList<GetExamSubjectsResult> result) {
         this.isSuccess = isSuccess;
         this.code = code;
         this.message = message;
@@ -45,17 +48,17 @@ public class AuthResponse {
     }
 
     @Nullable
-    public ResultLogin getResult() {
+    public ArrayList<GetExamSubjectsResult> getResult() {
         return result;
     }
 
-    public void setResult(@Nullable ResultLogin result) {
+    public void setResult(@Nullable ArrayList<GetExamSubjectsResult> result) {
         this.result = result;
     }
 
     @Override
     public String toString() {
-        return "AuthResponse{" +
+        return "ExamSubjectResponse{" +
                 "isSuccess=" + isSuccess +
                 ", code=" + code +
                 ", message='" + message + '\'' +
