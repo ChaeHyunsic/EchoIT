@@ -1,18 +1,38 @@
-package com.example.term_project.board.exam_board.request;
+package com.example.term_project.board.exam_board.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.sql.Date;
 
-public class PatchExamSubjectRequest {
+public class PatchExamSubjectResult {
+    @SerializedName(value = "listIdx") private int listIdx;
+    @SerializedName(value = "userIdx") private int userIdx;
     @SerializedName(value = "title") private String title;
     @SerializedName(value = "content") private String content;
     @SerializedName(value = "endAt") private Date endAt;
 
-    public PatchExamSubjectRequest(String title, String content, Date endAt) {
+    public PatchExamSubjectResult(int listIdx, int userIdx, String title, String content, Date endAt) {
+        this.listIdx = listIdx;
+        this.userIdx = userIdx;
         this.title = title;
         this.content = content;
         this.endAt = endAt;
+    }
+
+    public int getListIdx() {
+        return listIdx;
+    }
+
+    public void setListIdx(int listIdx) {
+        this.listIdx = listIdx;
+    }
+
+    public int getUserIdx() {
+        return userIdx;
+    }
+
+    public void setUserIdx(int userIdx) {
+        this.userIdx = userIdx;
     }
 
     public String getTitle() {
@@ -41,8 +61,10 @@ public class PatchExamSubjectRequest {
 
     @Override
     public String toString() {
-        return "PatchExamSubjectRequest{" +
-                "title='" + title + '\'' +
+        return "PatchExamSubjectResult{" +
+                "listIdx=" + listIdx +
+                ", userIdx=" + userIdx +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", endAt=" + endAt +
                 '}';

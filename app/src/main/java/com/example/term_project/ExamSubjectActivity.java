@@ -28,7 +28,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ExamSubjectActivity.this,ExamSubjectEditActivity.class);
+                Intent intent = new Intent(ExamSubjectActivity.this, ExamSubjectCreateActivity.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +44,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
         RecyclerView recyclerView = findViewById(R.id.exam_sub_rv_js);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ExamSubjectAdapter adapter = new ExamSubjectAdapter(result);
+        ExamSubjectAdapter adapter = new ExamSubjectAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
     private void getList(){

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/title_et_js"
+            android:id="@+id/title_et_create_js"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Title"
@@ -20,14 +20,14 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"/>
         <Button
-            android:id="@+id/edit_btn_js"
+            android:id="@+id/register_btn_js"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수정"
+            android:text="등록"
             android:backgroundTint="@color/select_color"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@+id/title_et_js"
-            app:layout_constraintBottom_toBottomOf="@+id/title_et_js"
+            app:layout_constraintTop_toTopOf="@+id/title_et_create_js"
+            app:layout_constraintBottom_toBottomOf="@+id/title_et_create_js"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp"/>
         <View
@@ -35,11 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#BFE80C"
-            app:layout_constraintTop_toBottomOf="@+id/title_et_js"
+            app:layout_constraintTop_toBottomOf="@+id/title_et_create_js"
             android:layout_marginTop="5dp"/>
 
         <EditText
-            android:id="@+id/content_et_js"
+            android:id="@+id/content_et_create_js"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#BFE80C"
-            app:layout_constraintTop_toBottomOf="@+id/content_et_js"
+            app:layout_constraintTop_toBottomOf="@+id/content_et_create_js"
             android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/deadline_tv_js"
@@ -71,7 +71,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"/>
         <TextView
-            android:id="@+id/deadline_check_tv_edit_js"
+            android:id="@+id/deadline_check_tv_js"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -81,7 +81,7 @@
             android:layout_marginTop="20dp"/>
 
         <DatePicker
-            android:id="@+id/date_picker_edit_js"
+            android:id="@+id/date_picker_js"
             android:layout_width="300dp"
             android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -2,14 +2,18 @@ package com.example.term_project.board.exam_board.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
+
 public class GetExamSubjectsResult {
     @SerializedName(value = "id") private int id;
     @SerializedName(value = "title") private String title;
-    @SerializedName(value = "endAt") private String endAt;
+    @SerializedName(value = "content") private String content;
+    @SerializedName(value = "endAt") private Date endAt;
 
-    public GetExamSubjectsResult(int id, String title, String endAt) {
+    public GetExamSubjectsResult(int id, String title, String content, Date endAt) {
         this.id = id;
         this.title = title;
+        this.content = content;
         this.endAt = endAt;
     }
 
@@ -29,20 +33,29 @@ public class GetExamSubjectsResult {
         this.title = title;
     }
 
-    public String getEndAt() {
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getEndAt() {
         return endAt;
     }
 
-    public void setEndAt(String endAt) {
+    public void setEndAt(Date endAt) {
         this.endAt = endAt;
     }
 
     @Override
     public String toString() {
-        return "ExamSubjects{" +
-                "listIdx=" + id +
+        return "GetExamSubjectsResult{" +
+                "id=" + id +
                 ", title='" + title + '\'' +
-                ", endAt='" + endAt + '\'' +
+                ", content='" + content + '\'' +
+                ", endAt=" + endAt +
                 '}';
     }
 }
