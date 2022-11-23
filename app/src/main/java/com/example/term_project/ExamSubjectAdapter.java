@@ -1,7 +1,10 @@
 package com.example.term_project;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,16 +15,29 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.term_project.board.exam_board.ExamSubjectService;
 import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
+import com.example.term_project.view.DeleteExamSubjectView;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
-public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.ViewHolder> {
+public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.ViewHolder> implements DeleteExamSubjectView {
     private ArrayList<GetExamSubjectsResult> result;
     private Context context;
+
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
+    interface MyItemClickListener{
+        void onRemoveExamSubject(int position);
+    }
+    MyItemClickListener myItemClickListener;
+
+    public void setMyItemClickListener(MyItemClickListener myItemClickListener){
+        this.myItemClickListener = myItemClickListener;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox checkBox;
         TextView textView;
@@ -68,6 +84,7 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
                 PopupMenu popupMenu = new PopupMenu(context,holder.imageView);
                 popupMenu.inflate(R.menu.exam_sub_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()){
@@ -80,6 +97,10 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
                                 context.startActivity(intent);
                                 return true;
                             case R.id.delete:
+                                Log.d("DEL-GETID ?", ""+result.get(touchIndex).getId());
+                                deleteData(result.get(touchIndex).getId());
+                                result.remove(touchIndex);
+                                notifyDataSetChanged();
                                 return true;
                             default:
                                 return false;
@@ -89,6 +110,26 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
                 popupMenu.show();
             }
         });
+    }
+    private String getJwt(){
+        SharedPreferences spf = context.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("jwt","");
+    }
+    private void deleteData(int listIdx){
+        ExamSubjectService examSubjectService = new ExamSubjectService();
+        examSubjectService.setDeleteExamSubjectView(this);
+
+        examSubjectService.deleteExamSubject(getJwt(),listIdx);
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onDeleteExamSubjectSuccess(int listIdx) {
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDeleteExamSubjectFailure(int code, String message) {
+
     }
     // getItemCount() - 전체 데이터 갯수 리턴.
     @Override

@@ -29,6 +29,7 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
     Button button;
     String dt_str;
     int listIdx;
+    ExamSubjectAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
         String titleText = title.getText().toString();
         String contentText = content.getText().toString();
         Log.d("WHAT?", Date.valueOf(endAtText.getText().toString()).toString());
-        Date endAt = Date.valueOf(dt_str);
+        Date endAt = Date.valueOf(endAtText.getText().toString());
         return new PatchExamSubjectRequest(titleText,contentText,endAt);
     }
     private String getJwt(){
@@ -89,6 +90,7 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
             }
         });
     }
+
 
     @Override
     public void onPatchExamSubjectSuccess() {

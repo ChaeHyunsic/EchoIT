@@ -26,6 +26,7 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
     DatePicker datePicker;
     Button button;
     String dt_str;
+    ExamSubjectAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +79,10 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
         examSubjectService.postExamSubject(getJwt(),getRequest());
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onPostExamSubjectSuccess() {
+        adapter.notifyDataSetChanged();
         finish();
     }
 
