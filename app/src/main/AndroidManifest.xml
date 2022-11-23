@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.term_project">
+    package="com.example.term_project" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Term_project"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".ExamSubjectEditActivity"
+            android:exported="false" />
         <activity
             android:name=".NoticeActivity"
             android:exported="false" />
@@ -24,7 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ExamSubjectEditActivity"
+            android:name=".ExamSubjectCreateActivity"
             android:exported="false" />
         <activity
             android:name=".ExamSubjectActivity"

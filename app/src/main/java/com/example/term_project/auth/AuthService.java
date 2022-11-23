@@ -4,7 +4,8 @@ import static com.example.term_project.network.NetworkModule.getRetrofit;
 
 import android.util.Log;
 
-import com.example.term_project.model.User;
+import com.example.term_project.auth.request.User;
+import com.example.term_project.auth.response.AuthResponse;
 import com.example.term_project.view.LoginView;
 import com.example.term_project.view.SignUpView;
 

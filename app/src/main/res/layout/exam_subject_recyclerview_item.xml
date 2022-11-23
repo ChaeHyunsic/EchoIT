@@ -29,11 +29,11 @@
         android:text="Test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/context_menu_iv_js"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/subject_tv_js"
         android:textSize="20sp"
         android:layout_marginTop="18dp"
-        android:layout_marginStart="30dp"/>
+        android:layout_marginEnd="10dp" />
     <ImageView
         android:id="@+id/context_menu_iv_js"
         android:layout_width="30dp"

@@ -1,19 +1,20 @@
-package com.example.term_project.auth;
+package com.example.term_project.board.exam_board.response;
 
 import androidx.annotation.Nullable;
 
+import com.example.term_project.board.exam_board.response.result.DeleteExamSubjectResult;
 import com.google.gson.annotations.SerializedName;
 
-public class AuthResponse {
+public class DeleteExamSubjectResponse {
     @SerializedName(value = "isSuccess") private boolean isSuccess;
     @SerializedName(value = "code") private int code;
     @SerializedName(value = "message") private String message;
 
     @Nullable
     @SerializedName(value = "result")
-    private ResultLogin result;
+    private DeleteExamSubjectResult result;
 
-    public AuthResponse(boolean isSuccess, int code, String message, @Nullable ResultLogin result) {
+    public DeleteExamSubjectResponse(boolean isSuccess, int code, String message, @Nullable DeleteExamSubjectResult result) {
         this.isSuccess = isSuccess;
         this.code = code;
         this.message = message;
@@ -45,17 +46,17 @@ public class AuthResponse {
     }
 
     @Nullable
-    public ResultLogin getResult() {
+    public DeleteExamSubjectResult getResult() {
         return result;
     }
 
-    public void setResult(@Nullable ResultLogin result) {
+    public void setResult(@Nullable DeleteExamSubjectResult result) {
         this.result = result;
     }
 
     @Override
     public String toString() {
-        return "AuthResponse{" +
+        return "DeleteExamSubjectResponse{" +
                 "isSuccess=" + isSuccess +
                 ", code=" + code +
                 ", message='" + message + '\'' +

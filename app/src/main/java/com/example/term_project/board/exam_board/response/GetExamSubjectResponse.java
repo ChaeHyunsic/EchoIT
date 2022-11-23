@@ -1,22 +1,22 @@
-package com.example.term_project.board.exam_board;
+package com.example.term_project.board.exam_board.response;
 
 import androidx.annotation.Nullable;
 
-import com.example.term_project.model.ExamSubjects;
+import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class ExamSubjectResponse {
+public class GetExamSubjectResponse {
     @SerializedName(value = "isSuccess") private boolean isSuccess;
     @SerializedName(value = "code") private int code;
     @SerializedName(value = "message") private String message;
 
     @Nullable
     @SerializedName(value = "result")
-    private ArrayList<ExamSubjects> result;
+    private ArrayList<GetExamSubjectsResult> result;
 
-    public ExamSubjectResponse(boolean isSuccess, int code, String message, @Nullable ArrayList<ExamSubjects> result) {
+    public GetExamSubjectResponse(boolean isSuccess, int code, String message, @Nullable ArrayList<GetExamSubjectsResult> result) {
         this.isSuccess = isSuccess;
         this.code = code;
         this.message = message;
@@ -48,11 +48,11 @@ public class ExamSubjectResponse {
     }
 
     @Nullable
-    public ArrayList<ExamSubjects> getResult() {
+    public ArrayList<GetExamSubjectsResult> getResult() {
         return result;
     }
 
-    public void setResult(@Nullable ArrayList<ExamSubjects> result) {
+    public void setResult(@Nullable ArrayList<GetExamSubjectsResult> result) {
         this.result = result;
     }
 

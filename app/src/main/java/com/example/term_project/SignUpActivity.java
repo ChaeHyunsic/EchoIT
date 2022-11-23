@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.term_project.auth.AuthService;
-import com.example.term_project.model.User;
+import com.example.term_project.auth.request.User;
 import com.example.term_project.view.SignUpView;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpView {

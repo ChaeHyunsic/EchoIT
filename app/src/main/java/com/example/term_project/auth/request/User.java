@@ -1,4 +1,4 @@
-package com.example.term_project.model;
+package com.example.term_project.auth.request;
 
 import com.google.gson.annotations.SerializedName;
 

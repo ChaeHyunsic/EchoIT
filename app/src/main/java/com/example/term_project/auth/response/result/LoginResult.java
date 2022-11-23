@@ -1,12 +1,12 @@
-package com.example.term_project.auth;
+package com.example.term_project.auth.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResultLogin {
+public class LoginResult {
     @SerializedName(value = "userIdx") private int userIdx;
     @SerializedName(value = "jwt") private String jwt;
 
-    public ResultLogin(int userIdx, String jwt) {
+    public LoginResult(int userIdx, String jwt) {
         this.userIdx = userIdx;
         this.jwt = jwt;
     }
