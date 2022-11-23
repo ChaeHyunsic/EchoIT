@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         init();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -37,6 +45,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
             }
         });
     }
+
+    // 뷰 초기화
     private void init(){
         signUpId = findViewById(R.id.sign_up_id_et_js);
         signUpPassword = findViewById(R.id.sign_up_password_et_js);
@@ -51,6 +61,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         grade = findViewById(R.id.sign_up_grade_sn_js);
         registerBtn = findViewById(R.id.sign_up_register_cb_js);
     }
+
+    // 입력값을 User Class에 담는 함수
     @RequiresApi(api = Build.VERSION_CODES.O)
     private User getUser(){
         String id = signUpId.getText().toString();
@@ -62,27 +74,33 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         return new User(id,password,nickNameText,departmentText,gradeText);
     }
 
+    // 회원가입 API 호출 함수
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void signUp(){
+        // 아이디 입력창이 비었을 때
         if(signUpId.getText().toString().isEmpty()){
             Toast.makeText(this,"아이디를 입력해주세요.",Toast.LENGTH_SHORT).show();
             return;
         }
+        // 패스워드 불일치 예외
         if (!signUpPassword.getText().toString().equals(passwordCheck.getText().toString())){
             Toast.makeText(this,"비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
             return;
         }
-
+        // Retrofit -> API 호출
         AuthService authService = new AuthService();
         authService.setSignUpView(this);
 
-        authService.signUp(getUser());
+        authService.signUp(getUser()); // 입력된 유저정보를 signUp 시킨다.
     }
 
+    // 회원가입 성공시 -> 로그인 액티비티로 이동
     @Override
     public void onSignUpSuccess() {
-        finish();
+        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
+    // 회원가입 실패시 -> 주로 정규식 or 유효성 예외처리
     @Override
     public void onSignUpFailure(int code) {
         switch (code){
