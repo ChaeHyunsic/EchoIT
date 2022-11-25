@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.term_project.board.exam_board.ExamSubjectService;
@@ -29,23 +30,16 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
     private ArrayList<GetExamSubjectsResult> result;
     private Context context;
 
-    // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    interface MyItemClickListener{
-        void onRemoveExamSubject(int position);
-    }
-    MyItemClickListener myItemClickListener;
-
-    public void setMyItemClickListener(MyItemClickListener myItemClickListener){
-        this.myItemClickListener = myItemClickListener;
-    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox checkBox;
         TextView textView;
         TextView textView2;
         ImageView imageView;
+        ConstraintLayout constraintLayout;
         ViewHolder(View itemView) {
             super(itemView) ;
             // 뷰 객체에 대한 참조.
+            constraintLayout = itemView.findViewById(R.id.exam_subject_item_cl_js);
             checkBox = itemView.findViewById(R.id.subject_cb_js);
             textView = itemView.findViewById(R.id.subject_tv_js);
             textView2 = itemView.findViewById(R.id.endAt_tv_js);
@@ -75,12 +69,13 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
     public void onBindViewHolder(@NonNull ExamSubjectAdapter.ViewHolder holder, int position) {
         String text = result.get(position).getTitle();
         String text2 = result.get(position).getEndAt().toString();
+        int touchIndex = holder.getAdapterPosition();
         holder.textView.setText(text);
         holder.textView2.setText(text2);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int touchIndex = holder.getAdapterPosition();
+
                 PopupMenu popupMenu = new PopupMenu(context,holder.imageView);
                 popupMenu.inflate(R.menu.exam_sub_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -108,6 +103,16 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
                     }
                 });
                 popupMenu.show();
+            }
+        });
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,ExamSubjectViewActivity.class);
+                intent.putExtra("titleView",result.get(touchIndex).getTitle());
+                intent.putExtra("contentView",result.get(touchIndex).getContent());
+                intent.putExtra("endAtView",result.get(touchIndex).getEndAt().toString());
+                context.startActivity(intent);
             }
         });
     }

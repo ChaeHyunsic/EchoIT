@@ -48,6 +48,15 @@ public class BoardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        // get evaluate-subject cardview
+        MaterialCardView materialCardView_evaluate_subject = root.findViewById(R.id.board_card_club_mcv_pyeong_gy);
+        materialCardView_evaluate_subject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),EvaluateSubjectActivity.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 }

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/selected_subject_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="과목명"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/selected_subject_professor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="교수 : "
+            android:textSize="30sp"
+            android:layout_marginStart="40dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selected_subject_tv_name"/>
+        <TextView
+            android:id="@+id/professor_name_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="교수명"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@+id/selected_subject_professor_name"
+            app:layout_constraintTop_toTopOf="@+id/selected_subject_professor_name"
+            app:layout_constraintBottom_toBottomOf="@+id/selected_subject_professor_name"/>
+
+        <RatingBar
+            android:id="@+id/ratingBarInficator"
+            style="@style/Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="0.1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selected_subject_professor_name" />
+
+        <TextView
+            android:id="@+id/selected_subject_avg_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="평점 : "
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBarInficator"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/subject_score_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/selected_subject_avg_val"
+            app:layout_constraintTop_toTopOf="@+id/selected_subject_avg_val"
+            app:layout_constraintBottom_toBottomOf="@+id/selected_subject_avg_val"/>
+        <Button
+            android:id="@+id/go_to_evaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="평가하기"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/subject_score_tv_js"
+            app:layout_constraintBottom_toBottomOf="@+id/selected_subject_avg_val"
+            app:layout_constraintTop_toTopOf="@+id/selected_subject_avg_val" />
+
+        <TextView
+            android:id="@+id/review_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="후기 목록"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selected_subject_avg_val" />
+
+        <TextView
+            android:id="@+id/evaluate_professor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginEnd="10dp"
+            android:text="점수"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/review_list_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/review_list_tv"
+            app:layout_constraintTop_toTopOf="@+id/review_list_tv" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#7A7A7A"
+            app:layout_constraintTop_toBottomOf="@+id/evaluate_professor_name"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/evaluate_review"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:listitem="@layout/review_subject_recyclerview_item"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
