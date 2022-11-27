@@ -6,13 +6,16 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.term_project.board.evaluate_board.request.PostEvaluateSubjectReviewRequest;
 import com.example.term_project.board.evaluate_board.response.GetEvaluateSubjectResponse;
 import com.example.term_project.board.evaluate_board.response.GetSubjectInfoResponse;
 import com.example.term_project.board.evaluate_board.response.GetSubjectReviewsResponse;
+import com.example.term_project.board.evaluate_board.response.PostSubjectReviewsResponse;
 import com.example.term_project.view.GetEvaluateSubjectsView;
 import com.example.term_project.view.GetExamSubjectsView;
 import com.example.term_project.view.GetSubjectInfoView;
 import com.example.term_project.view.GetSubjectReviewsView;
+import com.example.term_project.view.PostSubjectReviewView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +26,7 @@ public class EvaluateSubjectService {
     private GetEvaluateSubjectsView getEvaluateSubjectsView;
     private GetSubjectInfoView getSubjectInfoView;
     private GetSubjectReviewsView getSubjectReviewsView;
+    private PostSubjectReviewView postSubjectReviewView;
 
     public void setGetEvaluateSubjectsView(GetEvaluateSubjectsView getEvaluateSubjectsView){
         this.getEvaluateSubjectsView = getEvaluateSubjectsView;
@@ -33,6 +37,9 @@ public class EvaluateSubjectService {
     public void setGetSubjectReviewsView(GetSubjectReviewsView getSubjectReviewsView){
         this.getSubjectReviewsView = getSubjectReviewsView;
     }
+    public void setPostSubjectReviewView(PostSubjectReviewView postSubjectReviewView){
+        this.postSubjectReviewView = postSubjectReviewView;
+    }
     // GET
     public void getEvaluateSubjects(@Nullable Integer grade){
         Log.d("EVALUATE-SUBJECT-INPUT", grade+"");
@@ -41,6 +48,7 @@ public class EvaluateSubjectService {
             public void onResponse(Call<GetEvaluateSubjectResponse> call, Response<GetEvaluateSubjectResponse> response) {
                 GetEvaluateSubjectResponse resp = response.body();
                 Log.d("EVALUATE-SUBJECT-RESP", call.request().toString());
+                assert resp != null;
                 if(resp.getCode() == 1000){
                     getEvaluateSubjectsView.onGetEvaluateSubjectSuccess(resp.getCode(),resp.getResult());
                 }else{
@@ -62,6 +70,7 @@ public class EvaluateSubjectService {
             public void onResponse(Call<GetSubjectInfoResponse> call, Response<GetSubjectInfoResponse> response) {
                 GetSubjectInfoResponse resp = response.body();
                 Log.d("SUBJECT-INFO-RESP", call.request().toString());
+                assert resp != null;
                 if(resp.getCode() == 1000){
                     Log.d("WHY?", String.valueOf(resp.getResult().getScoreAverage()));
                     getSubjectInfoView.onGetSubjectInfoSuccess(resp.getCode(),resp.getResult());
@@ -84,6 +93,7 @@ public class EvaluateSubjectService {
             public void onResponse(Call<GetSubjectReviewsResponse> call, Response<GetSubjectReviewsResponse> response) {
                 GetSubjectReviewsResponse resp = response.body();
                 Log.d("SUBJECTS-REVIEWS-RESP", call.request().toString());
+                assert resp != null;
                 if(resp.getCode() == 1000){
                     getSubjectReviewsView.onGetSubjectReviewsSuccess(resp.getCode(),resp.getResult());
                 }else{
@@ -96,5 +106,27 @@ public class EvaluateSubjectService {
             }
         });
         Log.d("SUBJECTS-REVIEWS","HELLO");
+    }
+    //POST
+    public void postSubjectReviews(String jwt, int subjectIdx, PostEvaluateSubjectReviewRequest postEvaluateSubjectReviewRequest){
+        Log.d("REVIEW-POST-PARAM", jwt+"\n"+subjectIdx);
+        evaluateSubjectService.createSubjectReview(jwt,subjectIdx,postEvaluateSubjectReviewRequest).enqueue(new Callback<PostSubjectReviewsResponse>() {
+            @Override
+            public void onResponse(Call<PostSubjectReviewsResponse> call, Response<PostSubjectReviewsResponse> response) {
+                PostSubjectReviewsResponse resp = response.body();
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    postSubjectReviewView.onPostSubjectReviewsSuccess();
+                }else{
+                    postSubjectReviewView.onPostSubjectReviewsFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostSubjectReviewsResponse> call, Throwable t) {
+                Log.d("POST-REVIEW/FAIL", t.getMessage());
+            }
+        });
+        Log.d("POST-REVIEW","HELLO");
     }
 }

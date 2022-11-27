@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -50,6 +52,21 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
             getSubjectInfo(getIntent().getIntExtra("subjectIdx",0));
             getList(getIntent().getIntExtra("subjectIdx",0));
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SubjectInfoActivity.this,EvaluateActivity.class);
+                intent.putExtra("subjectIdx",getIntent().getIntExtra("subjectIdx",0));
+                intent.putExtra("subjectName",subjectName.getText());
+                intent.putExtra("professor",professor.getText());
+                startActivity(intent);
+            }
+        });
     }
 
     private void getSubjectInfo(int subjectIdx){

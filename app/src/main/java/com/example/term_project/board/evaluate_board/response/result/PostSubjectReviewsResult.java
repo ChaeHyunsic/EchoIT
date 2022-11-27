@@ -1,12 +1,12 @@
-package com.example.term_project.board.evaluate_board.request;
+package com.example.term_project.board.evaluate_board.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PostEvaluateSubjectReviewRequest {
+public class PostSubjectReviewsResult {
     @SerializedName(value = "content") private String content;
     @SerializedName(value = "score") private float score;
 
-    public PostEvaluateSubjectReviewRequest(String content, float score) {
+    public PostSubjectReviewsResult(String content, float score) {
         this.content = content;
         this.score = score;
     }
@@ -29,7 +29,7 @@ public class PostEvaluateSubjectReviewRequest {
 
     @Override
     public String toString() {
-        return "PostEvaluateSubjectReviewRequest{" +
+        return "PostSubjectReviewsResult{" +
                 "content='" + content + '\'' +
                 ", score=" + score +
                 '}';
