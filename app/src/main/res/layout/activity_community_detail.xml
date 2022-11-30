@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <TextView
+            android:id="@+id/community_grade_number_tv_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/community_grade"
+            app:layout_constraintBottom_toBottomOf="@+id/community_grade"/>
+        <TextView
+            android:text="학년"
+            android:id="@+id/community_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/community_grade_number_tv_js"
+            app:layout_constraintTop_toTopOf="@+id/community_detail_title_tv_js"
+            app:layout_constraintBottom_toBottomOf="@+id/community_detail_title_tv_js"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/community_detail_title_tv_js"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="제목"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/community_menu_js"
+            app:layout_constraintStart_toEndOf="@+id/community_grade"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/community_menu_js"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/community_menu"
+            app:layout_constraintTop_toTopOf="@+id/community_detail_title_tv_js"
+            app:layout_constraintBottom_toBottomOf="@+id/community_detail_title_tv_js"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/community_detail_content_tv_js"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:text="내용"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/community_detail_title_tv_js"/>
+        <TextView
+            android:id="@+id/review_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="작성자"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/community_detail_content_tv_js" />
+
+        <TextView
+            android:id="@+id/evaluate_professor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:text="댓글"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/review_list_tv"
+            app:layout_constraintStart_toEndOf="@+id/review_list_tv"
+            app:layout_constraintTop_toTopOf="@+id/review_list_tv" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#7A7A7A"
+            app:layout_constraintTop_toBottomOf="@+id/evaluate_professor_name"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/community_comments_review_js"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/community_comment_recyclerview_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

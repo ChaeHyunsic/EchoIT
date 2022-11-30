@@ -17,12 +17,24 @@
         android:theme="@style/Theme.Term_project"
         tools:targetApi="31">
         <activity
+            android:name=".CommunityEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CommunityCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CommunityDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CommunityBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExamSubjectViewActivity"
             android:exported="false" />
         <activity
             android:name=".EvaluateActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SubjectInfoActivity"
             android:exported="false" />

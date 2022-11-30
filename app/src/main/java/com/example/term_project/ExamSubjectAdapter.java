@@ -75,7 +75,6 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 PopupMenu popupMenu = new PopupMenu(context,holder.imageView);
                 popupMenu.inflate(R.menu.exam_sub_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

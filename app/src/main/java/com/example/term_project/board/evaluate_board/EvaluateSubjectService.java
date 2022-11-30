@@ -12,7 +12,6 @@ import com.example.term_project.board.evaluate_board.response.GetSubjectInfoResp
 import com.example.term_project.board.evaluate_board.response.GetSubjectReviewsResponse;
 import com.example.term_project.board.evaluate_board.response.PostSubjectReviewsResponse;
 import com.example.term_project.view.GetEvaluateSubjectsView;
-import com.example.term_project.view.GetExamSubjectsView;
 import com.example.term_project.view.GetSubjectInfoView;
 import com.example.term_project.view.GetSubjectReviewsView;
 import com.example.term_project.view.PostSubjectReviewView;

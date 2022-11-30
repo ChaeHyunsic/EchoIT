@@ -182,6 +182,7 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/community"
                     card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.0"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
 

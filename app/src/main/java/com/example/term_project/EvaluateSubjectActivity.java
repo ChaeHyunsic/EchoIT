@@ -67,8 +67,6 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
                 getList(null);
             }
         });
-
-
     }
     @Override
     public void onGetEvaluateSubjectSuccess(int code, ArrayList<GetEvaluateSubjectResult> result) {
