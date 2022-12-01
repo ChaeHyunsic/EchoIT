@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -97,10 +98,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     // User의 고유PK id를 Sharedpreference에 저장하는 함수
-    private void saveJwt(String jwt){
+    private void saveJwt(String jwt, int grade){
         final SharedPreferences spf = getSharedPreferences("auth",MODE_PRIVATE);
         final SharedPreferences.Editor editor = spf.edit();
-
+        Log.d("GRADE",String.valueOf(grade));
+        editor.putInt("grade",grade);
         editor.putString("jwt",jwt);
         editor.apply();
     }
@@ -115,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void onLoginSuccess(int code, LoginResult result) {
         if(code == 1000){
-            saveJwt(result.getJwt()); // 1. SharedPreference에 jwt token 저장
+            saveJwt(result.getJwt(),result.getGrade()); // 1. SharedPreference에 jwt token 저장 + grade 저장
             startMainActivity(); // 2. 메인 액티비티로의 이동
         }
     }

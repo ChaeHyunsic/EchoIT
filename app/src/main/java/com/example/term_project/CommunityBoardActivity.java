@@ -5,6 +5,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.term_project.board.community_board.response.result.GetCommuni
 import com.example.term_project.board.evaluate_board.EvaluateSubjectService;
 import com.example.term_project.board.evaluate_board.response.result.GetEvaluateSubjectResult;
 import com.example.term_project.view.GetCommunitesView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,7 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
     SearchView communitySearch;
     RecyclerView recyclerView;
     CommunityBoardAdapter adapter;
+    FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
     private void initView(){
         communityGrade = findViewById(R.id.community_spinners_js);
         communitySearch = findViewById(R.id.community_search_view_js);
+        floatingActionButton = findViewById(R.id.plus_item_fab_js);
     }
     private void initRecyclerView(ArrayList<GetCommunitesResult> result){
         recyclerView = findViewById(R.id.community_rv_js);
@@ -73,6 +77,13 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 getList(null);
+            }
+        });
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CommunityBoardActivity.this,CommunityCreateActivity.class);
+                startActivity(intent);
             }
         });
     }

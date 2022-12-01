@@ -23,24 +23,16 @@ import java.util.ArrayList;
 public class ExamSubjectActivity extends AppCompatActivity implements GetExamSubjectsView{
     ExamSubjectAdapter adapter;
     RecyclerView recyclerView;
+    FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_subject);
-
-
-        FloatingActionButton floatingActionButton = findViewById(R.id.plus_item_fab_js);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExamSubjectActivity.this, ExamSubjectCreateActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+        initView();
     }
-
+    private void initView(){
+        floatingActionButton = findViewById(R.id.plus_item_fab_js);
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -50,7 +42,13 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
     @Override
     protected void onResume() {
         super.onResume();
-
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExamSubjectActivity.this, ExamSubjectCreateActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initRecyclerView(ArrayList<GetExamSubjectsResult> result){
@@ -75,7 +73,6 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
     @Override
     public void onGetExamSubjectSuccess(int code, ArrayList<GetExamSubjectsResult> result) {
         initRecyclerView(result);
-        adapter.notifyDataSetChanged();
     }
 
     @Override

@@ -27,9 +27,9 @@ public interface CommunityRetrofitInterface {
     Call<PostCommunityResponse> createCommunity(@Header("X-ACCESS-TOKEN") String jwt,
                                                   @Body PostCommunityRequest postCommunityRequest);
     @PATCH("/app/boards/communities/{communityIdx}")
-    Call<PatchCommunityResponse> updateCommunitiy(@Header("X-ACCESS-TOKEN") String jwt,
-                                                   @Path("communityIdx") int communityIdx,
-                                                   @Body PatchCommunityRequest patchCommunityRequest);
+    Call<PatchCommunityResponse> updateCommunity(@Header("X-ACCESS-TOKEN") String jwt,
+                                                 @Path("communityIdx") int communityIdx,
+                                                 @Body PatchCommunityRequest patchCommunityRequest);
     @PATCH("/app/boards/communities/del/{communityIdx}")
     Call<DeleteCommunityResponse> deleteCommunity(@Header("X-ACCESS-TOKEN") String jwt,
                                                   @Path("communityIdx") int communityIdx);

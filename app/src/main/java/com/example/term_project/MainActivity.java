@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         // 쉐어드에 저장된 token정보를 파기한다.
         final SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         final SharedPreferences.Editor editor = spf.edit();
-        editor.remove("token");
+        editor.remove("jwt");
         editor.apply();
     }
     private void initBottomNavigation(){ // 뷰 초기화 부분 -> onCreate에 넣어주자.

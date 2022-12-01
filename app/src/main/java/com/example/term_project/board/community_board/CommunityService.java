@@ -6,14 +6,20 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.term_project.board.community_board.request.PatchCommunityRequest;
+import com.example.term_project.board.community_board.request.PostCommunityRequest;
 import com.example.term_project.board.community_board.response.DeleteCommunityResponse;
 import com.example.term_project.board.community_board.response.GetCommentsResponse;
 import com.example.term_project.board.community_board.response.GetCommunitesResponse;
 import com.example.term_project.board.community_board.response.GetIsAuthResponse;
+import com.example.term_project.board.community_board.response.PatchCommunityResponse;
+import com.example.term_project.board.community_board.response.PostCommunityResponse;
 import com.example.term_project.view.DeleteCommunityView;
 import com.example.term_project.view.GetCommentsView;
 import com.example.term_project.view.GetCommunitesView;
 import com.example.term_project.view.GetIsAuthView;
+import com.example.term_project.view.PatchCommunityView;
+import com.example.term_project.view.PostCommunityView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +30,8 @@ public class CommunityService {
     private GetCommunitesView getCommunitesView;
     private GetIsAuthView getIsAuthView;
     private GetCommentsView getCommentsView;
+    private PostCommunityView postCommunityView;
+    private PatchCommunityView patchCommunityView;
     private DeleteCommunityView deleteCommunityView;
 
     public void setGetCommunitesView(GetCommunitesView getCommunitesView){
@@ -34,6 +42,12 @@ public class CommunityService {
     }
     public void setGetCommentsView(GetCommentsView getCommentsView){
         this.getCommentsView = getCommentsView;
+    }
+    public void setPostCommunityView(PostCommunityView postCommunityView){
+        this.postCommunityView = postCommunityView;
+    }
+    public void setPatchCommunityView(PatchCommunityView patchCommunityView){
+        this.patchCommunityView = patchCommunityView;
     }
     public void setDeleteCommunityView(DeleteCommunityView deleteCommunityView){
         this.deleteCommunityView = deleteCommunityView;
@@ -99,6 +113,50 @@ public class CommunityService {
             }
             @Override // 네트워크 연결 실패 시
             public void onFailure(Call<GetCommentsResponse> call, Throwable t) {
+                Log.d("COMMENTS/FAIL", t.getMessage());
+            }
+        });
+        Log.d("COMMENTS","HELLO");
+    }
+    // POST
+    public void createComment(String jwt, PostCommunityRequest postCommunityRequest){
+        Log.d("COMMENTS-INPUT", jwt+"");
+        communitiesService.createCommunity(jwt,postCommunityRequest).enqueue(new Callback<PostCommunityResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<PostCommunityResponse> call, Response<PostCommunityResponse> response) {
+                PostCommunityResponse resp = response.body();
+                Log.d("COMMENTS-RESP", call.request().toString());
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    postCommunityView.onPostCommunitySuccess(resp.getCode(),resp.getResult());
+                }else{
+                    postCommunityView.onPostCommunityFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<PostCommunityResponse> call, Throwable t) {
+                Log.d("COMMENTS/FAIL", t.getMessage());
+            }
+        });
+        Log.d("COMMENTS","HELLO");
+    }
+    // PATCH
+    public void updateCommunity(String jwt, int communityIdx, PatchCommunityRequest patchCommunityRequest){
+        Log.d("UPDATE-INPUT", communityIdx+"");
+        communitiesService.updateCommunity(jwt,communityIdx,patchCommunityRequest).enqueue(new Callback<PatchCommunityResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<PatchCommunityResponse> call, Response<PatchCommunityResponse> response) {
+                PatchCommunityResponse resp = response.body();
+                Log.d("UPDATE-RESP", call.request().toString());
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    patchCommunityView.onPatchCommunitySuccess(resp.getCode(),resp.getResult());
+                }else{
+                    patchCommunityView.onPatchCommunityFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<PatchCommunityResponse> call, Throwable t) {
                 Log.d("COMMENTS/FAIL", t.getMessage());
             }
         });

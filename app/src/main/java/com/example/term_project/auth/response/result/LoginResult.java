@@ -5,10 +5,12 @@ import com.google.gson.annotations.SerializedName;
 public class LoginResult {
     @SerializedName(value = "userIdx") private int userIdx;
     @SerializedName(value = "jwt") private String jwt;
+    @SerializedName(value = "grade") private int grade;
 
-    public LoginResult(int userIdx, String jwt) {
+    public LoginResult(int userIdx, String jwt, int grade) {
         this.userIdx = userIdx;
         this.jwt = jwt;
+        this.grade = grade;
     }
 
     public int getUserIdx() {
@@ -27,11 +29,11 @@ public class LoginResult {
         this.jwt = jwt;
     }
 
-    @Override
-    public String toString() {
-        return "ResultLogin{" +
-                "userIdx=" + userIdx +
-                ", jwt='" + jwt + '\'' +
-                '}';
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 }
