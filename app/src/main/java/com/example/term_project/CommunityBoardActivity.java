@@ -47,6 +47,13 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
 
         communityService.getCommunities(grade);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getList(null);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

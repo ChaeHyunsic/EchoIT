@@ -6,9 +6,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.term_project.board.community_board.response.DeleteCommunityResponse;
 import com.example.term_project.board.community_board.response.GetCommentsResponse;
 import com.example.term_project.board.community_board.response.GetCommunitesResponse;
 import com.example.term_project.board.community_board.response.GetIsAuthResponse;
+import com.example.term_project.view.DeleteCommunityView;
 import com.example.term_project.view.GetCommentsView;
 import com.example.term_project.view.GetCommunitesView;
 import com.example.term_project.view.GetIsAuthView;
@@ -22,6 +24,7 @@ public class CommunityService {
     private GetCommunitesView getCommunitesView;
     private GetIsAuthView getIsAuthView;
     private GetCommentsView getCommentsView;
+    private DeleteCommunityView deleteCommunityView;
 
     public void setGetCommunitesView(GetCommunitesView getCommunitesView){
         this.getCommunitesView = getCommunitesView;
@@ -31,6 +34,9 @@ public class CommunityService {
     }
     public void setGetCommentsView(GetCommentsView getCommentsView){
         this.getCommentsView = getCommentsView;
+    }
+    public void setDeleteCommunityView(DeleteCommunityView deleteCommunityView){
+        this.deleteCommunityView = deleteCommunityView;
     }
     // GET
     public void getCommunities(@Nullable Integer grade){
@@ -93,6 +99,28 @@ public class CommunityService {
             }
             @Override // 네트워크 연결 실패 시
             public void onFailure(Call<GetCommentsResponse> call, Throwable t) {
+                Log.d("COMMENTS/FAIL", t.getMessage());
+            }
+        });
+        Log.d("COMMENTS","HELLO");
+    }
+    // PATCH
+    public void deleteCommunity(String jwt,int communityIdx){
+        Log.d("DELETE-INPUT", communityIdx+"");
+        communitiesService.deleteCommunity(jwt,communityIdx).enqueue(new Callback<DeleteCommunityResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<DeleteCommunityResponse> call, Response<DeleteCommunityResponse> response) {
+                DeleteCommunityResponse resp = response.body();
+                Log.d("DELETE-RESP", call.request().toString());
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    deleteCommunityView.onDeleteCommunitySuccess(resp.getCode(),resp.getResult());
+                }else{
+                    deleteCommunityView.onDeleteCommunityFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<DeleteCommunityResponse> call, Throwable t) {
                 Log.d("COMMENTS/FAIL", t.getMessage());
             }
         });

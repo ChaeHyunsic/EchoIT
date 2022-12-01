@@ -2,6 +2,7 @@ package com.example.term_project;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,19 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
             createdAt = itemView.findViewById(R.id.community_created_js);
         }
     }
-
+    public CommunityBoardAdapter(){
+    }
     public CommunityBoardAdapter(ArrayList<GetCommunitesResult> result, Context context) {
         this.result = result;
         this.context = context;
+    }
+
+    public ArrayList<GetCommunitesResult> getResult() {
+        return result;
+    }
+
+    public void setResult(ArrayList<GetCommunitesResult> result) {
+        this.result = result;
     }
 
     @NonNull
@@ -55,6 +65,8 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,CommunityDetailActivity.class);
+                Log.d("touchIndex-input",String.valueOf(touchIndex));
+                intent.putExtra("touchIndex",touchIndex);
                 intent.putExtra("grade",result.get(touchIndex).getGrade());
                 intent.putExtra("title",result.get(touchIndex).getTitle());
                 intent.putExtra("content",result.get(touchIndex).getContent());
@@ -71,5 +83,11 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
     @Override
     public int getItemCount() {
         return result.size();
+    }
+
+    public void removeAt(int position){
+        result.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position,result.size());
     }
 }

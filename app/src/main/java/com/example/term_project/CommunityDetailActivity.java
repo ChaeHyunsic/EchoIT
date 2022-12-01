@@ -16,19 +16,23 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.term_project.board.community_board.CommunityService;
+import com.example.term_project.board.community_board.response.result.DeleteCommunityResult;
 import com.example.term_project.board.community_board.response.result.GetCommentsResult;
+import com.example.term_project.board.community_board.response.result.GetCommunitesResult;
 import com.example.term_project.board.community_board.response.result.GetIsAuthResult;
+import com.example.term_project.view.DeleteCommunityView;
 import com.example.term_project.view.GetCommentsView;
+import com.example.term_project.view.GetCommunitesView;
 import com.example.term_project.view.GetIsAuthView;
 
 import java.util.ArrayList;
 
-public class CommunityDetailActivity extends AppCompatActivity implements GetIsAuthView, GetCommentsView {
+public class CommunityDetailActivity extends AppCompatActivity implements GetIsAuthView, GetCommentsView, DeleteCommunityView, GetCommunitesView {
     TextView grade,title,content;
     ImageView imageView;
     RecyclerView recyclerView;
     CommunityDetailCommentsAdapter adapter;
-
+    CommunityBoardAdapter communityBoardAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,12 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
 
         communityService.getComments(communityIdx);
     }
+    private void deleteData(String jwt,int communityIdx){
+        CommunityService communityService = new CommunityService();
+        communityService.setDeleteCommunityView(this);
+
+        communityService.deleteCommunity(jwt,communityIdx);
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -101,6 +111,7 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
                                 return true;
                             case R.id.delete:
                                 //삭제 api
+                                deleteData(getJwt(),getIntent().getIntExtra("communityIdx",0));
                                 return true;
                             default:
                                 return false;
@@ -112,7 +123,21 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getCommunityInfo(null);
 
+    }
+    private void getCommunityInfo(Integer grade){
+        CommunityService communityService = new CommunityService();
+        communityService.setGetCommunitesView(this);
+
+        communityService.getCommunities(grade);
+    }
+    private void getAdapter(ArrayList<GetCommunitesResult> result){
+        communityBoardAdapter = new CommunityBoardAdapter(result,this);
+    }
     @Override // api 응답값 & 인텐트로 넘어온 userIdx값 비교
     public void onGetIsAuthSuccess(int code, GetIsAuthResult result) {
         if (result.getUserIdx() == getIntent().getIntExtra("userIdx",0)){
@@ -134,6 +159,28 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
 
     @Override
     public void onGetCommentsFailure(int code, String message) {
+
+    }
+
+    @Override
+    public void onDeleteCommunitySuccess(int code, DeleteCommunityResult result) {
+        finish();
+    }
+
+    @Override
+    public void onDeleteCommunityFailure(int code, String message) {
+
+    }
+
+    @Override
+    public void onGetCommunitesSuccess(int code, ArrayList<GetCommunitesResult> result) {
+        getAdapter(result);
+        Log.d("touchIndex",String.valueOf(getIntent().getIntExtra("touchIndex",0)));
+        communityBoardAdapter.removeAt(getIntent().getIntExtra("touchIndex",0));
+    }
+
+    @Override
+    public void onGetCommunitesFailure(int code, String message) {
 
     }
 }
