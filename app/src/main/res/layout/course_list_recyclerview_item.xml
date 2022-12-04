@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/community_item_cl_js"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/community_grade_number_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="3"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/evaluate_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학년"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/community_grade_number_tv_js"
+        app:layout_constraintStart_toEndOf="@+id/community_grade_number_tv_js"
+        app:layout_constraintTop_toTopOf="@+id/community_grade_number_tv_js" />
+
+    <TextView
+        android:id="@+id/course_separation_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="교필"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/evaluate_grade"
+        app:layout_constraintStart_toEndOf="@+id/evaluate_grade"
+        app:layout_constraintTop_toTopOf="@+id/evaluate_grade" />
+
+    <TextView
+        android:id="@+id/course_credit_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="3"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/course_separation_tv_js"
+        app:layout_constraintStart_toEndOf="@+id/course_separation_tv_js"
+        app:layout_constraintTop_toTopOf="@+id/course_separation_tv_js" />
+
+    <TextView
+        android:id="@+id/course_credit_text_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학점"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/course_credit_tv_js"
+        app:layout_constraintStart_toEndOf="@+id/course_credit_tv_js"
+        app:layout_constraintTop_toTopOf="@+id/course_credit_tv_js" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이단영"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/community_title_js"
+        app:layout_constraintTop_toBottomOf="@+id/community_title_js" />
+
+    <TextView
+        android:id="@+id/community_title_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="모바일소프트웨어개발및실험"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/community_created_js"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:isIndicator="true"
+        android:stepSize="0.1"
+        app:layout_constraintBottom_toBottomOf="@+id/community_title_js"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/community_title_js" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/course_plus_cl_js"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/community_grade_number_tv_js">
+
+        <Button
+            android:id="@+id/course_plus_time_table_btn_js"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/button_custom"
+            android:text="시간표에 추가"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/button_custom_eval"
+            android:text="강의평"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/course_plus_time_table_btn_js"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
