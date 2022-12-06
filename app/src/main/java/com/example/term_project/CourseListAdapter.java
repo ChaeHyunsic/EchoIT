@@ -32,6 +32,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     private ArrayList<GetCourseListResult> result;
     private Context context;
 
+    private TimeTable timeTable;
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -58,6 +59,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     public CourseListAdapter(ArrayList<GetCourseListResult> result, Context context) {
         this.result = result;
         this.context = context;
+        timeTable = new TimeTable();
     }
 
     @NonNull
@@ -100,12 +102,22 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
                 notifyItemChanged(selectedPosition);
             }
         });
+        // 강의 추가
         holder.plusCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createData(result.get(touchIndex).getCourseIdx());
+                boolean validate = false; // 해당 강의를 넣을 수 있을지? 타당성 검사
+                validate = timeTable.validate(result.get(touchIndex).getTime()); // 시간이 기재되어 있는 문자열 넣어줌.
+                if(!validate){
+                    Toast.makeText(context,"시간표가 중복됩니다.",Toast.LENGTH_SHORT).show();
+                }else{
+                    createData(result.get(touchIndex).getCourseIdx());
+                    timeTable.addTimeTable(result.get(touchIndex).getTime());
+                }
+
             }
         });
+        // 강의평
         holder.subReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
