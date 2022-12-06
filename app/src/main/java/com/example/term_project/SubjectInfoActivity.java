@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,15 +19,17 @@ import com.example.term_project.board.evaluate_board.response.result.GetSubjectI
 import com.example.term_project.board.evaluate_board.response.result.GetSubjectReviewsResult;
 import com.example.term_project.view.GetSubjectInfoView;
 import com.example.term_project.view.GetSubjectReviewsView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
 
-public class SubjectInfoActivity extends AppCompatActivity implements GetSubjectReviewsView, GetSubjectInfoView {
+public class SubjectInfoActivity extends AppCompatActivity implements GetSubjectReviewsView {
     RecyclerView recyclerView;
     EvaluateReviewAdapter adapter;
-    TextView subjectName,professor,score;
+    TextView subjectName,professor,scoreText,grade,time,room,credit;
+    ImageView imageView;
     RatingBar ratingBarInficator;
-    Button button;
+    ExtendedFloatingActionButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +38,18 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
     }
     private void initView(){
         subjectName = findViewById(R.id.selected_subject_tv_name);
-        professor = findViewById(R.id.professor_name_tv_js);
-        score = findViewById(R.id.subject_score_tv_js);
+
+        professor = findViewById(R.id.selected_subject_professor_name_data_js);
+        grade=findViewById(R.id.selected_subject_grade_tv_data_js);
+        time=findViewById(R.id.selected_subject_time_tv_data_js);
+        room=findViewById(R.id.selected_subject_room_tv_data_js);
+        credit=findViewById(R.id.selected_subject_credit_tv_data_js);
+
+        scoreText = findViewById(R.id.subject_score_average_tv_js);
         ratingBarInficator = findViewById(R.id.ratingBarInficator);
-        button = findViewById(R.id.go_to_evaluate);
+
+        imageView = findViewById(R.id.subject_info_close_iv_js);
+        button = findViewById(R.id.evaluate_subject_fab_js);
     }
     @Override
     protected void onStart() {
@@ -49,7 +60,15 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
                     +getIntent().getStringExtra("professor"));
             subjectName.setText(getIntent().getStringExtra("subjectName"));
             professor.setText(getIntent().getStringExtra("professor"));
-            getSubjectInfo(getIntent().getIntExtra("subjectIdx",0));
+            grade.setText(String.valueOf(getIntent().getIntExtra("grade",0)));
+            time.setText(getIntent().getStringExtra("time"));
+            room.setText(getIntent().getStringExtra("room"));
+            credit.setText(String.valueOf(getIntent().getIntExtra("credit",0)));
+            scoreText.setText(String.valueOf(getIntent().getFloatExtra("scoreAverage",0)));
+
+            ratingBarInficator.setRating(getIntent().getFloatExtra("scoreAverage",0));
+
+            //getSubjectInfo(getIntent().getIntExtra("subjectIdx",0));
             getList(getIntent().getIntExtra("subjectIdx",0));
         }
     }
@@ -57,6 +76,12 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
     @Override
     protected void onResume() {
         super.onResume();
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,12 +94,12 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
         });
     }
 
-    private void getSubjectInfo(int subjectIdx){
-        EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
-        evaluateSubjectService.setGetSubjectInfoView(this);
-
-        evaluateSubjectService.getSubjectInfo(subjectIdx);
-    }
+//    private void getSubjectInfo(int subjectIdx){
+//        EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
+//        evaluateSubjectService.setGetSubjectInfoView(this);
+//
+//        evaluateSubjectService.getSubjectInfo(subjectIdx);
+//    }
 
     private void initRecyclerView(ArrayList<GetSubjectReviewsResult> result){
         recyclerView = findViewById(R.id.evaluate_review);
@@ -100,16 +125,16 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
 
     }
 
-    // 과목정보 상단
-    @Override
-    public void onGetSubjectInfoSuccess(int code, GetSubjectInfoResult result) {
-        Log.d("WHY2", String.valueOf(result.getScoreAverage()));
-        score.setText(String.valueOf(result.getScoreAverage()));
-        ratingBarInficator.setRating(result.getScoreAverage());
-    }
-
-    @Override
-    public void onGetSubjectInfoFailure(int code, String message) {
-
-    }
+//    // 과목정보 상단
+//    @Override
+//    public void onGetSubjectInfoSuccess(int code, GetSubjectInfoResult result) {
+//        Log.d("WHY2", String.valueOf(result.getScoreAverage()));
+//        score.setText(String.valueOf(result.getScoreAverage()));
+//        ratingBarInficator.setRating(result.getScoreAverage());
+//    }
+//
+//    @Override
+//    public void onGetSubjectInfoFailure(int code, String message) {
+//
+//    }
 }

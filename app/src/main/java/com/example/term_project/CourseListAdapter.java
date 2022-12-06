@@ -1,28 +1,39 @@
 package com.example.term_project;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.term_project.board.course.CourseService;
 import com.example.term_project.board.course.response.result.GetCourseListResult;
+import com.example.term_project.board.course.response.result.PostCourseResult;
 import com.example.term_project.board.evaluate_board.response.result.GetSubjectReviewsResult;
+import com.example.term_project.board.exam_board.ExamSubjectService;
+import com.example.term_project.view.PostCourseView;
 
 import java.util.ArrayList;
 
-public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder>{
+public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> implements PostCourseView {
     private int oldPosition = -1;
     private int selectedPosition = -1;
     private ArrayList<GetCourseListResult> result;
     private Context context;
+
+
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ConstraintLayout constraintLayout, touchLayout;
         TextView subjectName, professor, time, grade, separation, credit;
@@ -79,7 +90,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
             holder.constraintLayout.setBackgroundColor(Color.WHITE);
             holder.touchLayout.setVisibility(View.INVISIBLE);
         }
-
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,13 +99,55 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
                 notifyItemChanged(oldPosition);
                 notifyItemChanged(selectedPosition);
             }
-
         });
-
+        holder.plusCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createData(result.get(touchIndex).getCourseIdx());
+            }
+        });
+        holder.subReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,SubjectInfoActivity.class);
+                intent.putExtra("subjectIdx",result.get(touchIndex).getCourseIdx());
+                intent.putExtra("grade",result.get(touchIndex).getCourseGrade());
+                intent.putExtra("subjectName",result.get(touchIndex).getSubjectName());
+                intent.putExtra("professor",result.get(touchIndex).getProfessor());
+                intent.putExtra("time",result.get(touchIndex).getTime());
+                intent.putExtra("room",result.get(touchIndex).getRoom());
+                intent.putExtra("separation",result.get(touchIndex).getSeparation());
+                intent.putExtra("credit",result.get(touchIndex).getCredit());
+                intent.putExtra("scoreAverage",result.get(touchIndex).getScoreAverage());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return result.size();
+    }
+
+    private String getJwt(){
+        SharedPreferences spf = context.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("jwt","");
+    }
+    private void createData(int courseIdx){
+        CourseService courseService = new CourseService();
+        courseService.setPostCourseView(this);
+
+        courseService.createCourse(getJwt(),courseIdx);
+    }
+    @Override
+    public void onPostCoursesSuccess(int code, PostCourseResult result) {
+        Toast.makeText(context,"강의를 추가했습니다.",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPostCoursesFailure(int code, String message) {
+        if(code == 2024){
+            Toast.makeText(context,message,Toast.LENGTH_SHORT).show(); // 이미 추가한 강의입니다.
+        }
     }
 }

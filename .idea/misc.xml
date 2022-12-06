@@ -9,6 +9,7 @@
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/border.xml" value="0.277" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/button_custom.xml" value="0.2565" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/cell_shape.xml" value="0.2565" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/course_info_line.xml" value="0.2965" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/table_layout_shape.xml" value="0.2565" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/drawable/table_row_shape.xml" value="0.2565" />
@@ -38,7 +39,7 @@
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/community_comment_recyclerview_item.xml" value="0.3703125" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/community_recyclerview_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/course_list_recyclerview_item.xml" value="0.5" />
-        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/evaluate_subject_recyclerview_item.xml" value="0.37135416666666665" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/evaluate_subject_recyclerview_item.xml" value="0.5" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/exam_subject_recyclerview_item.xml" value="0.6127703398558187" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_board.xml" value="0.24757281553398058" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_deep_int.xml" value="0.2677083333333333" />
@@ -53,7 +54,8 @@
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_notify.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_schedule.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/fragment_unknown.xml" value="0.2677083333333333" />
-        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/review_subject_recyclerview_item.xml" value="0.3038461538461538" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/review_subject_recyclerview_item.xml" value="0.5" />
+        <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/layout/subject_info_dup.xml" value="0.40328054298642535" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/menu/exam_sub_menu.xml" value="0.37135416666666665" />
         <entry key="..\:/Users/jskim/AndroidStudioProjects/Term_project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.112" />
