@@ -1,5 +1,8 @@
 package com.example.term_project;
 
+import android.content.Context;
+import android.widget.TextView;
+
 public class TimeTable {
     private String monday[] = new String[12];
     private String tuesday[] = new String[12];
@@ -20,44 +23,75 @@ public class TimeTable {
         int temp;
         // 요일 정보 위치 파악
         if((temp = timeText.indexOf("월")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                monday[Integer.parseInt(timeText.charAt(i)+"")-1] = "수업";
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    monday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = "수업";
+                }
             }
         }
         if((temp = timeText.indexOf("화")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                tuesday[Integer.parseInt(timeText.charAt(i)+"")-1] = "수업";
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    tuesday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = "수업";
+                }
             }
         }
         if((temp = timeText.indexOf("수")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                wednesday[Integer.parseInt(timeText.charAt(i)+"")-1] = "수업";
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    wednesday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = "수업";
+                }
             }
         }
         if((temp = timeText.indexOf("목")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                thursday[Integer.parseInt(timeText.charAt(i)+"")-1] = "수업";
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']') {
+                    endPoint = i;
+                    thursday[Integer.parseInt(timeText.substring(startPoint + 1, endPoint)) - 1] = "수업";
+                }
             }
         }
         if((temp = timeText.indexOf("금")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                friday[Integer.parseInt(timeText.charAt(i)+"")-1] = "수업";
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    friday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = "수업";
+                }
             }
         }
-        for(int i=0;i<12;i++){
-            System.out.println(" 월"+i+" "+monday[i]+" 화"+i+" "+tuesday[i]+" 수"+i+" "+wednesday[i]+" 목"+i+" "+thursday[i]+" 금"+i+" "+friday[i]);
-        }
-
     }
 
     // 시간표 중복 피하기
@@ -68,55 +102,188 @@ public class TimeTable {
         }
         int temp;
         if((temp = timeText.indexOf("월")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                if (!monday[Integer.parseInt(timeText.charAt(i)+"")-1].equals("")){ // 해당 배열값이 빈값이 아니라면 > 중복인 것! > 넣지 말아야 함.
-                    return false;
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
                 }
-
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    if(!monday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1].equals("")){
+                        return false;
+                    }
+                }
             }
         }
         if((temp = timeText.indexOf("화")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                if (!tuesday[Integer.parseInt(timeText.charAt(i)+"")-1].equals("")){
-                    return false;
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
                 }
-
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    if(!tuesday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1].equals("")){
+                        return false;
+                    }
+                }
             }
         }
         if((temp = timeText.indexOf("수")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                if (!wednesday[Integer.parseInt(timeText.charAt(i)+"")-1].equals("")){
-                    return false;
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
                 }
-
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    if(!wednesday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1].equals("")){
+                        return false;
+                    }
+                }
             }
         }
         if((temp = timeText.indexOf("목")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                if (!thursday[Integer.parseInt(timeText.charAt(i)+"")-1].equals("")){
-                    return false;
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
                 }
-
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    if(!thursday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1].equals("")){
+                        return false;
+                    }
+                }
             }
         }
         if((temp = timeText.indexOf("금")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
-            temp+=1;
-            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ' ';i++){
-                if(timeText.charAt(i) == ',') continue;
-                if (!friday[Integer.parseInt(timeText.charAt(i)+"")-1].equals("")){
-                    return false;
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
                 }
-
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    if(!friday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1].equals("")){
+                        return false;
+                    }
+                }
             }
         }
         return true; // 위의 모든 조건 충족 시 true 반환 > 시간표 넣기 가능한 것.
+    }
+
+    public void addTimeTable(String timeText,String courseTitle, String courseRoom){
+        int temp;
+        // 요일 정보 위치 파악
+        if((temp = timeText.indexOf("월")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    monday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = courseTitle+"\n"+courseRoom;
+                }
+            }
+        }
+        if((temp = timeText.indexOf("화")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    tuesday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = courseTitle+"\n"+courseRoom;
+                }
+            }
+        }
+        if((temp = timeText.indexOf("수")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    wednesday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = courseTitle+"\n"+courseRoom;
+                }
+            }
+        }
+        if((temp = timeText.indexOf("목")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']') {
+                    endPoint = i;
+                    thursday[Integer.parseInt(timeText.substring(startPoint + 1, endPoint)) - 1] = courseTitle+"\n"+courseRoom;
+                }
+            }
+        }
+        if((temp = timeText.indexOf("금")) > -1){ // temp 변수에 '월' 단어의 위치 인덱스 값을 저장
+            temp+=2;
+            int startPoint = temp;
+            int endPoint = temp;
+            for(int i=temp;i<timeText.length() && timeText.charAt(i) != ':';i++){
+                if(timeText.charAt(i)=='['){
+                    startPoint=i;
+                }
+                if(timeText.charAt(i)==']'){
+                    endPoint=i;
+                    friday[Integer.parseInt(timeText.substring(startPoint+1,endPoint))-1] = courseTitle+"\n"+courseRoom;
+                }
+            }
+        }
+    }
+
+    public void settingTimeTable(TextView[] monday, TextView[] tuesday, TextView[] wednesday, TextView[] thursday, TextView[] friday, Context context){
+        for(int i=0;i<12;i++){
+            if (!this.monday[i].equals("")){
+                monday[i].setText(this.monday[i]);
+            }
+        }
+        for(int i=0;i<12;i++){
+            if (!this.tuesday[i].equals("")){
+                tuesday[i].setText(this.tuesday[i]);
+            }
+        }
+        for(int i=0;i<12;i++){
+            if (!this.wednesday[i].equals("")){
+                wednesday[i].setText(this.wednesday[i]);
+            }
+        }
+        for(int i=0;i<12;i++){
+            if (!this.thursday[i].equals("")){
+                thursday[i].setText(this.thursday[i]);
+            }
+        }
+        for(int i=0;i<12;i++){
+            if (!this.friday[i].equals("")){
+                friday[i].setText(this.friday[i]);
+            }
+        }
     }
 }

@@ -7,8 +7,10 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.term_project.board.course.response.GetCourseListResponse;
+import com.example.term_project.board.course.response.GetTimeTableListResponse;
 import com.example.term_project.board.course.response.PostCourseResponse;
 import com.example.term_project.view.GetCoursesView;
+import com.example.term_project.view.GetTimeTableView;
 import com.example.term_project.view.PostCourseView;
 
 import retrofit2.Call;
@@ -19,12 +21,16 @@ public class CourseService {
     private final CourseRetrofitInterface courseService = getRetrofit().create(CourseRetrofitInterface.class);
     private GetCoursesView getCoursesView;
     private PostCourseView postCourseView;
+    private GetTimeTableView getTimeTableView;
 
     public void setGetCoursesView(GetCoursesView getCoursesView){
         this.getCoursesView = getCoursesView;
     }
     public void setPostCourseView(PostCourseView postCourseView){
         this.postCourseView = postCourseView;
+    }
+    public void setGetTimeTableView(GetTimeTableView getTimeTableView){
+        this.getTimeTableView=getTimeTableView;
     }
 
     // GET
@@ -70,5 +76,27 @@ public class CourseService {
             }
         });
         Log.d("COURSE-POST","HELLO");
+    }
+    // GET
+    public void getTimeTable(String jwt){
+        Log.d("TIME-TABLE-INPUT", jwt+"");
+        courseService.getTimeTable(jwt).enqueue(new Callback<GetTimeTableListResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<GetTimeTableListResponse> call, Response<GetTimeTableListResponse> response) {
+                GetTimeTableListResponse resp = response.body();
+                Log.d("TIME-TABLE-RESP", call.request().toString());
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    getTimeTableView.onGetTimeTableSuccess(resp.getCode(),resp.getResult());
+                }else{
+                    getTimeTableView.onGetTimeTableFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<GetTimeTableListResponse> call, Throwable t) {
+                Log.d("TIME-TABLE/FAIL", t.getMessage());
+            }
+        });
+        Log.d("TIME-TABLE","HELLO");
     }
 }
