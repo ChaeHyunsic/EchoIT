@@ -9,7 +9,7 @@
         <shape android:shape="rectangle">
             <corners android:radius="10dp"/>
             <stroke
-                android:width="3dp"
+                android:width="2dp"
                 android:color="#787676" />
             <solid android:color="#00000000" />
         </shape>

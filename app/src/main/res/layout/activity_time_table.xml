@@ -27,18 +27,26 @@
             android:id="@+id/course_list_iv_js"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="20dp"
             android:src="@drawable/time_table_plus"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/time_table_title_name_tv_js"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/my_course_list_iv_js"
             app:layout_constraintTop_toTopOf="@+id/time_table_title_name_tv_js" />
 
+        <ImageView
+            android:id="@+id/my_course_list_iv_js"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/list"
+            app:layout_constraintBottom_toBottomOf="@+id/course_list_iv_js"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/course_list_iv_js" />
         <GridLayout
             android:id="@+id/time_table_mapping_tl_js"
             android:layout_width="match_parent"
             android:layout_height="900dp"
             android:layout_margin="5dp"
-            android:layout_marginTop="20dp"
             android:background="@drawable/table_layout_shape"
             android:rowCount="13"
             android:columnCount="6"

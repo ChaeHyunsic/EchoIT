@@ -11,13 +11,12 @@ import android.widget.TextView;
 
 import com.example.term_project.board.course.CourseService;
 import com.example.term_project.board.course.response.result.GetTimeTableListResult;
-import com.example.term_project.board.evaluate_board.EvaluateSubjectService;
 import com.example.term_project.view.GetTimeTableView;
 
 import java.util.ArrayList;
 
 public class TimeTableActivity extends AppCompatActivity implements GetTimeTableView {
-    ImageView imageView;
+    ImageView courseList,myCourseList;
     TextView monday[] = new TextView[12];
     TextView tuesday[] = new TextView[12];
     TextView wednesday[] = new TextView[12];
@@ -32,7 +31,8 @@ public class TimeTableActivity extends AppCompatActivity implements GetTimeTable
         initTextViewList();
     }
     private void initView(){
-        imageView = findViewById(R.id.course_list_iv_js);
+        courseList = findViewById(R.id.course_list_iv_js);
+        myCourseList = findViewById(R.id.my_course_list_iv_js);
     }
     private void initTextViewList(){
         monday[0] = findViewById(R.id.monday0);
@@ -101,19 +101,22 @@ public class TimeTableActivity extends AppCompatActivity implements GetTimeTable
         friday[11] = findViewById(R.id.friday11);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
         getTimeTableList();
-        imageView.setOnClickListener(new View.OnClickListener() {
+        courseList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TimeTableActivity.this,CourseListActivity.class);
+                startActivity(intent);
+            }
+        });
+        myCourseList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TimeTableActivity.this,MyCourseListActivity.class);
                 startActivity(intent);
             }
         });
