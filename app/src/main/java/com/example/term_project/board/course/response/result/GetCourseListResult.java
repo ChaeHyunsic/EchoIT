@@ -1,38 +1,44 @@
-package com.example.term_project.board.evaluate_board.response.result;
+package com.example.term_project.board.course.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Date;
-
-public class GetEvaluateSubjectResult {
-    @SerializedName(value = "id") private int id;
+public class GetCourseListResult {
+    @SerializedName(value = "courseIdx") private int courseIdx;
+    @SerializedName(value = "courseGrade") private int courseGrade;
     @SerializedName(value = "subjectName") private String subjectName;
     @SerializedName(value = "professor") private String professor;
-    @SerializedName(value = "separation") private String separation;
-    @SerializedName(value = "grade") private int grade;
     @SerializedName(value = "time") private String time;
     @SerializedName(value = "room") private String room;
+    @SerializedName(value = "separation") private String separation;
     @SerializedName(value = "credit") private int credit;
     @SerializedName(value = "scoreAverage") private float scoreAverage;
 
-    public GetEvaluateSubjectResult(int id, String subjectName, String professor, String separation, int grade, String time, String room, int credit, float scoreAverage) {
-        this.id = id;
+    public GetCourseListResult(int courseIdx, int courseGrade, String subjectName, String professor, String time, String room, String separation, int credit, float scoreAverage) {
+        this.courseIdx = courseIdx;
+        this.courseGrade = courseGrade;
         this.subjectName = subjectName;
         this.professor = professor;
-        this.separation = separation;
-        this.grade = grade;
         this.time = time;
         this.room = room;
+        this.separation = separation;
         this.credit = credit;
         this.scoreAverage = scoreAverage;
     }
 
-    public int getId() {
-        return id;
+    public int getCourseIdx() {
+        return courseIdx;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCourseIdx(int courseIdx) {
+        this.courseIdx = courseIdx;
+    }
+
+    public int getCourseGrade() {
+        return courseGrade;
+    }
+
+    public void setCourseGrade(int courseGrade) {
+        this.courseGrade = courseGrade;
     }
 
     public String getSubjectName() {
@@ -51,22 +57,6 @@ public class GetEvaluateSubjectResult {
         this.professor = professor;
     }
 
-    public String getSeparation() {
-        return separation;
-    }
-
-    public void setSeparation(String separation) {
-        this.separation = separation;
-    }
-
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
     public String getTime() {
         return time;
     }
@@ -81,6 +71,14 @@ public class GetEvaluateSubjectResult {
 
     public void setRoom(String room) {
         this.room = room;
+    }
+
+    public String getSeparation() {
+        return separation;
+    }
+
+    public void setSeparation(String separation) {
+        this.separation = separation;
     }
 
     public int getCredit() {
@@ -101,14 +99,14 @@ public class GetEvaluateSubjectResult {
 
     @Override
     public String toString() {
-        return "GetEvaluateSubjectResult{" +
-                "id=" + id +
+        return "GetCourseListResult{" +
+                "courseIdx=" + courseIdx +
+                ", courseGrade=" + courseGrade +
                 ", subjectName='" + subjectName + '\'' +
                 ", professor='" + professor + '\'' +
-                ", separation='" + separation + '\'' +
-                ", grade=" + grade +
                 ", time='" + time + '\'' +
                 ", room='" + room + '\'' +
+                ", separation='" + separation + '\'' +
                 ", credit=" + credit +
                 ", scoreAverage=" + scoreAverage +
                 '}';

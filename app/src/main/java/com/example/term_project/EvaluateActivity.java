@@ -1,12 +1,14 @@
 package com.example.term_project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,10 +17,11 @@ import com.example.term_project.board.evaluate_board.request.PostEvaluateSubject
 import com.example.term_project.view.PostSubjectReviewView;
 
 public class EvaluateActivity extends AppCompatActivity implements PostSubjectReviewView {
-    TextView subjectName,professor,score;
+    TextView score;
     EditText review;
     RatingBar ratingBar;
-    Button button;
+    AppCompatButton button;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,26 +30,22 @@ public class EvaluateActivity extends AppCompatActivity implements PostSubjectRe
     }
 
     private void initView(){
-        subjectName = findViewById(R.id.selected_subject_name);
-        professor = findViewById(R.id.professor_name_js);
-        score = findViewById(R.id.score_tv_js);
-        review = findViewById(R.id.post_review_et_js);
-        ratingBar = findViewById(R.id.evaluate_score_rb_js);
-        button = findViewById(R.id.evaluate_review_complete_btn_js);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-            if(getIntent().hasExtra("subjectName") && getIntent().hasExtra("professor")){
-                subjectName.setText(getIntent().getStringExtra("subjectName"));
-                professor.setText(getIntent().getStringExtra("professor"));
-            }
+        imageView = findViewById(R.id.subject_info_close_iv_js);
+        score = findViewById(R.id.subject_info_score_avg_tv_js);
+        review = findViewById(R.id.subject_info_eval_et_js);
+        ratingBar = findViewById(R.id.ratingBarInficator);
+        button = findViewById(R.id.subject_evaluate_post_btn_js);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

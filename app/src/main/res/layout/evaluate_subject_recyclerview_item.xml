@@ -5,69 +5,62 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/selectableItemBackground"
-    android:minHeight="64dp">
+    android:minHeight="95dp">
+
     <TextView
         android:id="@+id/evaluate_grade_number_tv_js"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/evaluate_grade"
+        app:layout_constraintEnd_toStartOf="@+id/evaluate_grade"
+        app:layout_constraintTop_toTopOf="@+id/evaluate_grade" />
+
     <TextView
-        android:text="학년"
         android:id="@+id/evaluate_grade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text="학년"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/evaluate_grade_number_tv_js"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textSize="20sp"/>
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_specific_iv_js"
+        app:layout_constraintEnd_toStartOf="@+id/search_specific_iv_js"
+        app:layout_constraintTop_toTopOf="@+id/search_specific_iv_js" />
 
     <TextView
         android:id="@+id/evaluate_subject_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:text="모바일소프트웨어개발및실험"
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/evaluate_grade"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteY="27dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"/>
+
     <TextView
         android:id="@+id/evaluate_professor_name"
-        android:text="교수명"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/search_specific_btn"
+        android:text="교수명"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="30dp" />
-    <Button
-        android:id="@+id/search_specific_btn"
-        android:text="보기"
-        android:textSize="8sp"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/evaluate_subject_name"
+        app:layout_constraintTop_toBottomOf="@+id/evaluate_subject_name" />
+    <ImageView
+        android:id="@+id/search_specific_iv_js"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/btn_main_arrow_more"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="20dp"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#BFE80C"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

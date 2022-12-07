@@ -57,12 +57,21 @@ public class BoardFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        // get evaluate-subject cardview
+        // get community cardview
         MaterialCardView materialCardView_community = root.findViewById(R.id.board_card_club_mcv_community_gy);
         materialCardView_community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),CommunityBoardActivity.class);
+                startActivity(intent);
+            }
+        });
+        // get time-table cardview
+        MaterialCardView materialCardView_time_table = root.findViewById(R.id.board_card_club_mcv_sigan_gy);
+        materialCardView_time_table.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),TimeTableActivity.class);
                 startActivity(intent);
             }
         });

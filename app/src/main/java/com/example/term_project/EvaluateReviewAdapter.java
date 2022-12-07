@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,13 @@ public class EvaluateReviewAdapter extends RecyclerView.Adapter<EvaluateReviewAd
     private ArrayList<GetSubjectReviewsResult> result;
     private Context context;
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView content, score;
+        TextView nickName,content;
+        RatingBar ratingBar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            content = itemView.findViewById(R.id.review_list);
-            score = itemView.findViewById(R.id.review_score_js);
+            nickName = itemView.findViewById(R.id.subject_review_nick_name_tc_js);
+            content = itemView.findViewById(R.id.review_content_tv_js);
+            ratingBar = itemView.findViewById(R.id.subject_score_rb_js);
         }
     }
 
@@ -45,8 +48,9 @@ public class EvaluateReviewAdapter extends RecyclerView.Adapter<EvaluateReviewAd
 
     @Override
     public void onBindViewHolder(@NonNull EvaluateReviewAdapter.ViewHolder holder, int position) {
+        holder.nickName.setText(result.get(position).getNickName());
         holder.content.setText(result.get(position).getContent());
-        holder.score.setText(String.valueOf(result.get(position).getScore()));
+        holder.ratingBar.setRating(result.get(position).getScore());
     }
 
     @Override

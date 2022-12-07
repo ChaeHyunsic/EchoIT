@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,13 +21,13 @@ public class EvaluateSubjectAdapter extends RecyclerView.Adapter<EvaluateSubject
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView grade,subject,professor;
-        Button button;
+        ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             grade = itemView.findViewById(R.id.evaluate_grade_number_tv_js);
             subject = itemView.findViewById(R.id.evaluate_subject_name);
             professor = itemView.findViewById(R.id.evaluate_professor_name);
-            button = itemView.findViewById(R.id.search_specific_btn);
+            imageView = itemView.findViewById(R.id.search_specific_iv_js);
         }
     }
 
@@ -57,13 +57,19 @@ public class EvaluateSubjectAdapter extends RecyclerView.Adapter<EvaluateSubject
         holder.grade.setText(gradeText);
         holder.subject.setText(subjectText);
         holder.professor.setText(professorText);
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,SubjectInfoActivity.class);
                 intent.putExtra("subjectIdx",result.get(touchIndex).getId());
                 intent.putExtra("subjectName",result.get(touchIndex).getSubjectName());
                 intent.putExtra("professor",result.get(touchIndex).getProfessor());
+                intent.putExtra("separation",result.get(touchIndex).getSeparation());
+                intent.putExtra("grade",result.get(touchIndex).getGrade());
+                intent.putExtra("time",result.get(touchIndex).getTime());
+                intent.putExtra("room",result.get(touchIndex).getRoom());
+                intent.putExtra("credit",result.get(touchIndex).getCredit());
+                intent.putExtra("scoreAverage",result.get(touchIndex).getScoreAverage());
                 context.startActivity(intent);
             }
         });
