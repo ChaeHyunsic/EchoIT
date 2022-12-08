@@ -28,8 +28,8 @@ import com.example.term_project.view.GetIsAuthView;
 import java.util.ArrayList;
 
 public class CommunityDetailActivity extends AppCompatActivity implements GetIsAuthView, GetCommentsView, DeleteCommunityView {
-    TextView grade,title,content;
-    ImageView imageView;
+    TextView nickname,correctCreatedAt,title,content;
+    ImageView imageView,closeDetail;
     RecyclerView recyclerView;
     CommunityDetailCommentsAdapter adapter;
     @Override
@@ -39,10 +39,12 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
         initView();
     }
     private void initView(){
-        grade = findViewById(R.id.community_grade_number_tv_js);
+        nickname = findViewById(R.id.community_detail_nickname_tv_js);
+        correctCreatedAt = findViewById(R.id.community_detail_created_tv_js);
         title = findViewById(R.id.community_detail_title_tv_js);
         content = findViewById(R.id.community_detail_content_tv_js);
         imageView = findViewById(R.id.community_menu_js);
+        closeDetail = findViewById(R.id.community_close_iv_js);
     }
     private void initRecyclerView(ArrayList<GetCommentsResult> result){
         recyclerView = findViewById(R.id.community_comments_review_js);
@@ -80,7 +82,8 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
     protected void onStart() {
         super.onStart();
         if(getIntent().hasExtra("userIdx")){
-            grade.setText(String.valueOf(getIntent().getIntExtra("grade",0)));
+            nickname.setText(getIntent().getStringExtra("nickname"));
+            correctCreatedAt.setText(getIntent().getStringExtra("correctCreatedAt"));
             title.setText(getIntent().getStringExtra("title"));
             content.setText(getIntent().getStringExtra("content"));
         }
@@ -91,6 +94,12 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
     protected void onResume() {
         super.onResume();
         getList(getIntent().getIntExtra("communityIdx",0));
+        closeDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +112,6 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
                             case R.id.edit: // 수정 액티비티 이동
                                 Intent intent = new Intent(CommunityDetailActivity.this,CommunityEditActivity.class);
                                 intent.putExtra("communityIdx",getIntent().getIntExtra("communityIdx",0));
-                                intent.putExtra("grade",getIntent().getIntExtra("grade",0));
                                 intent.putExtra("title",getIntent().getStringExtra("title"));
                                 intent.putExtra("content",getIntent().getStringExtra("content"));
                                 startActivity(intent);

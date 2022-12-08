@@ -1,6 +1,7 @@
 package com.example.term_project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,10 +17,9 @@ import com.example.term_project.board.community_board.response.result.PostCommun
 import com.example.term_project.view.PostCommunityView;
 
 public class CommunityCreateActivity extends AppCompatActivity implements PostCommunityView {
-    TextView grade;
     EditText title,content;
-    ImageView createCommunity;
-
+    ImageView closeCreated;
+    AppCompatButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +27,15 @@ public class CommunityCreateActivity extends AppCompatActivity implements PostCo
         initView();
     }
     private void initView(){
-        grade = findViewById(R.id.community_create_grade_number_tv_js);
         title = findViewById(R.id.community_create_title_tv_js);
         content = findViewById(R.id.community_create_content_tv_js);
-        createCommunity = findViewById(R.id.community_menu_js);
+        closeCreated = findViewById(R.id.community_close_iv_js);
+        button = findViewById(R.id.community_create_complete_btn_js);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        grade.setText(String.valueOf(getGrade()));
 
     }
     private int getGrade(){
@@ -47,10 +46,16 @@ public class CommunityCreateActivity extends AppCompatActivity implements PostCo
     @Override
     protected void onResume() {
         super.onResume();
-        createCommunity.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createCommunity();
+            }
+        });
+        closeCreated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

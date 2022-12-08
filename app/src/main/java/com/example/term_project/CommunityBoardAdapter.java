@@ -68,11 +68,12 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
                 Intent intent = new Intent(context,CommunityDetailActivity.class);
                 Log.d("touchIndex-input",String.valueOf(touchIndex));
                 intent.putExtra("touchIndex",touchIndex);
-                intent.putExtra("grade",result.get(touchIndex).getGrade());
                 intent.putExtra("title",result.get(touchIndex).getTitle());
                 intent.putExtra("content",result.get(touchIndex).getContent());
                 intent.putExtra("userIdx",result.get(touchIndex).getUserIdx());
                 intent.putExtra("communityIdx",result.get(touchIndex).getCommunityIdx());
+                intent.putExtra("correctCreatedAt",result.get(touchIndex).getCorrectCreatedAt());
+                intent.putExtra("nickname",result.get(touchIndex).getNickname());
                 context.startActivity(intent);
             }
         });

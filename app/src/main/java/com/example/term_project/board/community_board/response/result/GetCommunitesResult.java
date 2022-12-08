@@ -10,7 +10,10 @@ public class GetCommunitesResult {
     @SerializedName(value = "content") private String content;
     @SerializedName(value = "createdAt") private String createdAt;
     @SerializedName(value = "commentCount") private int commentCount;
-    public GetCommunitesResult(int communityIdx, int userIdx, int grade, String title, String content, String createdAt, int commentCount) {
+    @SerializedName(value = "correctCreatedAt") private String correctCreatedAt;
+    @SerializedName(value = "nickname") private String nickname;
+
+    public GetCommunitesResult(int communityIdx, int userIdx, int grade, String title, String content, String createdAt, int commentCount, String correctCreatedAt, String nickname) {
         this.communityIdx = communityIdx;
         this.userIdx = userIdx;
         this.grade = grade;
@@ -18,6 +21,8 @@ public class GetCommunitesResult {
         this.content = content;
         this.createdAt = createdAt;
         this.commentCount = commentCount;
+        this.correctCreatedAt = correctCreatedAt;
+        this.nickname = nickname;
     }
 
     public int getCommunityIdx() {
@@ -76,16 +81,19 @@ public class GetCommunitesResult {
         this.commentCount = commentCount;
     }
 
-    @Override
-    public String toString() {
-        return "GetCommunitesResult{" +
-                "communityIdx=" + communityIdx +
-                ", userIdx=" + userIdx +
-                ", grade=" + grade +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", commentCount=" + commentCount +
-                '}';
+    public String getCorrectCreatedAt() {
+        return correctCreatedAt;
+    }
+
+    public void setCorrectCreatedAt(String correctCreatedAt) {
+        this.correctCreatedAt = correctCreatedAt;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

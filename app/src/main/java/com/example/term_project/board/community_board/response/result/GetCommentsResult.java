@@ -3,24 +3,27 @@ package com.example.term_project.board.community_board.response.result;
 import com.google.gson.annotations.SerializedName;
 
 public class GetCommentsResult {
-    @SerializedName(value = "communutyIdx") private int communityIdx;
+    @SerializedName(value = "commentIdx") private int commentIdx;
     @SerializedName(value = "userIdx") private int userIdx;
-    @SerializedName(value = "title") private String title;
+    @SerializedName(value = "nickname") private String nickname;
     @SerializedName(value = "content") private String content;
+    @SerializedName(value = "correctCreatedAt") private String correctCreatedAt;
 
-    public GetCommentsResult(int communityIdx, int userIdx, String title, String content) {
-        this.communityIdx = communityIdx;
+
+    public GetCommentsResult(int communityIdx, int userIdx, String nickname, String content, String correctCreatedAt) {
+        this.commentIdx = communityIdx;
         this.userIdx = userIdx;
-        this.title = title;
+        this.nickname = nickname;
         this.content = content;
+        this.correctCreatedAt = correctCreatedAt;
     }
 
-    public int getCommunityIdx() {
-        return communityIdx;
+    public int getCommentIdx() {
+        return commentIdx;
     }
 
-    public void setCommunityIdx(int communityIdx) {
-        this.communityIdx = communityIdx;
+    public void setCommentIdx(int communityIdx) {
+        this.commentIdx = communityIdx;
     }
 
     public int getUserIdx() {
@@ -31,12 +34,12 @@ public class GetCommentsResult {
         this.userIdx = userIdx;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getContent() {
@@ -45,5 +48,13 @@ public class GetCommentsResult {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCorrectCreatedAt() {
+        return correctCreatedAt;
+    }
+
+    public void setCorrectCreatedAt(String correctCreatedAt) {
+        this.correctCreatedAt = correctCreatedAt;
     }
 }
