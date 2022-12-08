@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.term_project.board.exam_board.ExamSubjectService;
 import com.example.term_project.board.exam_board.request.PostExamSubjectRequest;
+import com.example.term_project.board.exam_board.response.result.PostExamSubjectResult;
 import com.example.term_project.view.PostExamSubjectView;
 
 import java.sql.Date;
@@ -79,7 +80,9 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
     }
 
     @Override
-    public void onPostExamSubjectSuccess() {
+    public void onPostExamSubjectSuccess(int code, PostExamSubjectResult result) {
+        //setAlarm(result.getEndAt());
+        Log.d("alarm?",result.getEndAt()+"");
         finish();
     }
 

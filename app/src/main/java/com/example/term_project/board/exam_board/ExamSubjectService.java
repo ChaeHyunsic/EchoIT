@@ -67,7 +67,7 @@ public class ExamSubjectService {
                 PostExamSubjectResponse resp = response.body();
                 assert resp != null;
                 if(resp.getCode() == 1000){
-                    postExamSubjectView.onPostExamSubjectSuccess();
+                    postExamSubjectView.onPostExamSubjectSuccess(resp.getCode(),resp.getResult());
                 }else{
                     postExamSubjectView.onPostExamSubjectFailure(resp.getCode(), resp.getMessage());
                 }
