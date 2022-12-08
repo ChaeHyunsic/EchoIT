@@ -22,17 +22,18 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ConstraintLayout itemLayout;
-        TextView grade,title,createdAt;
+        TextView grade,title,content,createdAt,commentCount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemLayout = itemView.findViewById(R.id.community_item_cl_js);
             grade = itemView.findViewById(R.id.community_grade_number_tv_js);
             title = itemView.findViewById(R.id.community_title_js);
+            content = itemView.findViewById(R.id.community_content_tv_js);
             createdAt = itemView.findViewById(R.id.community_created_js);
+            commentCount = itemView.findViewById(R.id.community_comment_count_tv_js);
         }
     }
-    public CommunityBoardAdapter(){
-    }
+
     public CommunityBoardAdapter(ArrayList<GetCommunitesResult> result, Context context) {
         this.result = result;
         this.context = context;
@@ -77,17 +78,13 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
         });
         holder.grade.setText(String.valueOf(result.get(position).getGrade()));
         holder.title.setText(result.get(position).getTitle());
+        holder.content.setText(result.get(position).getContent());
         holder.createdAt.setText(result.get(position).getCreatedAt());
+        holder.commentCount.setText(String.valueOf(result.get(position).getCommentCount()));
     }
 
     @Override
     public int getItemCount() {
         return result.size();
-    }
-
-    public void removeAt(int position){
-        result.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position,result.size());
     }
 }

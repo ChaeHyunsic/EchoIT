@@ -9,14 +9,15 @@ public class GetCommunitesResult {
     @SerializedName(value = "title") private String title;
     @SerializedName(value = "content") private String content;
     @SerializedName(value = "createdAt") private String createdAt;
-
-    public GetCommunitesResult(int communityIdx, int userIdx, int grade, String title, String content, String createdAt) {
+    @SerializedName(value = "commentCount") private int commentCount;
+    public GetCommunitesResult(int communityIdx, int userIdx, int grade, String title, String content, String createdAt, int commentCount) {
         this.communityIdx = communityIdx;
         this.userIdx = userIdx;
         this.grade = grade;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
+        this.commentCount = commentCount;
     }
 
     public int getCommunityIdx() {
@@ -67,14 +68,24 @@ public class GetCommunitesResult {
         this.createdAt = createdAt;
     }
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     @Override
     public String toString() {
         return "GetCommunitesResult{" +
                 "communityIdx=" + communityIdx +
+                ", userIdx=" + userIdx +
                 ", grade=" + grade +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", createdAt='" + createdAt + '\'' +
+                ", commentCount=" + commentCount +
                 '}';
     }
 }

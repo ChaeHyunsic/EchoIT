@@ -40,7 +40,6 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
             super(itemView) ;
             // 뷰 객체에 대한 참조.
             constraintLayout = itemView.findViewById(R.id.exam_subject_item_cl_js);
-            checkBox = itemView.findViewById(R.id.subject_cb_js);
             textView = itemView.findViewById(R.id.subject_tv_js);
             textView2 = itemView.findViewById(R.id.endAt_tv_js);
             imageView = itemView.findViewById(R.id.context_menu_iv_js);
