@@ -1,8 +1,14 @@
 package com.example.term_project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +25,10 @@ import com.example.term_project.board.exam_board.response.result.PostExamSubject
 import com.example.term_project.view.PostExamSubjectView;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class ExamSubjectCreateActivity extends AppCompatActivity implements PostExamSubjectView {
     EditText titleEditTextView,contentEditTextView;
@@ -27,9 +36,20 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
     DatePicker datePicker;
     Button button;
     String dt_str;
+
+    private AlarmManager alarmManager;
+    private GregorianCalendar mCalender;
+
+    private NotificationManager notificationManager;
+    NotificationCompat.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_exam_subject_create);
+
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        mCalender = new GregorianCalendar();
         setContentView(R.layout.activity_exam_subject_create);
         initView();
     }
@@ -81,8 +101,36 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
 
     @Override
     public void onPostExamSubjectSuccess(int code, PostExamSubjectResult result) {
-        //setAlarm(result.getEndAt());
-        Log.d("alarm?",result.getEndAt()+"");
+        //AlarmReceiver에 값 전달
+        Intent receiverIntent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, receiverIntent, PendingIntent.FLAG_IMMUTABLE);
+
+        String from = result.getEndAt() + " 09:57:00"; //임의로 날짜와 시간을 지정
+        //날짜 포맷을 바꿔주는 소스코드
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date datetime = null;
+        try {
+            datetime = dateFormat.parse(from);
+            // datetime = (Date) dateFormat.parse(from);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar_3day = Calendar.getInstance();
+
+        calendar_3day.setTime(datetime);
+        calendar_3day.add(Calendar.DATE, -3);
+
+        alarmManager.set(AlarmManager.RTC, calendar_3day.getTimeInMillis(),pendingIntent);
+
+
+        Calendar calendar_7day = Calendar.getInstance();
+
+        calendar_7day.setTime(datetime);
+        calendar_7day.add(Calendar.DATE, -7);
+
+        alarmManager.set(AlarmManager.RTC, calendar_7day.getTimeInMillis(),pendingIntent);
+
         finish();
     }
 

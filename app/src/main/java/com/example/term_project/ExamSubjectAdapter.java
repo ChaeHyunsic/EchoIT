@@ -31,7 +31,6 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        CheckBox checkBox;
         TextView textView;
         TextView textView2;
         ImageView imageView;

@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Term_project"
         tools:targetApi="31">
         <activity
+            android:name=".IsuActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyCourseListActivity"
             android:exported="false" />
         <activity
@@ -34,7 +37,7 @@
         <activity
             android:name=".CommunityDetailActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".CommunityBoardActivity"
             android:exported="false" />
@@ -86,6 +89,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <receiver android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
