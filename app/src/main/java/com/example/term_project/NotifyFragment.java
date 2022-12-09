@@ -1,18 +1,62 @@
 package com.example.term_project;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class NotifyFragment extends Fragment {
+import com.example.term_project.board.community_board.CommunityService;
+import com.example.term_project.board.community_board.response.result.GetCommunitesResult;
+import com.example.term_project.board.exam_board.ExamSubjectService;
+import com.example.term_project.board.exam_board.response.result.GetRemainTimeResult;
+import com.example.term_project.view.GetRemainTimesView;
+
+import java.util.ArrayList;
+
+public class NotifyFragment extends Fragment implements GetRemainTimesView {
+    RecyclerView recyclerView;
+    NotifyAdapter adapter;
+    View root;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notify, container, false);
+        root = inflater.inflate(R.layout.fragment_notify, container, false);
+        getList();
+        return root;
+    }
+    private String getJwt(){
+        SharedPreferences spf = this.getActivity().getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("jwt","");
+    }
+    private void initRecyclerView(ArrayList<GetRemainTimeResult> result){
+        recyclerView = root.findViewById(R.id.notify_remain_time_rv_js);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        adapter = new NotifyAdapter(result,getActivity());
+        recyclerView.setAdapter(adapter);
+    }
+    private void getList(){
+        ExamSubjectService examSubjectService = new ExamSubjectService();
+        examSubjectService.setGetRemainTimesView(this);
+
+        examSubjectService.getRemainTimes(getJwt());
+    }
+
+    @Override
+    public void onGetRemainTimesSuccess(int code, ArrayList<GetRemainTimeResult> result) {
+        initRecyclerView(result);
+    }
+
+    @Override
+    public void onGetRemainTimesFailure(int code, String message) {
+
     }
 }

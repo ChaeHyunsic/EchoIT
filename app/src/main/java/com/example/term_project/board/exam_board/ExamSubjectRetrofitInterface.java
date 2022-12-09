@@ -4,6 +4,7 @@ import com.example.term_project.board.exam_board.request.PatchExamSubjectRequest
 import com.example.term_project.board.exam_board.request.PostExamSubjectRequest;
 import com.example.term_project.board.exam_board.response.DeleteExamSubjectResponse;
 import com.example.term_project.board.exam_board.response.GetExamSubjectResponse;
+import com.example.term_project.board.exam_board.response.GetRemainTimeResponse;
 import com.example.term_project.board.exam_board.response.PatchExamSubjectResponse;
 import com.example.term_project.board.exam_board.response.PostExamSubjectResponse;
 
@@ -24,4 +25,6 @@ public interface ExamSubjectRetrofitInterface {
     Call<PatchExamSubjectResponse> patchExamSubject(@Header("X-ACCESS-TOKEN") String jwt, @Path("listIdx") int listIdx, @Body PatchExamSubjectRequest postExamSubjectRequest);
     @PATCH("/app/boards/exam-subjects/del/{listIdx}") // 삭제
     Call<DeleteExamSubjectResponse> deleteExamSubject(@Header("X-ACCESS-TOKEN") String jwt, @Path("listIdx") int listIdx);
+    @GET("/app/boards/exam-subjects/remain-times")
+    Call<GetRemainTimeResponse> getRemainTimes(@Header("X-ACCESS-TOKEN") String jwt);
 }

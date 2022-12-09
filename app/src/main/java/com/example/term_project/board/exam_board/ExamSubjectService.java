@@ -8,10 +8,12 @@ import com.example.term_project.board.exam_board.request.PatchExamSubjectRequest
 import com.example.term_project.board.exam_board.request.PostExamSubjectRequest;
 import com.example.term_project.board.exam_board.response.DeleteExamSubjectResponse;
 import com.example.term_project.board.exam_board.response.GetExamSubjectResponse;
+import com.example.term_project.board.exam_board.response.GetRemainTimeResponse;
 import com.example.term_project.board.exam_board.response.PatchExamSubjectResponse;
 import com.example.term_project.board.exam_board.response.PostExamSubjectResponse;
 import com.example.term_project.view.DeleteExamSubjectView;
 import com.example.term_project.view.GetExamSubjectsView;
+import com.example.term_project.view.GetRemainTimesView;
 import com.example.term_project.view.PatchExamSubjectView;
 import com.example.term_project.view.PostExamSubjectView;
 
@@ -25,6 +27,7 @@ public class ExamSubjectService {
     private PostExamSubjectView postExamSubjectView;
     private PatchExamSubjectView patchExamSubjectView;
     private DeleteExamSubjectView deleteExamSubjectView;
+    private GetRemainTimesView getRemainTimesView;
 
     public void setGetExamSubjectsView(GetExamSubjectsView getExamSubjectsView){
         this.getExamSubjectsView = getExamSubjectsView;
@@ -37,6 +40,9 @@ public class ExamSubjectService {
     }
     public void setDeleteExamSubjectView(DeleteExamSubjectView deleteExamSubjectView){
         this.deleteExamSubjectView = deleteExamSubjectView;
+    }
+    public void setGetRemainTimesView(GetRemainTimesView getRemainTimesView){
+        this.getRemainTimesView = getRemainTimesView;
     }
 
     // GET
@@ -120,5 +126,25 @@ public class ExamSubjectService {
                 Log.d("DEL-EXAM-SUBJECT/FAIL", t.getMessage());
             }
         });
+    }
+    // GET
+    public void getRemainTimes(String jwt){
+        examSubjectService.getRemainTimes(jwt).enqueue(new Callback<GetRemainTimeResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<GetRemainTimeResponse> call, Response<GetRemainTimeResponse> response) {
+                GetRemainTimeResponse resp = response.body();
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    getRemainTimesView.onGetRemainTimesSuccess(resp.getCode(),resp.getResult());
+                }else{
+                    getRemainTimesView.onGetRemainTimesFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<GetRemainTimeResponse> call, Throwable t) {
+                Log.d("GET-EXAM-SUBJECTS/FAIL", t.getMessage());
+            }
+        });
+        Log.d("GET-EXAM-SUBJECTS","HELLO");
     }
 }
