@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -21,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private MapFragment mapFragment;
     private NotifyFragment notifyFragment;
-    private ScheduleFragment scheduleFragment;
     private BoardFragment boardFragment;
     private Button button;
+    TextView nickName, department;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +38,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         initViews();
+        nickName.setText(getNickName());
+        department.setText(getDepartment());
     }
     // 로그아웃 버튼 초기화
     private void initViews(){
+        department = findViewById(R.id.user_department_tv_js);
+        nickName = findViewById(R.id.user_nickName_tv_js);
         button = findViewById(R.id.main_logout_btn_js);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         // 로그아웃 클릭
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private String getNickName(){
+        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("nickName","");
+    }
+    private String getDepartment(){
+        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("department","");
     }
     private String getJwt(){
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
@@ -68,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         mapFragment = new MapFragment();
         notifyFragment = new NotifyFragment();
-        scheduleFragment = new ScheduleFragment();
         boardFragment = new BoardFragment();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.main_bnv_js); // 처음화면
@@ -88,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.notifyFragment:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm_js,notifyFragment).commitAllowingStateLoss();
-                        break;
-                    case R.id.scheduleFragment:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm_js,scheduleFragment).commitAllowingStateLoss();
                         break;
                     case R.id.boardFragment:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm_js,boardFragment).commitAllowingStateLoss();

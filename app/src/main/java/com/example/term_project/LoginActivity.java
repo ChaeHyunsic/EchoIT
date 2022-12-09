@@ -17,11 +17,12 @@ import com.example.term_project.auth.AuthService;
 import com.example.term_project.auth.response.result.LoginResult;
 import com.example.term_project.auth.request.User;
 import com.example.term_project.view.LoginView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    private EditText loginId;
-    private EditText loginPassword;
+    private TextInputEditText loginId;
+    private TextInputEditText loginPassword;
     private AppCompatButton loginButton, registerButton;
 
 
@@ -98,12 +99,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     // User의 고유PK id를 Sharedpreference에 저장하는 함수
-    private void saveJwt(String jwt, int grade){
+    private void saveJwt(String jwt, int grade, String nickName, String department){
         final SharedPreferences spf = getSharedPreferences("auth",MODE_PRIVATE);
         final SharedPreferences.Editor editor = spf.edit();
         Log.d("GRADE",String.valueOf(grade));
         editor.putInt("grade",grade);
         editor.putString("jwt",jwt);
+        editor.putString("nickName",nickName);
+        editor.putString("department",department);
         editor.apply();
     }
 
@@ -117,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void onLoginSuccess(int code, LoginResult result) {
         if(code == 1000){
-            saveJwt(result.getJwt(),result.getGrade()); // 1. SharedPreference에 jwt token 저장 + grade 저장
+            saveJwt(result.getJwt(),result.getGrade(),result.getNickName(),result.getDepartment()); // 1. SharedPreference에 jwt token 저장 + grade 저장
             startMainActivity(); // 2. 메인 액티비티로의 이동
         }
     }

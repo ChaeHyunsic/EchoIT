@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,15 +17,17 @@ import android.widget.Toast;
 import com.example.term_project.auth.AuthService;
 import com.example.term_project.auth.request.User;
 import com.example.term_project.view.SignUpView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
-    private EditText signUpId,signUpPassword,passwordCheck,nickname;
+    private TextInputEditText signUpId,signUpPassword,passwordCheck,nickname;
     private Spinner department,grade;
     private AppCompatButton registerBtn;
     private TextView errorIdTextView;
     private TextView errorPwTextView;
     private TextView errorNicknameTextView;
+    private ImageView closeSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
                 signUp();
             }
         });
+        closeSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // 뷰 초기화
@@ -60,6 +70,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         department = findViewById(R.id.sign_up_department_sn_js);
         grade = findViewById(R.id.sign_up_grade_sn_js);
         registerBtn = findViewById(R.id.sign_up_register_cb_js);
+
+        closeSignUp = findViewById(R.id.signup_close_iv_js);
     }
 
     // 입력값을 User Class에 담는 함수
@@ -72,6 +84,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         int gradeText = Integer.parseInt(grade.getSelectedItem().toString());
 
         return new User(id,password,nickNameText,departmentText,gradeText);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 
     // 회원가입 API 호출 함수

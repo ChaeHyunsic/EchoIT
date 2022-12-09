@@ -6,6 +6,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -15,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NoticeActivity extends AppCompatActivity {
-
+    private ImageView closeNotice;
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
     NoticePageAdapter adapter;
@@ -30,6 +32,12 @@ public class NoticeActivity extends AppCompatActivity {
         // call function to initialize views
         init();
 
+        closeNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         // bind and set tabLayout to viewPager2 and set labels for every tab
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -75,5 +83,7 @@ public class NoticeActivity extends AppCompatActivity {
         adapter = new NoticePageAdapter(this);
         // set adapter to viewPager2
         viewPager2.setAdapter(adapter);
+
+        closeNotice = findViewById(R.id.notice_board_close_iv_js);
     }
 }

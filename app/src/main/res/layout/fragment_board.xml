@@ -17,9 +17,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             card_view:cardCornerRadius="10dp"
-            card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            >
+            card_view:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -29,8 +28,9 @@
                     android:id="@+id/board_card_club_iv_exam_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:padding="20dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/exam"
+                    android:src="@drawable/notice_dup"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +38,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +60,6 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/board_card_club_mcv_homework_gy"
             android:layout_width="150dp"
@@ -68,8 +68,7 @@
             android:layout_marginTop="30dp"
             card_view:cardCornerRadius="10dp"
             card_view:layout_constraintStart_toEndOf="@id/board_card_club_mcv_exam_gy"
-            card_view:layout_constraintTop_toTopOf="parent"
-            >
+            card_view:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -79,8 +78,9 @@
                     android:id="@+id/board_card_club_iv_homework_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:padding="20dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/homework"
+                    android:src="@drawable/exam_dup"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
@@ -88,6 +88,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
@@ -115,8 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             card_view:cardCornerRadius="10dp"
-            card_view:layout_constraintStart_toStartOf="@+id/board_card_club_mcv_exam_gy"
             card_view:layout_constraintEnd_toEndOf="@+id/board_card_club_mcv_exam_gy"
+            card_view:layout_constraintStart_toStartOf="@+id/board_card_club_mcv_exam_gy"
             card_view:layout_constraintTop_toBottomOf="@+id/board_card_club_mcv_exam_gy"
 
             >
@@ -129,8 +130,12 @@
                     android:id="@+id/board_card_club_iv_community_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="30dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/community"
+                    android:src="@drawable/chat"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintHorizontal_bias="0.0"
                     card_view:layout_constraintStart_toStartOf="parent"
@@ -139,6 +144,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
@@ -166,10 +172,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             card_view:cardCornerRadius="10dp"
-            card_view:layout_constraintStart_toStartOf="@+id/board_card_club_mcv_homework_gy"
             card_view:layout_constraintEnd_toEndOf="@+id/board_card_club_mcv_homework_gy"
-            card_view:layout_constraintTop_toBottomOf="@+id/board_card_club_mcv_homework_gy"
-            >
+            card_view:layout_constraintStart_toStartOf="@+id/board_card_club_mcv_homework_gy"
+            card_view:layout_constraintTop_toBottomOf="@+id/board_card_club_mcv_homework_gy">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -179,8 +184,9 @@
                     android:id="@+id/board_card_club_iv_sigan_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:padding="20dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/sigan"
+                    android:src="@drawable/timetable"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
@@ -188,6 +194,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
@@ -213,8 +220,8 @@
             android:id="@+id/board_card_club_mcv_pyeong_gy"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="10dp"
             android:layout_marginTop="30dp"
+            card_view:cardCornerRadius="10dp"
             card_view:layout_constraintEnd_toEndOf="@+id/board_card_club_mcv_sigan_gy"
             card_view:layout_constraintStart_toStartOf="@+id/board_card_club_mcv_sigan_gy"
             card_view:layout_constraintTop_toBottomOf="@+id/board_card_club_mcv_sigan_gy">
@@ -227,8 +234,9 @@
                     android:id="@+id/board_card_club_iv_pyeong_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:padding="20dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/pyeong"
+                    android:src="@drawable/rating"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
@@ -236,6 +244,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
@@ -260,11 +269,11 @@
             android:id="@+id/board_card_club_mcv_isu_gy"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
             card_view:cardCornerRadius="10dp"
-            card_view:layout_constraintTop_toBottomOf="@id/board_card_club_mcv_sigan_gy"
             card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@id/board_card_club_mcv_sigan_gy"
 
             >
 
@@ -276,8 +285,9 @@
                     android:id="@+id/board_card_club_iv_isu_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:padding="20dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/isu"
+                    android:src="@drawable/network"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
@@ -285,6 +295,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"
@@ -323,8 +334,9 @@
                     android:id="@+id/board_card_club_iv_dong_gy"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
+                    android:padding="20dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/club"
+                    android:src="@drawable/management"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
@@ -332,6 +344,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     card_view:layout_constraintBottom_toBottomOf="parent"

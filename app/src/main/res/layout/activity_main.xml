@@ -5,13 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/user_department_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IT융합학부"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="|"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_underview_js"
+        app:layout_constraintStart_toEndOf="@+id/user_department_tv_js" />
+
+    <TextView
+        android:id="@+id/user_nickName_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="섭꽁"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_department_tv_js"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/user_department_tv_js" />
+
     <Button
         android:id="@+id/main_logout_btn_js"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그아웃"
         android:backgroundTint="@color/white"
-        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#076300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"/>
@@ -19,7 +60,7 @@
         android:id="@+id/main_underview_js"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#BFE80C"
+        android:background="#076300"
         app:layout_constraintTop_toBottomOf="@+id/main_logout_btn_js"/>
     <FrameLayout
         android:id="@+id/main_frm_js"

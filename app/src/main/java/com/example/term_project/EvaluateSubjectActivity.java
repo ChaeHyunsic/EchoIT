@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.term_project.board.evaluate_board.EvaluateSubjectService;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class EvaluateSubjectActivity extends AppCompatActivity implements GetEvaluateSubjectsView {
     Spinner subjectGrade;
-    SearchView subjectSearch;
+    ImageView closeEval;
     RecyclerView recyclerView;
     EvaluateSubjectAdapter adapter;
     @Override
@@ -31,7 +32,7 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
     }
     private void initView(){
         subjectGrade = findViewById(R.id.spinners);
-        subjectSearch = findViewById(R.id.search_view_ch);
+        closeEval = findViewById(R.id.evaluate_board_close_iv_js);
     }
     private void initRecyclerView(ArrayList<GetEvaluateSubjectResult> result){
         recyclerView = findViewById(R.id.evaluate_sub_rv_js);
@@ -65,6 +66,12 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 getList(null);
+            }
+        });
+        closeEval.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -37,10 +37,7 @@ public class CommunityCreateActivity extends AppCompatActivity implements PostCo
         super.onStart();
 
     }
-    private int getGrade(){
-        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
-        return spf.getInt("grade",0);
-    }
+
 
     @Override
     protected void onResume() {
