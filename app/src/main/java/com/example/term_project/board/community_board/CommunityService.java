@@ -12,12 +12,14 @@ import com.example.term_project.board.community_board.response.DeleteCommunityRe
 import com.example.term_project.board.community_board.response.GetCommentsResponse;
 import com.example.term_project.board.community_board.response.GetCommunitesResponse;
 import com.example.term_project.board.community_board.response.GetIsAuthResponse;
+import com.example.term_project.board.community_board.response.GetTopCommunitiesResponse;
 import com.example.term_project.board.community_board.response.PatchCommunityResponse;
 import com.example.term_project.board.community_board.response.PostCommunityResponse;
 import com.example.term_project.view.DeleteCommunityView;
 import com.example.term_project.view.GetCommentsView;
 import com.example.term_project.view.GetCommunitesView;
 import com.example.term_project.view.GetIsAuthView;
+import com.example.term_project.view.GetTopCommunitiesView;
 import com.example.term_project.view.PatchCommunityView;
 import com.example.term_project.view.PostCommunityView;
 
@@ -33,6 +35,7 @@ public class CommunityService {
     private PostCommunityView postCommunityView;
     private PatchCommunityView patchCommunityView;
     private DeleteCommunityView deleteCommunityView;
+    private GetTopCommunitiesView getTopCommunitiesView;
 
     public void setGetCommunitesView(GetCommunitesView getCommunitesView){
         this.getCommunitesView = getCommunitesView;
@@ -51,6 +54,9 @@ public class CommunityService {
     }
     public void setDeleteCommunityView(DeleteCommunityView deleteCommunityView){
         this.deleteCommunityView = deleteCommunityView;
+    }
+    public void setGetTopCommunitiesView(GetTopCommunitiesView getTopCommunitiesView){
+        this.getTopCommunitiesView = getTopCommunitiesView;
     }
     // GET
     public void getCommunities(@Nullable Integer grade){
@@ -183,5 +189,26 @@ public class CommunityService {
             }
         });
         Log.d("COMMENTS","HELLO");
+    }
+    // GET
+    public void getTopCommunities(){
+        communitiesService.getTopCommunities().enqueue(new Callback<GetTopCommunitiesResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<GetTopCommunitiesResponse> call, Response<GetTopCommunitiesResponse> response) {
+                GetTopCommunitiesResponse resp = response.body();
+                Log.d("COMMUNITY-RESP", call.request().toString());
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    getTopCommunitiesView.onGetTopCommunitiesViewSuccess(resp.getCode(),resp.getResult());
+                }else{
+                    getTopCommunitiesView.onGetTopCommunitiesViewFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<GetTopCommunitiesResponse> call, Throwable t) {
+                Log.d("COMMUNITY/FAIL", t.getMessage());
+            }
+        });
+        Log.d("COMMUNITY","HELLO");
     }
 }

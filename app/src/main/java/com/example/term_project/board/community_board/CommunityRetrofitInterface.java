@@ -8,6 +8,7 @@ import com.example.term_project.board.community_board.response.DeleteCommunityRe
 import com.example.term_project.board.community_board.response.GetCommentsResponse;
 import com.example.term_project.board.community_board.response.GetIsAuthResponse;
 import com.example.term_project.board.community_board.response.GetCommunitesResponse;
+import com.example.term_project.board.community_board.response.GetTopCommunitiesResponse;
 import com.example.term_project.board.community_board.response.PatchCommunityResponse;
 import com.example.term_project.board.community_board.response.PostCommunityResponse;
 
@@ -37,4 +38,6 @@ public interface CommunityRetrofitInterface {
     Call<GetIsAuthResponse> getIsAuth(@Header("X-ACCESS-TOKEN") String jwt);
     @GET("/app/boards/communities/comments/{communityIdx}")
     Call<GetCommentsResponse> getComments(@Path("communityIdx") int communityIdx);
+    @GET("/app/boards/communities/comments/top-ranks")
+    Call<GetTopCommunitiesResponse> getTopCommunities();
 }

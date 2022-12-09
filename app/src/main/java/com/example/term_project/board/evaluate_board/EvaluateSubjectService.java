@@ -10,10 +10,12 @@ import com.example.term_project.board.evaluate_board.request.PostEvaluateSubject
 import com.example.term_project.board.evaluate_board.response.GetEvaluateSubjectResponse;
 import com.example.term_project.board.evaluate_board.response.GetSubjectInfoResponse;
 import com.example.term_project.board.evaluate_board.response.GetSubjectReviewsResponse;
+import com.example.term_project.board.evaluate_board.response.GetTopReviewsResponse;
 import com.example.term_project.board.evaluate_board.response.PostSubjectReviewsResponse;
 import com.example.term_project.view.GetEvaluateSubjectsView;
 import com.example.term_project.view.GetSubjectInfoView;
 import com.example.term_project.view.GetSubjectReviewsView;
+import com.example.term_project.view.GetTopReviewsView;
 import com.example.term_project.view.PostSubjectReviewView;
 
 import retrofit2.Call;
@@ -26,6 +28,7 @@ public class EvaluateSubjectService {
     private GetSubjectInfoView getSubjectInfoView;
     private GetSubjectReviewsView getSubjectReviewsView;
     private PostSubjectReviewView postSubjectReviewView;
+    private GetTopReviewsView getTopReviewsView;
 
     public void setGetEvaluateSubjectsView(GetEvaluateSubjectsView getEvaluateSubjectsView){
         this.getEvaluateSubjectsView = getEvaluateSubjectsView;
@@ -39,6 +42,10 @@ public class EvaluateSubjectService {
     public void setPostSubjectReviewView(PostSubjectReviewView postSubjectReviewView){
         this.postSubjectReviewView = postSubjectReviewView;
     }
+    public void setGetTopReviewsView(GetTopReviewsView getTopReviewsView){
+        this.getTopReviewsView = getTopReviewsView;
+    }
+
     // GET
     public void getEvaluateSubjects(@Nullable Integer grade){
         Log.d("EVALUATE-SUBJECT-INPUT", grade+"");
@@ -127,5 +134,26 @@ public class EvaluateSubjectService {
             }
         });
         Log.d("POST-REVIEW","HELLO");
+    }
+    // GET
+    public void getTopReviews(){
+        evaluateSubjectService.getTopReviews().enqueue(new Callback<GetTopReviewsResponse>() {
+            @Override // 응답이 왔을 때
+            public void onResponse(Call<GetTopReviewsResponse> call, Response<GetTopReviewsResponse> response) {
+                GetTopReviewsResponse resp = response.body();
+                Log.d("SUBJECTS-REVIEWS-RESP", call.request().toString());
+                assert resp != null;
+                if(resp.getCode() == 1000){
+                    getTopReviewsView.onGetTopReviewsSuccess(resp.getCode(),resp.getResult());
+                }else{
+                    getTopReviewsView.onGetTopReviewsFailure(resp.getCode(),resp.getMessage());
+                }
+            }
+            @Override // 네트워크 연결 실패 시
+            public void onFailure(Call<GetTopReviewsResponse> call, Throwable t) {
+                Log.d("SUBJECTS-REVIEWS/FAIL", t.getMessage());
+            }
+        });
+        Log.d("SUBJECTS-REVIEWS","HELLO");
     }
 }

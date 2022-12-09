@@ -7,6 +7,7 @@ import com.example.term_project.board.evaluate_board.response.GetEvaluateSubject
 import com.example.term_project.board.evaluate_board.response.GetSubjectInfoResponse;
 import com.example.term_project.board.evaluate_board.response.GetSubjectReviewsResponse;
 import com.example.term_project.board.evaluate_board.response.PostSubjectReviewsResponse;
+import com.example.term_project.board.evaluate_board.response.GetTopReviewsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -25,4 +26,6 @@ public interface EvaluateSubjectRetrofitInterface {
     Call<GetSubjectReviewsResponse> getSubjectReviews(@Path("subjectIdx") int subjectIdx);
     @POST("/app/boards/evaluation-subjects/reviews/{subjectIdx}") // 후기 작성
     Call<PostSubjectReviewsResponse> createSubjectReview(@Header("X-ACCESS-TOKEN") String jwt, @Path("subjectIdx") int subjectIdx, @Body PostEvaluateSubjectReviewRequest postEvaluateSubjectReviewRequest);
+    @GET("/app/boards/evaluation-subjects/reviews/top-ranks") // 최근 강의평 4개
+    Call<GetTopReviewsResponse> getTopReviews();
 }
