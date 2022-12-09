@@ -18,11 +18,12 @@ public class CommunityDetailCommentsAdapter extends RecyclerView.Adapter<Communi
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nickName,content;
+        TextView nickName,content,correctCreatedAt;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nickName = itemView.findViewById(R.id.comment_nickname_js);
             content = itemView.findViewById(R.id.comment_content_js);
+            correctCreatedAt = itemView.findViewById(R.id.comment_created_js);
         }
     }
 
@@ -45,8 +46,9 @@ public class CommunityDetailCommentsAdapter extends RecyclerView.Adapter<Communi
 
     @Override
     public void onBindViewHolder(@NonNull CommunityDetailCommentsAdapter.ViewHolder holder, int position) {
-        holder.nickName.setText(result.get(position).getTitle());
+        holder.nickName.setText(result.get(position).getNickname());
         holder.content.setText(result.get(position).getContent());
+        holder.correctCreatedAt.setText(result.get(position).getCorrectCreatedAt());
     }
 
     @Override

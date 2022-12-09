@@ -2,7 +2,7 @@ package com.example.term_project.board.community_board.response.result;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GetCommunitesResult {
+public class GetTopCommunitiesResult {
     @SerializedName(value = "communutyIdx") private int communityIdx;
     @SerializedName(value = "userIdx") private int userIdx;
     @SerializedName(value = "grade") private int grade;
@@ -10,10 +10,8 @@ public class GetCommunitesResult {
     @SerializedName(value = "content") private String content;
     @SerializedName(value = "createdAt") private String createdAt;
     @SerializedName(value = "commentCount") private int commentCount;
-    @SerializedName(value = "correctCreatedAt") private String correctCreatedAt;
-    @SerializedName(value = "nickname") private String nickname;
 
-    public GetCommunitesResult(int communityIdx, int userIdx, int grade, String title, String content, String createdAt, int commentCount, String correctCreatedAt, String nickname) {
+    public GetTopCommunitiesResult(int communityIdx, int userIdx, int grade, String title, String content, String createdAt, int commentCount) {
         this.communityIdx = communityIdx;
         this.userIdx = userIdx;
         this.grade = grade;
@@ -21,8 +19,6 @@ public class GetCommunitesResult {
         this.content = content;
         this.createdAt = createdAt;
         this.commentCount = commentCount;
-        this.correctCreatedAt = correctCreatedAt;
-        this.nickname = nickname;
     }
 
     public int getCommunityIdx() {
@@ -79,21 +75,5 @@ public class GetCommunitesResult {
 
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
-    }
-
-    public String getCorrectCreatedAt() {
-        return correctCreatedAt;
-    }
-
-    public void setCorrectCreatedAt(String correctCreatedAt) {
-        this.correctCreatedAt = correctCreatedAt;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 }

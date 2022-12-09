@@ -7,21 +7,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/selectableItemBackground"
     android:minHeight="64dp">
-    <CheckBox
-        android:id="@+id/subject_cb_js"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"/>
+
     <TextView
         android:id="@+id/subject_tv_js"
         android:text="Test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/subject_cb_js"
+        app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
         android:layout_marginTop="18dp"
         android:layout_marginStart="30dp"/>

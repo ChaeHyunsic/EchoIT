@@ -75,6 +75,15 @@ public class BoardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        // get isu-table cardview
+        MaterialCardView materialCardView_isu_table = root.findViewById(R.id.board_card_club_mcv_isu_gy);
+        materialCardView_isu_table.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),IsuActivity.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 }

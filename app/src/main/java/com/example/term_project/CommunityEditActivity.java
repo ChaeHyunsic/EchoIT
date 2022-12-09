@@ -1,6 +1,7 @@
 package com.example.term_project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,9 +18,9 @@ import com.example.term_project.board.community_board.response.result.PatchCommu
 import com.example.term_project.view.PatchCommunityView;
 
 public class CommunityEditActivity extends AppCompatActivity implements PatchCommunityView {
-    TextView grade;
     EditText title,content;
-    ImageView editCommunity;
+    ImageView closeEdit;
+    AppCompatButton editCommunity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +29,18 @@ public class CommunityEditActivity extends AppCompatActivity implements PatchCom
         initView();
     }
     private void initView(){
-        grade = findViewById(R.id.community_edit_grade_number_tv_js);
         title = findViewById(R.id.community_edit_title_et_js);
         content = findViewById(R.id.community_edit_content_et_js);
-        editCommunity = findViewById(R.id.community_menu_js);
+        closeEdit = findViewById(R.id.community_close_iv_js);
+        editCommunity = findViewById(R.id.community_edit_complete_btn_js);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if(getIntent().hasExtra("communityIdx")
-                && getIntent().hasExtra("grade")
                 && getIntent().hasExtra("title")
                 && getIntent().hasExtra("content")){
-            grade.setText(String.valueOf(getIntent().getIntExtra("grade",0)));
             title.setText(getIntent().getStringExtra("title"));
             content.setText(getIntent().getStringExtra("content"));
         }
@@ -50,6 +49,12 @@ public class CommunityEditActivity extends AppCompatActivity implements PatchCom
     @Override
     protected void onResume() {
         super.onResume();
+        closeEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         editCommunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
