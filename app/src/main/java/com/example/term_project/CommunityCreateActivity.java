@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.term_project.board.community_board.CommunityService;
 import com.example.term_project.board.community_board.request.PostCommunityRequest;
@@ -68,7 +67,7 @@ public class CommunityCreateActivity extends AppCompatActivity implements PostCo
         CommunityService communityService = new CommunityService();
         communityService.setPostCommunityView(this);
 
-        communityService.createComment(getJwt(), getData());
+        communityService.createCommunity(getJwt(), getData());
     }
     private String getJwt(){
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);

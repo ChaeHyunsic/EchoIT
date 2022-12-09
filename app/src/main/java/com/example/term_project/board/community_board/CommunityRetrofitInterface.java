@@ -3,6 +3,7 @@ package com.example.term_project.board.community_board;
 import androidx.annotation.Nullable;
 
 import com.example.term_project.board.community_board.request.PatchCommunityRequest;
+import com.example.term_project.board.community_board.request.PostCommentRequest;
 import com.example.term_project.board.community_board.request.PostCommunityRequest;
 import com.example.term_project.board.community_board.response.DeleteCommunityResponse;
 import com.example.term_project.board.community_board.response.GetCommentsResponse;
@@ -10,6 +11,7 @@ import com.example.term_project.board.community_board.response.GetIsAuthResponse
 import com.example.term_project.board.community_board.response.GetCommunitesResponse;
 import com.example.term_project.board.community_board.response.GetTopCommunitiesResponse;
 import com.example.term_project.board.community_board.response.PatchCommunityResponse;
+import com.example.term_project.board.community_board.response.PostCommentResponse;
 import com.example.term_project.board.community_board.response.PostCommunityResponse;
 
 import retrofit2.Call;
@@ -40,4 +42,7 @@ public interface CommunityRetrofitInterface {
     Call<GetCommentsResponse> getComments(@Path("communityIdx") int communityIdx);
     @GET("/app/boards/communities/comments/top-ranks")
     Call<GetTopCommunitiesResponse> getTopCommunities();
+    @POST("/app/boards/communities/comments")
+    Call<PostCommentResponse> createComment(@Header("X-ACCESS-TOKEN") String jwt,
+                                            @Body PostCommentRequest postCommentRequest);
 }
