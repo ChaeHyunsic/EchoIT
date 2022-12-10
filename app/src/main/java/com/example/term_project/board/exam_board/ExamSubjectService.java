@@ -59,11 +59,8 @@ public class ExamSubjectService {
                 }
             }
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<GetExamSubjectResponse> call, Throwable t) {
-                Log.d("GET-EXAM-SUBJECTS/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<GetExamSubjectResponse> call, Throwable t) {}
         });
-        Log.d("GET-EXAM-SUBJECTS","HELLO");
     }
     // POST
     public void postExamSubject(String jwt, PostExamSubjectRequest postExamSubjectRequest){
@@ -80,9 +77,7 @@ public class ExamSubjectService {
             }
 
             @Override
-            public void onFailure(Call<PostExamSubjectResponse> call, Throwable t) {
-                Log.d("POST-EXAM-SUBJECT/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<PostExamSubjectResponse> call, Throwable t) {}
         });
     }
     // PATCH 수정
@@ -100,9 +95,7 @@ public class ExamSubjectService {
             }
 
             @Override
-            public void onFailure(Call<PatchExamSubjectResponse> call, Throwable t) {
-                Log.d("PATCH-EXAM-SUBJECT/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<PatchExamSubjectResponse> call, Throwable t) {}
         });
     }
     // PATCH 삭제
@@ -110,21 +103,17 @@ public class ExamSubjectService {
         examSubjectService.deleteExamSubject(jwt,listIdx).enqueue(new Callback<DeleteExamSubjectResponse>() {
             @Override
             public void onResponse(Call<DeleteExamSubjectResponse> call, Response<DeleteExamSubjectResponse> response) {
-                Log.d("DEL/SUCCESS", response.toString());
                 DeleteExamSubjectResponse resp = response.body();
                 assert resp != null;
                 if(resp.getCode() == 1000){
                     deleteExamSubjectView.onDeleteExamSubjectSuccess(listIdx);
-                    Log.d("DEL-EXAM-SUBJECT","삭제된 listIdx: "+resp.getResult().getListIdx() + " status : "+ resp.getResult().getStatus());
                 }else{
                     deleteExamSubjectView.onDeleteExamSubjectFailure(resp.getCode(),resp.getMessage());
                 }
             }
 
             @Override
-            public void onFailure(Call<DeleteExamSubjectResponse> call, Throwable t) {
-                Log.d("DEL-EXAM-SUBJECT/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<DeleteExamSubjectResponse> call, Throwable t) {}
         });
     }
     // GET
@@ -141,10 +130,7 @@ public class ExamSubjectService {
                 }
             }
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<GetRemainTimeResponse> call, Throwable t) {
-                Log.d("GET-EXAM-SUBJECTS/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<GetRemainTimeResponse> call, Throwable t) {}
         });
-        Log.d("GET-EXAM-SUBJECTS","HELLO");
     }
 }

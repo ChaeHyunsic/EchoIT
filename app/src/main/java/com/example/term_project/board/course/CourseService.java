@@ -44,12 +44,10 @@ public class CourseService {
 
     // GET
     public void getCourses(@Nullable Integer grade) {
-        Log.d("COURSE-INPUT", grade + "");
         courseService.getCourses(grade).enqueue(new Callback<GetCourseListResponse>() {
             @Override // 응답이 왔을 때
             public void onResponse(Call<GetCourseListResponse> call, Response<GetCourseListResponse> response) {
                 GetCourseListResponse resp = response.body();
-                Log.d("COURSE-RESP", call.request().toString());
                 assert resp != null;
                 if (resp.getCode() == 1000) {
                     getCoursesView.onGetCoursesSuccess(resp.getCode(), resp.getResult());
@@ -59,21 +57,16 @@ public class CourseService {
             }
 
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<GetCourseListResponse> call, Throwable t) {
-                Log.d("COURSE/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<GetCourseListResponse> call, Throwable t) {}
         });
-        Log.d("COURSE", "HELLO");
     }
 
     // POST
     public void createCourse(String jwt, int courseIdx) {
-        Log.d("COURSE-POST-INPUT", jwt + " " + courseIdx);
         courseService.createCourse(jwt, courseIdx).enqueue(new Callback<PostCourseResponse>() {
             @Override // 응답이 왔을 때
             public void onResponse(Call<PostCourseResponse> call, Response<PostCourseResponse> response) {
                 PostCourseResponse resp = response.body();
-                Log.d("COURSE-POST-RESP", call.request().toString());
                 assert resp != null;
                 if (resp.getCode() == 1000) {
                     postCourseView.onPostCoursesSuccess(resp.getCode(), resp.getResult());
@@ -83,21 +76,16 @@ public class CourseService {
             }
 
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<PostCourseResponse> call, Throwable t) {
-                Log.d("COURSE-POST/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<PostCourseResponse> call, Throwable t) {}
         });
-        Log.d("COURSE-POST", "HELLO");
     }
 
     // GET
     public void getTimeTable(String jwt) {
-        Log.d("TIME-TABLE-INPUT", jwt + "");
         courseService.getTimeTable(jwt).enqueue(new Callback<GetTimeTableListResponse>() {
             @Override // 응답이 왔을 때
             public void onResponse(Call<GetTimeTableListResponse> call, Response<GetTimeTableListResponse> response) {
                 GetTimeTableListResponse resp = response.body();
-                Log.d("TIME-TABLE-RESP", call.request().toString());
                 assert resp != null;
                 if (resp.getCode() == 1000) {
                     getTimeTableView.onGetTimeTableSuccess(resp.getCode(), resp.getResult());
@@ -107,21 +95,16 @@ public class CourseService {
             }
 
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<GetTimeTableListResponse> call, Throwable t) {
-                Log.d("TIME-TABLE/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<GetTimeTableListResponse> call, Throwable t) {}
         });
-        Log.d("TIME-TABLE", "HELLO");
     }
 
     // PATCH
     public void deleteCourse(String jwt, int timetableIdx) {
-        Log.d("COURSE-DELETE-INPUT", jwt + " " + timetableIdx);
         courseService.deleteCourse(jwt, timetableIdx).enqueue(new Callback<DeleteCourseResponse>() {
             @Override // 응답이 왔을 때
             public void onResponse(Call<DeleteCourseResponse> call, Response<DeleteCourseResponse> response) {
                 DeleteCourseResponse resp = response.body();
-                Log.d("COURSE-DELETE-RESP", call.request().toString());
                 assert resp != null;
                 if (resp.getCode() == 1000) {
                     deleteCourseView.onDeleteCommunitySuccess(resp.getCode(), resp.getResult());
@@ -131,10 +114,7 @@ public class CourseService {
             }
 
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<DeleteCourseResponse> call, Throwable t) {
-                Log.d("COURSE-DELETE/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<DeleteCourseResponse> call, Throwable t) {}
         });
-        Log.d("COURSE-DELETE", "HELLO");
     }
 }

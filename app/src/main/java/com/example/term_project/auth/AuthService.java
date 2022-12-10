@@ -29,7 +29,6 @@ public class AuthService {
         authService.signUp(user).enqueue(new Callback<AuthResponse>() {
             @Override // 응답이 왔을 때
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                Log.d("SIGNUP/SUCCESS", response.toString());
                 AuthResponse resp =  response.body();
                 assert resp != null;
                 if(resp.getCode() == 1000){
@@ -40,11 +39,8 @@ public class AuthService {
             }
 
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
-                Log.d("SIGNUP/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<AuthResponse> call, Throwable t) {}
         });
-        Log.d("SIGNUP","HELLO");
     }
 
     public void login(User user){
@@ -52,7 +48,6 @@ public class AuthService {
         authService.login(user).enqueue(new Callback<AuthResponse>() {
             @Override // 응답이 왔을 때
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                Log.d("LOGIN/SUCCESS", response.toString());
                 AuthResponse resp =  response.body();
                 assert resp != null;
                 if(resp.getCode() == 1000){
@@ -62,10 +57,7 @@ public class AuthService {
                 }
             }
             @Override // 네트워크 연결 실패 시
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
-                Log.d("LOGIN/FAIL", t.getMessage());
-            }
+            public void onFailure(Call<AuthResponse> call, Throwable t) {}
         });
-        Log.d("LOGIN","HELLO");
     }
 }

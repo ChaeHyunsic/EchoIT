@@ -2,7 +2,6 @@ package com.example.term_project.board.course;
 
 import androidx.annotation.Nullable;
 
-import com.example.term_project.board.community_board.response.GetCommunitesResponse;
 import com.example.term_project.board.course.response.DeleteCourseResponse;
 import com.example.term_project.board.course.response.GetCourseListResponse;
 import com.example.term_project.board.course.response.GetTimeTableListResponse;
