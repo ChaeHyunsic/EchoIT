@@ -11,11 +11,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.term_project.board.exam_board.ExamSubjectService;
 import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
 import com.example.term_project.view.DeleteExamSubjectView;
 import com.example.term_project.view.GetExamSubjectsView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -23,7 +25,8 @@ import java.util.ArrayList;
 public class ExamSubjectActivity extends AppCompatActivity implements GetExamSubjectsView{
     ExamSubjectAdapter adapter;
     RecyclerView recyclerView;
-    FloatingActionButton floatingActionButton;
+    ImageView close;
+    ExtendedFloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,8 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
         initView();
     }
     private void initView(){
-        floatingActionButton = findViewById(R.id.plus_item_fab_js);
+        floatingActionButton = findViewById(R.id.exam_sub_plus_fab_js);
+        close = findViewById(R.id.exam_sub_close_iv_js);
     }
     @Override
     protected void onStart() {
@@ -47,6 +51,12 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
             public void onClick(View view) {
                 Intent intent = new Intent(ExamSubjectActivity.this, ExamSubjectCreateActivity.class);
                 startActivity(intent);
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

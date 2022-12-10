@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context=".KernelFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/introduce_title_tv_js"
             android:layout_width="wrap_content"
@@ -21,12 +22,14 @@
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/introduce_tv_js"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:text="개발자 입장에서는 안전한 소프트웨어와 하드웨어를 개발해야하고. 보안전문가는 사용자를 외부 위협으로부터 보호하도록 조치를하거나 피해 발생시 피해규모를 최소화시켜야합니다. 그러한 인재가 되기 위해 저희 언노운 동아리에서는 보안을 학습합니다."
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/introduce_title_tv_js" />
@@ -42,14 +45,16 @@
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/introduce_tv_js" />
+
         <ImageView
             android:id="@+id/image_iv_js"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:layout_margin="10dp"
             android:scaleType="centerCrop"
-            app:layout_constraintTop_toBottomOf="@id/image_title_tv_js"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/unknown"/>
+            android:src="@drawable/unknown"
+            app:layout_constraintTop_toBottomOf="@id/image_title_tv_js" />
+
         <TextView
             android:id="@+id/regist_club_title_tv_js"
             android:layout_width="wrap_content"
@@ -61,15 +66,18 @@
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_iv_js" />
+
         <TextView
             android:id="@+id/regist_club_tv_js"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:text="모든학년 상관없이 정보보안에 관심이 있고 동아리활동에 열심히 할 의사만 있다면 누구든 가입 가능합니다. 궁금한 사항은 오픈 카카오톡으로 연락해주시기 바랍니다. 입부 시 1차 인성 면접 및 적성 면접이 있을 것이며, 그 후 2차 면접은 1차 합격자에 한하여 진행됩니다."
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/regist_club_title_tv_js" />
+
         <TextView
             android:id="@+id/tel_club_title_tv_js"
             android:layout_width="wrap_content"
@@ -81,13 +89,14 @@
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/regist_club_tv_js" />
+
         <TextView
             android:id="@+id/tel_club_tv_js"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:text="회장 Email : iddaiddaidda@naver.com "
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tel_club_title_tv_js" />

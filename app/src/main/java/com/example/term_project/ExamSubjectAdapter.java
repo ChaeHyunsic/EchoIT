@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -23,7 +22,6 @@ import com.example.term_project.board.exam_board.ExamSubjectService;
 import com.example.term_project.board.exam_board.response.result.GetExamSubjectsResult;
 import com.example.term_project.view.DeleteExamSubjectView;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.ViewHolder> implements DeleteExamSubjectView {
@@ -31,16 +29,16 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
-        TextView textView2;
+        TextView titleText;
+        TextView endAtText;
         ImageView imageView;
         ConstraintLayout constraintLayout;
         ViewHolder(View itemView) {
             super(itemView) ;
             // 뷰 객체에 대한 참조.
             constraintLayout = itemView.findViewById(R.id.exam_subject_item_cl_js);
-            textView = itemView.findViewById(R.id.subject_tv_js);
-            textView2 = itemView.findViewById(R.id.endAt_tv_js);
+            titleText = itemView.findViewById(R.id.subject_tv_js);
+            endAtText = itemView.findViewById(R.id.endAt_tv_js);
             imageView = itemView.findViewById(R.id.context_menu_iv_js);
         }
     }
@@ -68,8 +66,8 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
         String text = result.get(position).getTitle();
         String text2 = result.get(position).getEndAt().toString();
         int touchIndex = holder.getAdapterPosition();
-        holder.textView.setText(text);
-        holder.textView2.setText(text2);
+        holder.titleText.setText(text);
+        holder.endAtText.setText(text2);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

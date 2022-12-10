@@ -38,8 +38,7 @@ public class MyCourseListActivity extends AppCompatActivity implements GetTimeTa
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyCourseListActivity.this,TimeTableActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

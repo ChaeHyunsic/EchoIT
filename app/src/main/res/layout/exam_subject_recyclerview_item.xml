@@ -6,34 +6,37 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/selectableItemBackground"
-    android:minHeight="64dp">
+    android:minHeight="75dp">
 
     <TextView
         android:id="@+id/subject_tv_js"
-        android:text="Test"
+        android:text="일정 타이틀"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
-        android:layout_marginTop="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"/>
+
     <TextView
         android:id="@+id/endAt_tv_js"
-        android:text="Test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/context_menu_iv_js"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="10dp" />
+        android:text="2022-12-20"
+        android:ellipsize="end"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/subject_tv_js"
+        app:layout_constraintTop_toBottomOf="@+id/subject_tv_js" />
     <ImageView
         android:id="@+id/context_menu_iv_js"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:scaleType="fitXY"
-        android:src="@drawable/dots"
+        android:src="@drawable/dots2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

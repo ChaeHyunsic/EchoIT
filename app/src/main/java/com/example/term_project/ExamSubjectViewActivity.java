@@ -2,13 +2,16 @@ package com.example.term_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ExamSubjectViewActivity extends AppCompatActivity {
     TextView title,content,endAt;
-
+    ImageView close;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +22,7 @@ public class ExamSubjectViewActivity extends AppCompatActivity {
         title = findViewById(R.id.title_tv_create_js);
         content = findViewById(R.id.content_tv_create_js);
         endAt = findViewById(R.id.deadline_check_tv_js);
+        close = findViewById(R.id.exam_sub_close_iv_js);
     }
 
     @Override
@@ -32,5 +36,16 @@ public class ExamSubjectViewActivity extends AppCompatActivity {
             content.setText(getIntent().getStringExtra("contentView"));
             endAt.setText(getIntent().getStringExtra("endAtView"));
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import androidx.core.app.NotificationCompat;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +34,11 @@ import java.util.GregorianCalendar;
 
 public class ExamSubjectCreateActivity extends AppCompatActivity implements PostExamSubjectView {
     EditText titleEditTextView,contentEditTextView;
-    TextView endAtTextView;
-    DatePicker datePicker;
-    Button button;
+    Button button,date;
     String dt_str;
+    Calendar calendar;
+    ImageView close;
+    DatePickerDialog datePickerDialog;
 
     private AlarmManager alarmManager;
     private GregorianCalendar mCalender;
@@ -54,26 +57,46 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
         initView();
     }
     public void initView(){
-        titleEditTextView = findViewById(R.id.title_et_create_js);
-        contentEditTextView = findViewById(R.id.content_et_create_js);
-        endAtTextView = findViewById(R.id.deadline_check_tv_js);
-        datePicker = findViewById(R.id.date_picker_js);
+        titleEditTextView = findViewById(R.id.exam_sub_title_et_js);
+        contentEditTextView = findViewById(R.id.exam_sub_eval_et_js);
+        date = findViewById(R.id.date_picker_btn_js);
         button = findViewById(R.id.register_btn_js);
+        calendar = Calendar.getInstance();
+        close = findViewById(R.id.exam_sub_close_iv_js);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        datePicker.init(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
-            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint({"SetTextI18n", "DefaultLocale"})
             @Override
-            public void onDateChanged(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, monthOfYear, dayOfMonth);
-                dt_str = String.format("%d-%02d-%02d",year,monthOfYear+1,dayOfMonth);
-                endAtTextView.setText(dt_str);
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                dt_str = String.format("%d-%02d-%02d",year,month+1,dayOfMonth);
+                date.setText(dt_str);
+            }
+        },mYear,mMonth,mDay);
+        date.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View view) {
+                if(date.isClickable()){
+                    datePickerDialog.show();
+                    datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main_color);
+                    datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main_color);
+                }
             }
         });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +108,6 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
     public PostExamSubjectRequest getRequest(){
         String title = titleEditTextView.getText().toString();
         String content = contentEditTextView.getText().toString();
-        Log.d("WHAT?",Date.valueOf(endAtTextView.getText().toString()).toString());
         Date endAt = Date.valueOf(dt_str);
         return new PostExamSubjectRequest(title,content,endAt);
     }

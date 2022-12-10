@@ -3,6 +3,7 @@ package com.example.term_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +26,14 @@ import java.util.Calendar;
 
 public class ExamSubjectEditActivity extends AppCompatActivity implements PatchExamSubjectView {
     EditText title,content;
-    TextView endAtText;
+    Button endAtText;
     DatePicker datePicker;
     Button button;
+    Calendar calendar;
     String dt_str;
     int listIdx;
+    ImageView close;
+    DatePickerDialog datePickerDialog;
     ExamSubjectAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,9 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
         title = findViewById(R.id.title_et_js);
         content = findViewById(R.id.content_et_js);
         endAtText = findViewById(R.id.deadline_check_tv_edit_js);
-        datePicker = findViewById(R.id.date_picker_edit_js);
         button = findViewById(R.id.edit_btn_js);
+        calendar = Calendar.getInstance();
+        close = findViewById(R.id.exam_sub_close_iv_js);
 
         if(getIntent().hasExtra("title") && getIntent().hasExtra("content")){
             Log.d("INTENT", getIntent().getIntExtra("listIdx",0)+" "
@@ -73,20 +79,38 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
     @Override
     protected void onResume() {
         super.onResume();
-        datePicker.init(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
-            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint({"SetTextI18n", "DefaultLocale"})
             @Override
-            public void onDateChanged(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, monthOfYear, dayOfMonth);
-                dt_str = String.format("%d-%02d-%02d",year,monthOfYear+1,dayOfMonth);
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                dt_str = String.format("%d-%02d-%02d",year,month+1,dayOfMonth);
                 endAtText.setText(dt_str);
+            }
+        },mYear,mMonth,mDay);
+        endAtText.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View view) {
+                if(endAtText.isClickable()){
+                    datePickerDialog.show();
+                    datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main_color);
+                    datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main_color);
+                }
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 refactorData();
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
