@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/community_create_view_js"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <TextView
+            android:id="@+id/community_create_tv_js"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="글 쓰기"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/community_close_iv_js"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/close"
+            app:layout_constraintBottom_toBottomOf="@+id/community_create_tv_js"
+            app:layout_constraintStart_toStartOf="@+id/community_create_tv_js"
+            app:layout_constraintTop_toTopOf="@+id/community_create_tv_js" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/community_create_complete_btn_js"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_community_complete"
+            android:text="완료"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/community_create_tv_js"
+            app:layout_constraintEnd_toEndOf="@+id/community_create_tv_js"
+            app:layout_constraintTop_toTopOf="@+id/community_create_tv_js"/>
+
+        <EditText
+            android:id="@+id/community_create_title_tv_js"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint="제목"
+            android:paddingBottom="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/community_create_complete_btn_js"
+            app:layout_constraintStart_toStartOf="@+id/community_close_iv_js"
+            app:layout_constraintTop_toBottomOf="@+id/community_create_tv_js" />
+        <EditText
+            android:id="@+id/community_create_content_tv_js"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:hint="내용을 입력하세요."
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:padding="5dp"
+            android:gravity="top"
+            android:textSize="17sp"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            app:layout_constraintTop_toBottomOf="@+id/community_create_title_tv_js"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:text="※ 정치 및 사회 관련 행위 금지\n- 국가기관, 정치 관련 단체, 언론, 시민 단체에 대한 언급 혹은 이와 관련한 행위\n- 정책 및 외교 또는 정치 및 정파에 대한 의견, 주장 및 이념, 가치관을 드러내는 행위\n- 성별, 종교, 인종, 출신, 지역, 직업, 이념 등 사회적 이슈에 대한 언급 혹은 이와 관련한 행위\n- 위와 같은 내용으로 유추될 수 있는 비유, 은어 사용 행위"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/community_create_content_tv_js" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/evaluate_board_tv_js"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="과목평가 게시판"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/evaluate_board_close_iv_js"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/close"
+            app:layout_constraintBottom_toBottomOf="@+id/evaluate_board_tv_js"
+            app:layout_constraintEnd_toEndOf="@+id/evaluate_board_tv_js"
+            app:layout_constraintTop_toTopOf="@+id/evaluate_board_tv_js" />
+
+        <Spinner
+            android:id="@+id/spinners"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/table_layout_shape"
+            android:entries="@array/subject_grade"
+            android:spinnerMode="dialog"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/evaluate_sub_rv_js"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/evaluate_board_tv_js" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/evaluate_sub_rv_js"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinners"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/evaluate_subject_recyclerview_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

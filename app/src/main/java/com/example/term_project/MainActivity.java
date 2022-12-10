@@ -6,9 +6,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -17,21 +22,70 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private MapFragment mapFragment;
     private NotifyFragment notifyFragment;
-    private ScheduleFragment scheduleFragment;
     private BoardFragment boardFragment;
+    private Button button;
+    TextView nickName, department;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initBottomNavigation();
+        Log.d("MAIN/JWT_FROM_SERVER",getJwt());
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initViews();
+        nickName.setText(getNickName());
+        department.setText(getDepartment());
+    }
+    // 로그아웃 버튼 초기화
+    private void initViews(){
+        department = findViewById(R.id.user_department_tv_js);
+        nickName = findViewById(R.id.user_nickName_tv_js);
+        button = findViewById(R.id.main_logout_btn_js);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 로그아웃 클릭
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+                // 로그아웃 하면 로그인 액티비티로 넘어간다.
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+    private String getNickName(){
+        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("nickName","");
+    }
+    private String getDepartment(){
+        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("department","");
+    }
+    private String getJwt(){
+        SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        return spf.getString("jwt","");
+    }
+    private void logout(){
+        // 쉐어드에 저장된 token정보를 파기한다.
+        final SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = spf.edit();
+        editor.remove("jwt");
+        editor.apply();
+    }
     private void initBottomNavigation(){ // 뷰 초기화 부분 -> onCreate에 넣어주자.
         homeFragment = new HomeFragment();
         mapFragment = new MapFragment();
         notifyFragment = new NotifyFragment();
-        scheduleFragment = new ScheduleFragment();
         boardFragment = new BoardFragment();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.main_bnv_js); // 처음화면
@@ -51,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.notifyFragment:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm_js,notifyFragment).commitAllowingStateLoss();
-                        break;
-                    case R.id.scheduleFragment:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm_js,scheduleFragment).commitAllowingStateLoss();
                         break;
                     case R.id.boardFragment:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm_js,boardFragment).commitAllowingStateLoss();

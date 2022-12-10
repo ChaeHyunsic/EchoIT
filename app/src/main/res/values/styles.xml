@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- 상단 색 변경 -->
+        <item name="colorAccent">#076300</item>
+        <!-- dialog의 배경 변경 -->
+        <item name="background">@color/white</item>
+        <!-- 선택한 날짜를 표시할 색상 -->
+        <item name="colorControlActivated">#076300</item>
+        <item name="colorControlHighlight">#076300</item>
+
+    </style>
+</resources>

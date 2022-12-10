@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/community_item_cl_js"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:minHeight="85dp">
+
+    <TextView
+        android:id="@+id/community_created_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="1시간 전"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/community_content_tv_js"
+        app:layout_constraintTop_toBottomOf="@+id/community_content_tv_js" />
+
+    <TextView
+        android:id="@+id/community_content_tv_js"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:text="커뮤니티 내용"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/community_title_js"
+        app:layout_constraintStart_toStartOf="@+id/community_title_js"
+        app:layout_constraintTop_toBottomOf="@+id/community_title_js" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/comment_number"
+        app:layout_constraintBottom_toBottomOf="@+id/community_comment_count_tv_js"
+        app:layout_constraintEnd_toStartOf="@+id/community_comment_count_tv_js"
+        app:layout_constraintTop_toTopOf="@+id/community_comment_count_tv_js" />
+
+    <TextView
+        android:id="@+id/community_comment_count_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginEnd="16dp"
+        android:textColor="#0061FF"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/evaluate_grade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/evaluate_grade" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="|"
+        android:layout_marginStart="5dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/community_created_js"
+        app:layout_constraintStart_toEndOf="@+id/community_created_js"
+        app:layout_constraintTop_toTopOf="@+id/community_created_js" />
+
+    <TextView
+        android:id="@+id/community_grade_number_tv_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="1"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.787" />
+
+    <TextView
+        android:id="@+id/evaluate_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학년"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/community_grade_number_tv_js"
+        app:layout_constraintStart_toEndOf="@+id/community_grade_number_tv_js"
+        app:layout_constraintTop_toTopOf="@+id/community_grade_number_tv_js" />
+
+    <TextView
+        android:id="@+id/community_title_js"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:text="커뮤니티 제목"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#787676"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

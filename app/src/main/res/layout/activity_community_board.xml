@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/my_course_list_tv_js"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="커뮤니티"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/community_close_iv_js"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/close"
+            app:layout_constraintBottom_toBottomOf="@+id/my_course_list_tv_js"
+            app:layout_constraintEnd_toEndOf="@+id/my_course_list_tv_js"
+            app:layout_constraintTop_toTopOf="@+id/my_course_list_tv_js" />
+        <Spinner
+            android:id="@+id/community_spinners_js"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginStart="20dp"
+            android:textAlignment="center"
+            android:entries="@array/subject_grade"
+            android:spinnerMode="dialog"
+            android:background="@drawable/table_layout_shape"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/community_rv_js"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/community_spinners_js"
+            tools:listitem="@layout/community_recyclerview_item"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/community_plus_fab_js"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#DDA28F"
+            android:text="글쓰기"
+            android:textStyle="bold"
+            android:theme="@style/MaterialAlertDialog.Material3"
+            app:icon="@drawable/pen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
