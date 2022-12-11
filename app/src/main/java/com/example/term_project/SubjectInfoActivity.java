@@ -55,9 +55,6 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
     protected void onStart() {
         super.onStart();
         if (getIntent().hasExtra("subjectIdx") && getIntent().hasExtra("subjectName") && getIntent().hasExtra("professor")) {
-            Log.d("INTENT", getIntent().getIntExtra("subjectIdx",0)+" "
-                    +getIntent().getStringExtra("subjectName")+" "
-                    +getIntent().getStringExtra("professor"));
             subjectName.setText(getIntent().getStringExtra("subjectName"));
             professor.setText(getIntent().getStringExtra("professor"));
             grade.setText(String.valueOf(getIntent().getIntExtra("grade",0)));
@@ -68,7 +65,6 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
 
             ratingBarInficator.setRating(getIntent().getFloatExtra("scoreAverage",0));
 
-            //getSubjectInfo(getIntent().getIntExtra("subjectIdx",0));
             getList(getIntent().getIntExtra("subjectIdx",0));
         }
     }
@@ -94,12 +90,6 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
         });
     }
 
-//    private void getSubjectInfo(int subjectIdx){
-//        EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
-//        evaluateSubjectService.setGetSubjectInfoView(this);
-//
-//        evaluateSubjectService.getSubjectInfo(subjectIdx);
-//    }
 
     private void initRecyclerView(ArrayList<GetSubjectReviewsResult> result){
         recyclerView = findViewById(R.id.evaluate_review);
@@ -125,16 +115,4 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
 
     }
 
-//    // 과목정보 상단
-//    @Override
-//    public void onGetSubjectInfoSuccess(int code, GetSubjectInfoResult result) {
-//        Log.d("WHY2", String.valueOf(result.getScoreAverage()));
-//        score.setText(String.valueOf(result.getScoreAverage()));
-//        ratingBarInficator.setRating(result.getScoreAverage());
-//    }
-//
-//    @Override
-//    public void onGetSubjectInfoFailure(int code, String message) {
-//
-//    }
 }

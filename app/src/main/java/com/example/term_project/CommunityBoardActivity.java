@@ -64,10 +64,8 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(communityGrade.getSelectedItem().toString().equals("전체")){
-                    Log.d("INPUT-SPINNER :",communityGrade.getSelectedItem().toString());
                     getList(null);
                 }else{
-                    Log.d("INPUT-SPINNER-NUM :",communityGrade.getSelectedItem().toString());
                     getList(Integer.parseInt(communityGrade.getSelectedItem().toString()));
                 }
             }

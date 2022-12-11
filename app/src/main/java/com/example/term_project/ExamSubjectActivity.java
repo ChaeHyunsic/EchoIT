@@ -87,6 +87,5 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
 
     @Override
     public void onGetExamSubjectFailure(int code, String message) {
-        Log.d("GET-EXAM-SUBJECT",message);
     }
 }

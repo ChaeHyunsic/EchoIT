@@ -48,7 +48,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //알림창 아이콘
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         //알림창 터치시 자동 삭제
-        builder.setAutoCancel(false);
+        builder.setAutoCancel(true);
 
         builder.setContentIntent(pendingIntent);
 

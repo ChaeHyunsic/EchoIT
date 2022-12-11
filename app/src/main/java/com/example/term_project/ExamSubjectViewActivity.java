@@ -29,9 +29,6 @@ public class ExamSubjectViewActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(getIntent().hasExtra("titleView") && getIntent().hasExtra("contentView") && getIntent().hasExtra("endAtView")){
-            Log.d("INTENT-VIEWMODE", getIntent().getStringExtra("titleView")+" "
-                    +getIntent().getStringExtra("contentView")+" "
-                    +getIntent().getStringExtra("endAtView"));
             title.setText(getIntent().getStringExtra("titleView"));
             content.setText(getIntent().getStringExtra("contentView"));
             endAt.setText(getIntent().getStringExtra("endAtView"));

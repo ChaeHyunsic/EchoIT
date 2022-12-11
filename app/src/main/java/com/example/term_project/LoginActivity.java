@@ -102,7 +102,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private void saveJwt(String jwt, int grade, String nickName, String department){
         final SharedPreferences spf = getSharedPreferences("auth",MODE_PRIVATE);
         final SharedPreferences.Editor editor = spf.edit();
-        Log.d("GRADE",String.valueOf(grade));
         editor.putInt("grade",grade);
         editor.putString("jwt",jwt);
         editor.putString("nickName",nickName);

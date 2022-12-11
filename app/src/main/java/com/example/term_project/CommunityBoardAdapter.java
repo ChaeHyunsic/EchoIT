@@ -66,7 +66,6 @@ public class CommunityBoardAdapter extends RecyclerView.Adapter<CommunityBoardAd
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,CommunityDetailActivity.class);
-                Log.d("touchIndex-input",String.valueOf(touchIndex));
                 intent.putExtra("touchIndex",touchIndex);
                 intent.putExtra("title",result.get(touchIndex).getTitle());
                 intent.putExtra("content",result.get(touchIndex).getContent());

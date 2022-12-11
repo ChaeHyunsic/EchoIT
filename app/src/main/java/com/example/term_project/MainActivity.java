@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initBottomNavigation();
-        Log.d("MAIN/JWT_FROM_SERVER",getJwt());
     }
 
     @Override

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,10 +55,8 @@ public class CourseListActivity extends AppCompatActivity implements GetCoursesV
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(courseGrade.getSelectedItem().toString().equals("전체")){
-                    Log.d("INPUT-SPINNER :",courseGrade.getSelectedItem().toString());
                     getList(null);
                 }else{
-                    Log.d("INPUT-SPINNER-NUM :",courseGrade.getSelectedItem().toString());
                     getList(Integer.parseInt(courseGrade.getSelectedItem().toString()));
                 }
             }
@@ -70,9 +69,16 @@ public class CourseListActivity extends AppCompatActivity implements GetCoursesV
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(CourseListActivity.this,TimeTableActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 
     @Override

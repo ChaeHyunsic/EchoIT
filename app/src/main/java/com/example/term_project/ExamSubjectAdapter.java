@@ -87,7 +87,6 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
                                 context.startActivity(intent);
                                 return true;
                             case R.id.delete:
-                                Log.d("DEL-GETID ?", ""+result.get(touchIndex).getId());
                                 deleteData(result.get(touchIndex).getId());
                                 result.remove(touchIndex);
                                 notifyDataSetChanged();

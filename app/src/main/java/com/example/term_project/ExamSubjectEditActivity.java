@@ -50,10 +50,6 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
         close = findViewById(R.id.exam_sub_close_iv_js);
 
         if(getIntent().hasExtra("title") && getIntent().hasExtra("content")){
-            Log.d("INTENT", getIntent().getIntExtra("listIdx",0)+" "
-                    +getIntent().getStringExtra("title")+" "
-                    +getIntent().getStringExtra("content")+" "
-                    +getIntent().getStringExtra("endAt"));
             listIdx = getIntent().getIntExtra("listIdx",0);
             title.setText(getIntent().getStringExtra("title"));
             content.setText(getIntent().getStringExtra("content"));
@@ -63,7 +59,6 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
     public PatchExamSubjectRequest getRequest(){
         String titleText = title.getText().toString();
         String contentText = content.getText().toString();
-        Log.d("WHAT?", Date.valueOf(endAtText.getText().toString()).toString());
         Date endAt = Date.valueOf(endAtText.getText().toString());
         return new PatchExamSubjectRequest(titleText,contentText,endAt);
     }

@@ -101,7 +101,6 @@ public class TimeTableActivity extends AppCompatActivity implements GetTimeTable
         friday[11] = findViewById(R.id.friday11);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -132,7 +131,11 @@ public class TimeTableActivity extends AppCompatActivity implements GetTimeTable
 
         courseService.getTimeTable(getJwt());
     }
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
     @Override
     public void onGetTimeTableSuccess(int code, ArrayList<GetTimeTableListResult> result) {
         for(int i=0;i<result.size();i++){

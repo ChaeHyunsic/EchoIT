@@ -55,10 +55,8 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(subjectGrade.getSelectedItem().toString().equals("전체")){
-                    Log.d("INPUT-SPINNER :",subjectGrade.getSelectedItem().toString());
                     getList(null);
                 }else{
-                    Log.d("INPUT-SPINNER-NUM :",subjectGrade.getSelectedItem().toString());
                     getList(Integer.parseInt(subjectGrade.getSelectedItem().toString()));
                 }
             }
