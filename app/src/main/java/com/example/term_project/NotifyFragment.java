@@ -29,7 +29,7 @@ public class NotifyFragment extends Fragment implements GetRemainTimesView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_notify, container, false);
-        getList();
+        getList(); // api 호출
         return root;
     }
     private String getJwt(){
@@ -43,6 +43,8 @@ public class NotifyFragment extends Fragment implements GetRemainTimesView {
         adapter = new NotifyAdapter(result,getActivity());
         recyclerView.setAdapter(adapter);
     }
+
+    // 얼마 남지않은 시험/과제 일정 조회 api
     private void getList(){
         ExamSubjectService examSubjectService = new ExamSubjectService();
         examSubjectService.setGetRemainTimesView(this);
@@ -52,7 +54,7 @@ public class NotifyFragment extends Fragment implements GetRemainTimesView {
 
     @Override
     public void onGetRemainTimesSuccess(int code, ArrayList<GetRemainTimeResult> result) {
-        initRecyclerView(result);
+        initRecyclerView(result); // 응답값들을 리사이클러뷰에 표시
     }
 
     @Override

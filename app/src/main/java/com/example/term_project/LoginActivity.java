@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                login();
+                login(); // login api 호출
             }
         });
     }
@@ -91,14 +91,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             Toast.makeText(this,"비밀번호를 입력해주세요.",Toast.LENGTH_SHORT).show();
             return;
         }
-
         AuthService authService = new AuthService();
         authService.setLoginView(this);
 
         authService.login(getUser());
     }
 
-    // User의 고유PK id를 Sharedpreference에 저장하는 함수
+    // User의 정보를 Sharedpreference에 저장하는 함수
     private void saveJwt(String jwt, int grade, String nickName, String department){
         final SharedPreferences spf = getSharedPreferences("auth",MODE_PRIVATE);
         final SharedPreferences.Editor editor = spf.edit();
@@ -124,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     }
 
-    // 귀찮아서.. 원래 정규식 or 유효성 처리에 관한 코드 분기로 토스트 띄워주는게 좋음
+    // 로그인 실패했을 때
     @Override
     public void onLoginFailure(int code) {
 

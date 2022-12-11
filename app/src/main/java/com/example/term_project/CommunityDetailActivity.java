@@ -66,22 +66,22 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
         adapter = new CommunityDetailCommentsAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
-
+    // 수정.삭제권한 api
     private void getIsAuth(String jwt){
-        // 수정.삭제권한 api
         CommunityService communityService = new CommunityService();
         communityService.setGetIsAuthView(this);
 
         communityService.getIsAuth(jwt);
 
     }
+    // 댓글 api
     private void getList(int communityIdx){
-        // 댓글api
         CommunityService communityService = new CommunityService();
         communityService.setGetCommentsView(this);
 
         communityService.getComments(communityIdx);
     }
+    // 게시물 삭제 api
     private void deleteData(String jwt,int communityIdx){
         CommunityService communityService = new CommunityService();
         communityService.setDeleteCommunityView(this);
@@ -97,7 +97,7 @@ public class CommunityDetailActivity extends AppCompatActivity implements GetIsA
             title.setText(getIntent().getStringExtra("title"));
             content.setText(getIntent().getStringExtra("content"));
         }
-        getIsAuth(getJwt());
+        getIsAuth(getJwt()); // 권한 api 호출
     }
 
     @Override

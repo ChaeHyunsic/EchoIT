@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logout();
+                logout(); // logout 함수 호출
+
                 // 로그아웃 하면 로그인 액티비티로 넘어간다.
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);

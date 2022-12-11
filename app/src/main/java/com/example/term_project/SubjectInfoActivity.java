@@ -55,17 +55,16 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
     protected void onStart() {
         super.onStart();
         if (getIntent().hasExtra("subjectIdx") && getIntent().hasExtra("subjectName") && getIntent().hasExtra("professor")) {
-            subjectName.setText(getIntent().getStringExtra("subjectName"));
-            professor.setText(getIntent().getStringExtra("professor"));
-            grade.setText(String.valueOf(getIntent().getIntExtra("grade",0)));
-            time.setText(getIntent().getStringExtra("time"));
-            room.setText(getIntent().getStringExtra("room"));
-            credit.setText(String.valueOf(getIntent().getIntExtra("credit",0)));
-            scoreText.setText(String.valueOf(getIntent().getFloatExtra("scoreAverage",0)));
+            subjectName.setText(getIntent().getStringExtra("subjectName")); // 과목명
+            professor.setText(getIntent().getStringExtra("professor")); // 교수명
+            grade.setText(String.valueOf(getIntent().getIntExtra("grade",0))); // 학년
+            time.setText(getIntent().getStringExtra("time")); // 강의시간
+            room.setText(getIntent().getStringExtra("room")); // 강의실
+            credit.setText(String.valueOf(getIntent().getIntExtra("credit",0))); // 학점
+            scoreText.setText(String.valueOf(getIntent().getFloatExtra("scoreAverage",0))); // 강의평점
+            ratingBarInficator.setRating(getIntent().getFloatExtra("scoreAverage",0)); // 강의평점
 
-            ratingBarInficator.setRating(getIntent().getFloatExtra("scoreAverage",0));
-
-            getList(getIntent().getIntExtra("subjectIdx",0));
+            getList(getIntent().getIntExtra("subjectIdx",0)); // 강의리뷰목록 조회 api 호출
         }
     }
 
@@ -90,7 +89,7 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
         });
     }
 
-
+    // 리사이클러뷰 초기화
     private void initRecyclerView(ArrayList<GetSubjectReviewsResult> result){
         recyclerView = findViewById(R.id.evaluate_review);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -98,11 +97,12 @@ public class SubjectInfoActivity extends AppCompatActivity implements GetSubject
         adapter = new EvaluateReviewAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
+    // 강의리뷰목록 조회 api
     private void getList(int subjectIdx){
         EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
         evaluateSubjectService.setGetSubjectReviewsView(this);
 
-        evaluateSubjectService.getSubjectReviews(subjectIdx);
+        evaluateSubjectService.getSubjectReviews(subjectIdx); // GET
     }
     // 과목정보 하단 후기목록
     @Override

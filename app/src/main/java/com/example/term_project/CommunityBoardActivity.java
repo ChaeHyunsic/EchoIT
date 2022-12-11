@@ -43,17 +43,18 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
         adapter = new CommunityBoardAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
+    // 커뮤니티 목록 조회 api
     private void getList(Integer grade){
         CommunityService communityService = new CommunityService();
         communityService.setGetCommunitesView(this);
 
-        communityService.getCommunities(grade);
+        communityService.getCommunities(grade); // GET
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        getList(null);
+        getList(null); // api 호출
     }
 
     @Override
@@ -89,6 +90,13 @@ public class CommunityBoardActivity extends AppCompatActivity implements GetComm
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
     @Override
     public void onGetCommunitesSuccess(int code, ArrayList<GetCommunitesResult> result) {
         initRecyclerView(result);

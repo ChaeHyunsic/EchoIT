@@ -40,12 +40,13 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
     @Override
     protected void onStart() {
         super.onStart();
-        getList();
+        getList(); // api 호출
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        // 일정 추가 버튼 클릭
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +54,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
                 startActivity(intent);
             }
         });
+        // 시험 / 과제 게시판 닫기
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +63,7 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
         });
     }
 
+    // 리사이클러뷰 초기화
     private void initRecyclerView(ArrayList<GetExamSubjectsResult> result){
         recyclerView = findViewById(R.id.exam_sub_rv_js);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -68,18 +71,21 @@ public class ExamSubjectActivity extends AppCompatActivity implements GetExamSub
         adapter = new ExamSubjectAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
+    // jwt 토큰 get
     private String getJwt(){
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         return spf.getString("jwt","");
     }
+
+    // 시험 / 과제 게시판 API 호출 함수
     private void getList(){
         ExamSubjectService examSubjectService = new ExamSubjectService();
         examSubjectService.setGetExamSubjectsView(this);
 
-        examSubjectService.getExamSubjects(getJwt());
+        examSubjectService.getExamSubjects(getJwt()); // 유저 당 일정 목록 Get
     }
 
-
+    // 시험 / 과제 게시판 API 호출 성공 시
     @Override
     public void onGetExamSubjectSuccess(int code, ArrayList<GetExamSubjectsResult> result) {
         initRecyclerView(result);

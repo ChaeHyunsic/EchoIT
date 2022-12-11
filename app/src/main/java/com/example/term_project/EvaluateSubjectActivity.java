@@ -34,6 +34,7 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
         subjectGrade = findViewById(R.id.spinners);
         closeEval = findViewById(R.id.evaluate_board_close_iv_js);
     }
+    // 리사이클러뷰 초기화
     private void initRecyclerView(ArrayList<GetEvaluateSubjectResult> result){
         recyclerView = findViewById(R.id.evaluate_sub_rv_js);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -41,11 +42,12 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
         adapter = new EvaluateSubjectAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
+    // 과목 목록 조회 api 호출 함수
     private void getList(Integer grade){
         EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
         evaluateSubjectService.setGetEvaluateSubjectsView(this);
 
-        evaluateSubjectService.getEvaluateSubjects(grade);
+        evaluateSubjectService.getEvaluateSubjects(grade); // GET
     }
     @Override
     protected void onResume() {
@@ -73,6 +75,7 @@ public class EvaluateSubjectActivity extends AppCompatActivity implements GetEva
             }
         });
     }
+    // 과목 목록 조회 api 호출 성공 시
     @Override
     public void onGetEvaluateSubjectSuccess(int code, ArrayList<GetEvaluateSubjectResult> result) {
         initRecyclerView(result);

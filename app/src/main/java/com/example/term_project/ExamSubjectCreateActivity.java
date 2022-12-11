@@ -71,6 +71,7 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
         int mYear = calendar.get(Calendar.YEAR);
         int mMonth = calendar.get(Calendar.MONTH);
         int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        // 다이얼 로그 형식 지정 및 날짜 선택
         datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
             @SuppressLint({"SetTextI18n", "DefaultLocale"})
             @Override
@@ -90,6 +91,7 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
                 }
             }
         });
+        // 일정 등록 닫기
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,10 +99,11 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
             }
         });
 
+        // 일정 등록
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createData();
+                createData(); // 일정 추가 api 호출
             }
         });
     }
@@ -115,12 +118,14 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         return spf.getString("jwt","");
     }
+    // 일정 추가 API
     public void createData(){
         ExamSubjectService examSubjectService = new ExamSubjectService();
         examSubjectService.setPostExamSubjectView(this);
-        examSubjectService.postExamSubject(getJwt(),getRequest());
+        examSubjectService.postExamSubject(getJwt(),getRequest()); // POST
     }
 
+    // 일정 추가 성공 시
     @Override
     public void onPostExamSubjectSuccess(int code, PostExamSubjectResult result) {
         //AlarmReceiver에 값 전달
@@ -144,7 +149,6 @@ public class ExamSubjectCreateActivity extends AppCompatActivity implements Post
         calendar_3day.add(Calendar.DATE, -3);
 
         alarmManager.set(AlarmManager.RTC, calendar_3day.getTimeInMillis(),pendingIntent);
-
 
         Calendar calendar_7day = Calendar.getInstance();
 

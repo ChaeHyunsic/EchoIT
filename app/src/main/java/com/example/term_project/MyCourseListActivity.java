@@ -34,7 +34,7 @@ public class MyCourseListActivity extends AppCompatActivity implements GetTimeTa
     @Override
     protected void onResume() {
         super.onResume();
-        getTimeTableList();
+        getTimeTableList(); // 내 강의목록 조회 api
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +61,7 @@ public class MyCourseListActivity extends AppCompatActivity implements GetTimeTa
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         return spf.getString("jwt","");
     }
+    // 내 강의목록 조회 api
     private void getTimeTableList(){
         CourseService courseService = new CourseService();
         courseService.setGetTimeTableView(this);

@@ -41,6 +41,7 @@ public class CourseListActivity extends AppCompatActivity implements GetCoursesV
         adapter = new CourseListAdapter(result,this);
         recyclerView.setAdapter(adapter);
     }
+    // 강의목록 조회 api
     private void getList(Integer grade){
         CourseService courseService = new CourseService();
         courseService.setGetCoursesView(this);
@@ -55,9 +56,9 @@ public class CourseListActivity extends AppCompatActivity implements GetCoursesV
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(courseGrade.getSelectedItem().toString().equals("전체")){
-                    getList(null);
+                    getList(null); // 전체 강의목록 조회 api
                 }else{
-                    getList(Integer.parseInt(courseGrade.getSelectedItem().toString()));
+                    getList(Integer.parseInt(courseGrade.getSelectedItem().toString())); // 학년별 강의목록 조회 api
                 }
             }
 

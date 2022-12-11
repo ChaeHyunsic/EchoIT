@@ -39,12 +39,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     @Override
     protected void onResume() {
         super.onResume();
-
+        // 회원가입 버튼 클릭
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                signUp();
+                signUp(); // api 호출
             }
         });
         closeSignUp.setOnClickListener(new View.OnClickListener() {

@@ -32,20 +32,15 @@ public class CommunityCreateActivity extends AppCompatActivity implements PostCo
         button = findViewById(R.id.community_create_complete_btn_js);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
 
     @Override
     protected void onResume() {
         super.onResume();
+        // 버튼 눌렀을 때
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createCommunity();
+                createCommunity(); // api 호출
             }
         });
         closeCreated.setOnClickListener(new View.OnClickListener() {
@@ -55,16 +50,18 @@ public class CommunityCreateActivity extends AppCompatActivity implements PostCo
             }
         });
     }
+    // 서버에 보낼 요청 값
     private PostCommunityRequest getData(){
         String titleText = title.getText().toString();
         String contentText = content.getText().toString();
         return new PostCommunityRequest(titleText,contentText);
     }
+    // 글쓰기 api
     private void createCommunity(){
         CommunityService communityService = new CommunityService();
         communityService.setPostCommunityView(this);
 
-        communityService.createCommunity(getJwt(), getData());
+        communityService.createCommunity(getJwt(), getData()); // POST
     }
     private String getJwt(){
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);

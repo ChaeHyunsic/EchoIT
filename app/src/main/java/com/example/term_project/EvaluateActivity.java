@@ -46,12 +46,14 @@ public class EvaluateActivity extends AppCompatActivity implements PostSubjectRe
                 finish();
             }
         });
+        // 평가하기 버튼
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createReview();
             }
         });
+        // 레이팅바
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -60,12 +62,14 @@ public class EvaluateActivity extends AppCompatActivity implements PostSubjectRe
             }
         });
     }
+    // 강의평 작성 api
     private void createReview(){
         EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
         evaluateSubjectService.setPostSubjectReviewView(this);
 
-        evaluateSubjectService.postSubjectReviews(getJwt(),getIntent().getIntExtra("subjectIdx",0),getReview());
+        evaluateSubjectService.postSubjectReviews(getJwt(),getIntent().getIntExtra("subjectIdx",0),getReview()); //POST
     }
+    // 강의평 작성 > 서버에 보낼 요청값
     private PostEvaluateSubjectReviewRequest getReview(){
         String content = review.getText().toString();
         float scoreText = Float.parseFloat(score.getText().toString());

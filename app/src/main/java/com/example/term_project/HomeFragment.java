@@ -46,9 +46,10 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
-        getTopCommunities();
-        getTopReviews();
+        getTopCommunities(); // api 호출
+        getTopReviews(); // api 호출
         uou = root.findViewById(R.id.home_uou_iv_js);
+        // UOU 클릭
         uou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
                 startActivity(i);
             }
         });
+        // UWINS 클릭
         uwins = root.findViewById(R.id.home_uwins_iv_js);
         uwins.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +68,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
                 startActivity(i);
             }
         });
+        // UCLASS 클릭
         uclass = root.findViewById(R.id.home_uclass_iv_js);
         uclass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +78,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
                 startActivity(i);
             }
         });
+        // CICWEB 클릭
         cicweb = root.findViewById(R.id.home_cicweb_iv_js);
         cicweb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +88,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
                 startActivity(i);
             }
         });
+        // HOT 게시물 더보기 클릭
         goCommunity = root.findViewById(R.id.communities_intent_tv_js);
         goCommunity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +97,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
                 startActivity(intent);
             }
         });
+        // 최근 강의평 더보기 클릭
         goEvaluateSub = root.findViewById(R.id.reviews_intent_tv_js);
         goEvaluateSub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,21 +109,25 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
 
         return root;
     }
-    private void getTopCommunities(){
+    // HOT 게시물
+    private void getTopCommunities(){ // API 요청 함수
 
         CommunityService communityService = new CommunityService();
         communityService.setGetTopCommunitiesView(this);
 
-        communityService.getTopCommunities();
+        communityService.getTopCommunities(); // 댓글 많은 순 정렬 후 4개의 리스트 뽑아옴.
     }
 
-    private void getTopReviews(){
+    // 최근 강의평
+    private void getTopReviews(){ // API 요청 함수
         EvaluateSubjectService evaluateSubjectService = new EvaluateSubjectService();
         evaluateSubjectService.setGetTopReviewsView(this);
 
-        evaluateSubjectService.getTopReviews();
+        evaluateSubjectService.getTopReviews(); // 최근 순 정렬 후 4개의 리스트 뽑아옴.
     }
+    // 뷰 초기화
     private void initView(View root){
+        // 리사이클러뷰를 쓰지 않았기 때문에 하나씩 처리함.
         community_title_0 = root.findViewById(R.id.community_title_js_0);
         community_content_0 = root.findViewById(R.id.community_content_tv_js_0);
         community_created_0 = root.findViewById(R.id.community_created_js_0);
@@ -163,6 +173,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
         review_content_3 = root.findViewById(R.id.review_content_tv_js_3);
 
     }
+    // API 요청 성공 시 호출하는 함수
     @Override
     public void onGetTopCommunitiesViewSuccess(int code, ArrayList<GetTopCommunitiesResult> result) {
         community_title_0.setText(result.get(0).getTitle());
@@ -189,12 +200,13 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
         community_grade_3.setText(String.valueOf(result.get(3).getGrade()));
         community_comment_3.setText(String.valueOf(result.get(3).getCommentCount()));
     }
-
+    // API 요청 실패 시 호출하는 함수
     @Override
     public void onGetTopCommunitiesViewFailure(int code, String message) {
 
     }
 
+    // API 요청 성공 시 호출하는 함수
     @Override
     public void onGetTopReviewsSuccess(int code, ArrayList<GetTopReviewsResult> result) {
         review_rating_0.setRating(result.get(0).getScore());
@@ -218,6 +230,7 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
         review_content_3.setText(result.get(3).getContent());
     }
 
+    // API 요청 실패 시 호출하는 함수
     @Override
     public void onGetTopReviewsFailure(int code, String message) {
 

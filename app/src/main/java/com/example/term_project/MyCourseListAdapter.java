@@ -70,8 +70,8 @@ public class MyCourseListAdapter extends RecyclerView.Adapter<MyCourseListAdapte
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteData(result.get(touchIndex).getTimetableIdx());
-                result.remove(touchIndex);
+                deleteData(result.get(touchIndex).getTimetableIdx()); // 내 강의삭제 api 호출
+                result.remove(touchIndex); // 리스트에서 삭제
                 notifyItemRemoved(touchIndex);
             }
         });
@@ -86,6 +86,7 @@ public class MyCourseListAdapter extends RecyclerView.Adapter<MyCourseListAdapte
         SharedPreferences spf = context.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE);
         return spf.getString("jwt","");
     }
+    // 내 강의 삭제 api
     private void deleteData(int timetableIdx){
         CourseService courseService = new CourseService();
         courseService.setDeleteCourseView(this);

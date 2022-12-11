@@ -104,19 +104,19 @@ public class TimeTableActivity extends AppCompatActivity implements GetTimeTable
     @Override
     protected void onResume() {
         super.onResume();
-        getTimeTableList();
+        getTimeTableList(); // api 호출
         courseList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TimeTableActivity.this,CourseListActivity.class);
-                startActivity(intent);
+                startActivity(intent); // 내 강의목록 보기
             }
         });
         myCourseList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TimeTableActivity.this,MyCourseListActivity.class);
-                startActivity(intent);
+                startActivity(intent); // 전체 강의목록 보기
             }
         });
     }
@@ -125,23 +125,25 @@ public class TimeTableActivity extends AppCompatActivity implements GetTimeTable
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         return spf.getString("jwt","");
     }
+    // 내 강의목록 조회 api 호출
     private void getTimeTableList(){
         CourseService courseService = new CourseService();
         courseService.setGetTimeTableView(this);
 
-        courseService.getTimeTable(getJwt());
+        courseService.getTimeTable(getJwt()); // GET
     }
     @Override
     protected void onStop() {
         super.onStop();
         finish();
     }
+    // 내 강의목록 조회 > 시간표에 세팅
     @Override
     public void onGetTimeTableSuccess(int code, ArrayList<GetTimeTableListResult> result) {
         for(int i=0;i<result.size();i++){
-            timeTable.addTimeTable(result.get(i).getTime(),result.get(i).getSubjectName(),result.get(i).getRoom());
+            timeTable.addTimeTable(result.get(i).getTime(),result.get(i).getSubjectName(),result.get(i).getRoom()); // 내 강의목록 조회
         }
-        timeTable.settingTimeTable(monday,tuesday,wednesday,thursday,friday,this);
+        timeTable.settingTimeTable(monday,tuesday,wednesday,thursday,friday,this); // 시간표에 세팅
     }
 
     @Override

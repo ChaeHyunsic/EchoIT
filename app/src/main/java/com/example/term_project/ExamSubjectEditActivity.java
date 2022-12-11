@@ -56,21 +56,25 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
             endAtText.setText(getIntent().getStringExtra("endAt"));
         }
     }
+    // 서버에 보낼 요청 함수
     public PatchExamSubjectRequest getRequest(){
         String titleText = title.getText().toString();
         String contentText = content.getText().toString();
         Date endAt = Date.valueOf(endAtText.getText().toString());
         return new PatchExamSubjectRequest(titleText,contentText,endAt);
     }
+    // jwt 토큰 get
     private String getJwt(){
         SharedPreferences spf = this.getSharedPreferences("auth",AppCompatActivity.MODE_PRIVATE);
         return spf.getString("jwt","");
     }
+    // 일정 수정 api 함수
     public void refactorData(){
         ExamSubjectService examSubjectService = new ExamSubjectService();
         examSubjectService.setPatchExamSubjectView(this);
-        examSubjectService.patchExamSubject(getJwt(),listIdx,getRequest());
+        examSubjectService.patchExamSubject(getJwt(),listIdx,getRequest()); // PATCH
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -99,7 +103,7 @@ public class ExamSubjectEditActivity extends AppCompatActivity implements PatchE
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                refactorData();
+                refactorData(); // api 호출
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
