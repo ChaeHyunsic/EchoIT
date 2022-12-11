@@ -46,8 +46,6 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initView(root);
-        getTopCommunities(); // api 호출
-        getTopReviews(); // api 호출
         uou = root.findViewById(R.id.home_uou_iv_js);
         // UOU 클릭
         uou.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +107,14 @@ public class HomeFragment extends Fragment implements GetTopCommunitiesView, Get
 
         return root;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getTopCommunities(); // api 호출
+        getTopReviews(); // api 호출
+    }
+
     // HOT 게시물
     private void getTopCommunities(){ // API 요청 함수
 
