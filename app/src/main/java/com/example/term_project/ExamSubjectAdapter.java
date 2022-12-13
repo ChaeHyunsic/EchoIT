@@ -86,9 +86,9 @@ public class ExamSubjectAdapter extends RecyclerView.Adapter<ExamSubjectAdapter.
                                 intent.putExtra("endAt",result.get(touchIndex).getEndAt().toString());
                                 context.startActivity(intent);
                                 return true;
-                            case R.id.delete:
-                                deleteData(result.get(touchIndex).getId());
-                                result.remove(touchIndex);
+                            case R.id.delete: // 삭제 메뉴 선택
+                                deleteData(result.get(touchIndex).getId()); // 삭제 api 호출
+                                result.remove(touchIndex); // 리스트에서 항목 삭제
                                 notifyDataSetChanged();
                                 return true;
                             default:
