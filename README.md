@@ -1,7 +1,6 @@
 # Android_project
 ## Team Notion Page
 https://www.notion.so/Android-Term-Project-53e6c115c3b742e19ab00b078b71f89a
-## 11**월 4일 개발일지**
 
 
 ⭐ **기능 기획**
@@ -83,18 +82,3 @@ https://www.notion.so/5244356fede4400d8fda2b953905af0d
     로그인, 회원가입, DB구축, 공지사항, 강의목록, 시간표, 시간표 중복 및 예외 처리, 강의 분석, 학점 계산, 강의 경쟁률 계산, 강의 인기도, 스플래시 화면, 팝업창 어플리케이션 정보 출력
     <br>
     [https://www.youtube.com/playlist?list=PLRx0vPvlEmdD862e43ADbvDeGPUZKDuqL](https://www.youtube.com/playlist?list=PLRx0vPvlEmdD862e43ADbvDeGPUZKDuqL)
-
-## 11**월 6일 개발일지**
-
-**⭐ Google Map Api 사용하여 MapFragment 개발**
-
-![image](https://user-images.githubusercontent.com/76149358/200157850-7e9a62bb-a03f-4a26-b48a-3a1afe5664fe.png)
-
-⭐ **Git Flow Feature Branch Create & Delete**
-
-⭐ Dev Source Tree
-
-- 아직 master에 병합하지 않은 상태..
-- 개발은 계속해서 Dev Branch에서 진행한다.
-
-![image](https://user-images.githubusercontent.com/76149358/200157859-9a959562-7440-4176-b157-8398c10334f6.png)
